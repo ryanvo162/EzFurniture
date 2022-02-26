@@ -2,6 +2,7 @@
   "expo": {
     "name": "EzFurniture",
     "slug": "EzFurniture",
+    "owner": "ryanvo.0162",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
