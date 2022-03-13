@@ -7,14 +7,14 @@ import { styles } from "./styles";
 import SlashScreen from "./SlashScreen/splash";
 import WelcomeScreen from "./WelcomeScreen/welcome";
 import LoginScreen from "./LoginScreen/login";
-import HomeScreen from "./HomeScreen/home";
+import HomeScreen from "./HomeScreen/main";
 import SignUpScreen from "./SignUpScreen/signup";
 
 export default function AppProvider() {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer style={styles.container}>
-      <Stack.Navigator initialRouteName="SlashScreen">
+      <Stack.Navigator initialRouteName="HomeScreen">
         <Stack.Screen
           name="SlashScreen"
           component={SlashScreen}
