@@ -1,7 +1,8 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
+    position: "absolute",
     width: "100%",
     height: 260,
     backgroundColor: "rgba(85,85,85,0.8)",
@@ -10,30 +11,28 @@ export const styles = StyleSheet.create({
   },
 
   btnNext: {
-    backgroundColor: "white",
+    alignItems: "flex-end",
+    paddingRight: 30,
+    marginTop: Platform.OS === "ios" ? 50 : 30,
+  },
+
+  btn: {
+    backgroundColor: "#C4C4C4",
     alignItems: "center",
     justifyContent: "center",
-    width: 60,
-    height: 60,
-    marginLeft: 320,
-    marginTop: 50,
-    borderRadius:50,
-    
+    width: 50,
+    height: 50,
+    borderRadius: 50,
   },
-  
-  btnText:{
-    fontSize : 16,
-    color: "#212121",
-    
-  },
+
   header: {
     marginLeft: 30,
     marginTop: 40,
     textAlign: "left",
     fontSize: 25,
     color: "#ffffff",
-    // fontFamily: "Montserrat",
   },
+
   introText: {
     width: 356,
     marginLeft: 30,

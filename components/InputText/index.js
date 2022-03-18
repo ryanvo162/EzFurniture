@@ -4,14 +4,17 @@ import React from "react";
 import { styles } from "./style";
 
 export default function TextInputApp(props) {
+  const { onChange, placeholder,type } = props;
   return (
     <View style={styles.container}>
       <TextInput
         style={styles.textInput}
-        placeholder={props.placeholder}
+        placeholder={placeholder}
         placeholderTextColor={"#ffffff"}
-        value={props.value}
+        onChangeText={onChange}
+        // value={props.value}
         color={"#ffffff"}
+        keyboardType={type}
       />
     </View>
   );

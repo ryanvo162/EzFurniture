@@ -17,7 +17,6 @@ export const styles = StyleSheet.create({
     position: "absolute",
     width: "auto",
     height: "auto",
-    padding: 20,
     bottom: 33,
     borderRadius: 10,
     backgroundColor: "rgba(119, 120, 123, 0.7)",
@@ -25,9 +24,15 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
+  loading: {
+    position: "absolute",
+    flex: 1,
+    bottom: "50%",
+  },
+
   textStyle: {
-    fontSize: 20,
+    fontSize: Platform.OS === "ios" ? 20 : 17,
+    margin: 10,
     color: "white",
-    textAlign: "center",
   },
 });

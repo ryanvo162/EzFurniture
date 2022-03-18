@@ -26,7 +26,7 @@ export default function SplashScreen(props) {
 
   return (
     <View style={styles.container}>
-      <Image source={require("../../assets/img/logo.png")} />
+      <Image style={styles.logo} source={require("../../assets/img/logo.png")} />
       <StatusBar hidden />
     </View>
   );

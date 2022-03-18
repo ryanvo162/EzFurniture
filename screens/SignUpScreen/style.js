@@ -3,9 +3,7 @@ import { StyleSheet, Platform } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-   // alignItems: "center",
     backgroundColor: "white",
-    // justifyContent: "center",
   },
   titleText: {
     fontSize: Platform.OS === "ios" ? 30 : 23,
@@ -27,7 +25,6 @@ export const styles = StyleSheet.create({
   textForgotPassword: {
     fontSize: 12,
     color: "#242A37",
-    // marginTop:2,
     marginLeft: "55%",
   },
   textNote: {

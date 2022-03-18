@@ -2,19 +2,21 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { StatusBar } from "expo-status-bar";
 import { styles } from "./styles";
 import SlashScreen from "./SlashScreen/splash";
 import WelcomeScreen from "./WelcomeScreen/welcome";
 import LoginScreen from "./LoginScreen/login";
 import HomeScreen from "./HomeScreen/main";
 import SignUpScreen from "./SignUpScreen/signup";
+import ProductScreen from "./ProductScreen/product";
+import ForgotPasswordScreen from "./ForgotPasswordScreen";
+import OTPScreen from "./OTPScreen";
 
 export default function AppProvider() {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer style={styles.container}>
-      <Stack.Navigator initialRouteName="HomeScreen">
+      <Stack.Navigator initialRouteName="SplashScreen">
         <Stack.Screen
           name="SlashScreen"
           component={SlashScreen}
@@ -42,8 +44,22 @@ export default function AppProvider() {
           component={HomeScreen}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="ProductScreen"
+          component={ProductScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ForgotPasswordScreen"
+          component={ForgotPasswordScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="OTPScreen"
+          component={OTPScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
-      <StatusBar style="auto" />
     </NavigationContainer>
   );
 }

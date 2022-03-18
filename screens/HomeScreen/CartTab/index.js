@@ -6,24 +6,31 @@ import { styles } from "./style";
 export default function CartTab() {
   return (
     <View style={styles.container}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{
-          flexGrow: 1,
-          alignItems: "center",
-          paddingTop: 45,
-          paddingBottom: 100,
-        }}
-      >
-        <CartItem />
-        <CartItem />
-        <CartItem />
-        <CartItem />
-        <CartItem />
-        <CartItem />
-        <CartItem />
-        <CartItem />
-      </ScrollView>
+      <View style={styles.content}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            flexGrow: 1,
+            alignItems: "center",
+            paddingTop: 100,
+            paddingBottom: 100,
+          }}
+        >
+          <CartItem />
+          <CartItem />
+          <CartItem />
+          <CartItem />
+          <CartItem />
+          <CartItem />
+          <CartItem />
+          <CartItem />
+        </ScrollView>
+        <View style={styles.header}>
+          <View style={styles.title}>
+            <Text style={styles.title}>My Cart</Text>
+          </View>
+        </View>
+      </View>
     </View>
   );
 }

@@ -16,7 +16,7 @@ export default function ProfileTab() {
       >
         {/* headerView */}
         <View style={styles.profileUser}>
-          <Image source="" style={styles.imageUser}></Image>
+          <Image style={styles.imageUser}></Image>
 
           <View style={styles.profileInfoUser}>
             <Text style={styles.nameUser}>Kristin Watson</Text>
@@ -41,13 +41,13 @@ export default function ProfileTab() {
           <View style={styles.hr}></View>
 
           <View style={styles.items}>
-            <Icon.Package
+            <Icon.CreditCard
               stroke="#fff"
               strokeWidth={1.5}
               height={30}
               width={30}
             />
-            <Text style={styles.itemsText}>My Order</Text>
+            <Text style={styles.itemsText}>Payment method</Text>
 
             <View style={styles.iconNext}>
               <Icon.ChevronRight stroke="#fff" />
@@ -56,13 +56,13 @@ export default function ProfileTab() {
           <View style={styles.hr}></View>
 
           <View style={styles.items}>
-            <Icon.Package
+            <Icon.MapPin
               stroke="#fff"
               strokeWidth={1.5}
               height={30}
               width={30}
             />
-            <Text style={styles.itemsText}>My Order</Text>
+            <Text style={styles.itemsText}>Delivery address</Text>
 
             <View style={styles.iconNext}>
               <Icon.ChevronRight stroke="#fff" />
@@ -71,13 +71,8 @@ export default function ProfileTab() {
           <View style={styles.hr}></View>
 
           <View style={styles.items}>
-            <Icon.Package
-              stroke="#fff"
-              strokeWidth={1.5}
-              height={30}
-              width={30}
-            />
-            <Text style={styles.itemsText}>My Order</Text>
+            <Icon.Gift stroke="#fff" strokeWidth={1.5} height={30} width={30} />
+            <Text style={styles.itemsText}>Gift card &amp; vouchers</Text>
 
             <View style={styles.iconNext}>
               <Icon.ChevronRight stroke="#fff" />
@@ -86,13 +81,8 @@ export default function ProfileTab() {
           <View style={styles.hr}></View>
 
           <View style={styles.items}>
-            <Icon.Package
-              stroke="#fff"
-              strokeWidth={1.5}
-              height={30}
-              width={30}
-            />
-            <Text style={styles.itemsText}>My Order</Text>
+            <Icon.User stroke="#fff" strokeWidth={1.5} height={30} width={30} />
+            <Text style={styles.itemsText}>Information</Text>
 
             <View style={styles.iconNext}>
               <Icon.ChevronRight stroke="#fff" />
@@ -101,13 +91,13 @@ export default function ProfileTab() {
           <View style={styles.hr}></View>
 
           <View style={styles.items}>
-            <Icon.Package
+            <Icon.HelpCircle
               stroke="#fff"
               strokeWidth={1.5}
               height={30}
               width={30}
             />
-            <Text style={styles.itemsText}>My Order</Text>
+            <Text style={styles.itemsText}>Support</Text>
 
             <View style={styles.iconNext}>
               <Icon.ChevronRight stroke="#fff" />
@@ -116,13 +106,8 @@ export default function ProfileTab() {
           <View style={styles.hr}></View>
 
           <View style={styles.items}>
-            <Icon.Package
-              stroke="#fff"
-              strokeWidth={1.5}
-              height={30}
-              width={30}
-            />
-            <Text style={styles.itemsText}>My Order</Text>
+            <Icon.Mail stroke="#fff" strokeWidth={1.5} height={30} width={30} />
+            <Text style={styles.itemsText}>Feedback</Text>
 
             <View style={styles.iconNext}>
               <Icon.ChevronRight stroke="#fff" />

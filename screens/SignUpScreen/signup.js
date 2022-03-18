@@ -9,8 +9,8 @@ import AuthButton from "../../components/AuthButton";
 export default function SignUpScreen(props) {
   const { navigation } = props;
 
-  const handleLogin = () => {
-    navigation.replace("HomeScreen");
+  const handleSignUp = () => {
+    navigation.replace("OTPScreen");
   };
 
   const handleGoToLogin = () => {
@@ -37,10 +37,10 @@ export default function SignUpScreen(props) {
         <ButtonApp
           text="Sign Up"
           backgroundColor="brown"
-          onPress={handleLogin}
+          onPress={handleSignUp}
         />
         <Text style={styles.textNote}>
-          Already have an account?
+          Already have an account?{" "}
           <Text onPress={handleGoToLogin} style={styles.boldText}>
             Sign in.
           </Text>

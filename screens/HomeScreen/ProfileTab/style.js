@@ -10,7 +10,9 @@ export const styles = StyleSheet.create({
   profileUser: {
     flexDirection: "row",
     justifyContent: "center",
+    // backgroundColor: "red",
   },
+
   imageUser: {
     width: 124,
     height: 124,
@@ -41,14 +43,15 @@ export const styles = StyleSheet.create({
 
   items: {
     flexDirection: "row",
-    alignContent: "center",
+    alignItems: "center",
     justifyContent: "center",
+    // backgroundColor: "red",
     paddingHorizontal: "5%",
   },
 
   itemsText: {
     marginLeft: 30,
-    fontSize: 20,
+    fontSize: Platform.OS === "ios" ? 20 : 17,
     color: "white",
   },
 

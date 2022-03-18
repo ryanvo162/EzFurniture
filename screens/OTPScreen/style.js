@@ -13,10 +13,22 @@ export const styles = StyleSheet.create({
     marginTop: Platform.OS === "ios" ? 80 : 70,
     marginBottom: Platform.OS === "ios" ? 12 : 6,
   },
+
   subTitleText: {
-    fontSize: Platform.OS === "ios" ? 14 : 11,
-    marginBottom: Platform.OS === "ios" ? 40 : 35,
+    marginTop: Platform.OS === "ios" ? 32 : 16,
+    fontSize: Platform.OS === "ios" ? 16 : 12,
   },
+  subTitleTextOne: {
+    fontSize: Platform.OS === "ios" ? 16 : 12,
+    marginBottom: Platform.OS === "ios" ? 32 : 20,
+  },
+
+  textView: {
+    // backgroundColor: "red",
+    width: "100%",
+    paddingLeft: "10%",
+  },
+
   inputTextEmail: {
     marginTop: 1200,
   },
@@ -24,21 +36,8 @@ export const styles = StyleSheet.create({
     width: "100%",
     height: "25%",
   },
-  textForgotPassword:{
-    fontSize:12,
-    color: "#242A37",
-    // marginTop:2,
-    marginLeft:"54%",
-  },
-  textNote:{
-    fontSize:12,
-    color:"#242A37",
-    marginTop:10,
-
-  },
-  boldText:{
-    fontSize:12,
-    fontWeight:"bold",
-
+  timeVerify: {
+    fontSize: Platform.OS === "ios" ? 16 : 12,
+    fontWeight: "bold",
   },
 });
