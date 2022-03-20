@@ -71,7 +71,6 @@ export default function ProductScreen(props) {
         keyExtractor={(item) => item.id}
         numColumns={2}
         columnWrapperStyle={{
-          // backgroundColor: "#f9c2ff",
           flexGrow: 1,
           justifyContent: "center",
         }}

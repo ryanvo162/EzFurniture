@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, ImageBackground, ActivityIndicator } from "react-native";
 import { styles } from "./style";
 
@@ -9,12 +9,26 @@ export default function HomeTab(props) {
   const { navigation } = props;
 
   const [isLoading, setIsLoading] = useState(true);
-
-  const handleGoToProduct = () => {
-    navigation.navigate("ProductScreen");
+  const [myArr, setMyArr] = useState();
+  
+  const handleGoToProduct = (category) => {
+    console.log(category);
+    navigation.navigate("ProductScreen", {
+      data: myArr,
+    });
   };
+
+  // useEffect(async () => {
+  //   const data = await fetch(
+  //     "https://admin.furniture.bandn.online/mobile/category/"
+  //   )
+  //     .then((res) => res.json())
+  //     .catch((err) => console.log(err));
+  //   myArr = data;
+  // }, []);
+
   return (
-    <PagerView style={styles.container} initialPage={0}>
+    <PagerView overScrollMode="never" style={styles.container} initialPage={0}>
       <View style={styles.container} key="1">
         <ImageBackground
           onLoadStart={() => setIsLoading(true)}
@@ -37,6 +51,28 @@ export default function HomeTab(props) {
             color="white"
             onPress={handleGoToProduct}
           />
+          <CategoryItem
+            category="Picture"
+            top={225}
+            right={100}
+            color="white"
+            onPress={handleGoToProduct}
+          />
+          <CategoryItem
+            category="Coffee Table"
+            bottom={150}
+            left={102}
+            color="white"
+            onPress={handleGoToProduct}
+          />
+          <CategoryItem
+            category="Carpet"
+            bottom={60}
+            right={27}
+            color="white"
+            onPress={handleGoToProduct}
+          />
+
           {/* <CategoryItem category="Sofa" color="white" /> */}
           {/* <CategoryItem category="Sofa" color="white" /> */}
           {/* <CategoryItem category="Sofa" color="white" /> */}
@@ -58,10 +94,20 @@ export default function HomeTab(props) {
               <ActivityIndicator size="large" color="gray" />
             </View>
           )}
-          <CategoryItem category="Sofa" bottom={240} right={50} color="white" />
-          {/* <CategoryItem category="Sofa" color="white" /> */}
-          {/* <CategoryItem category="Sofa" color="white" /> */}
-          {/* <CategoryItem category="Sofa" color="white" /> */}
+          <CategoryItem
+            category="Lamp"
+            top={100}
+            right={40}
+            color="white"
+            onPress={handleGoToProduct}
+          />
+          <CategoryItem
+            category="Cabinet"
+            bottom={130}
+            left={150}
+            color="white"
+            onPress={handleGoToProduct}
+          />
         </ImageBackground>
       </View>
 
@@ -80,7 +126,35 @@ export default function HomeTab(props) {
               <ActivityIndicator size="large" color="gray" />
             </View>
           )}
-          <CategoryItem category="Sofa" bottom={240} right={50} color="white" />
+          <CategoryItem
+            category="Bed"
+            bottom={200}
+            right={60}
+            color="white"
+            onPress={handleGoToProduct}
+          />
+          <CategoryItem
+            category="Picture"
+            top={180}
+            right={30}
+            color="white"
+            onPress={handleGoToProduct}
+          />
+          <CategoryItem
+            category="Hanging Light"
+            top={120}
+            left={50}
+            color="white"
+            onPress={handleGoToProduct}
+          />
+          <CategoryItem
+            category="Bedside Table"
+            bottom={230}
+            left={30}
+            color="white"
+            onPress={handleGoToProduct}
+          />
+
           {/* <CategoryItem category="Sofa" color="white" /> */}
           {/* <CategoryItem category="Sofa" color="white" /> */}
           {/* <CategoryItem category="Sofa" color="white" /> */}
@@ -102,10 +176,28 @@ export default function HomeTab(props) {
               <ActivityIndicator size="large" color="gray" />
             </View>
           )}
-          <CategoryItem category="Sofa" bottom={240} right={50} color="white" />
-          {/* <CategoryItem category="Sofa" color="white" /> */}
-          {/* <CategoryItem category="Sofa" color="white" /> */}
-          {/* <CategoryItem category="Sofa" color="white" /> */}
+
+          <CategoryItem
+            category="Desk"
+            bottom={170}
+            left={100}
+            color="white"
+            onPress={handleGoToProduct}
+          />
+          <CategoryItem
+            category="Chair"
+            bottom={100}
+            right={15}
+            color="white"
+            onPress={handleGoToProduct}
+          />
+          <CategoryItem
+            category="Reading Lamp"
+            bottom={380}
+            left={100}
+            color="white"
+            onPress={handleGoToProduct}
+          />
         </ImageBackground>
       </View>
 
@@ -124,10 +216,20 @@ export default function HomeTab(props) {
               <ActivityIndicator size="large" color="gray" />
             </View>
           )}
-          <CategoryItem category="Sofa" bottom={240} right={50} color="white" />
-          {/* <CategoryItem category="Sofa" color="white" /> */}
-          {/* <CategoryItem category="Sofa" color="white" /> */}
-          {/* <CategoryItem category="Sofa" color="white" /> */}
+          <CategoryItem
+            category="Dining Chairs"
+            bottom={180}
+            right={50}
+            color="white"
+            onPress={handleGoToProduct}
+          />
+          <CategoryItem
+            category="Dinner Table"
+            bottom={90}
+            left={60}
+            color="white"
+            onPress={handleGoToProduct}
+          />
         </ImageBackground>
       </View>
     </PagerView>

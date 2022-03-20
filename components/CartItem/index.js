@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import { View, Text, Image, Pressable } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, Image } from "react-native";
+import QuantityButton from "../QuantityButton";
 import { styles } from "./style";
 
 export default function CartItem(props) {
-  const { name, source, price, onPress } = props;
-
+  const { name, image, price, onChange } = props;
   const [quantity, setQuantity] = useState(0);
-
+  const total = price * quantity;
+  
   const handleMinus = () => {
     if (quantity > 0) {
       setQuantity(quantity - 1);
@@ -15,25 +16,25 @@ export default function CartItem(props) {
     }
   };
 
-  const handlePlus = () => {
-    setQuantity(quantity + 1);
+  const handlePlus = (count) => {
+    setQuantity(count + 1);
   };
+
+  useEffect(async() => {await onChange(quantity, total), []});
+
 
   return (
     <View style={styles.items}>
-      <Image style={styles.imageItem} source={source} />
+      <Image style={styles.imageItem} source={image} />
       <View style={styles.infoProduct}>
-        <Text style={styles.name}>{name}Products</Text>
-        <Text style={styles.price}>{price}123.123</Text>
-        <View style={styles.quantity}>
-          <Pressable onPress={handleMinus} style={styles.quantityButton}>
-            <Text style={styles.quantityText}>-</Text>
-          </Pressable>
-          <Text style={styles.quantityNumber}>{quantity}</Text>
-          <Pressable onPress={handlePlus} style={styles.quantityButton}>
-            <Text style={styles.quantityText}>+</Text>
-          </Pressable>
-        </View>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.price}>{total}</Text>
+        <QuantityButton
+          // onPress={handleChange}
+          onPressPlus={handlePlus}
+          onPressMinus={handleMinus}
+          quantity={quantity}
+        />
       </View>
     </View>
   );

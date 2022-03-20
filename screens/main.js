@@ -9,14 +9,15 @@ import LoginScreen from "./LoginScreen/login";
 import HomeScreen from "./HomeScreen/main";
 import SignUpScreen from "./SignUpScreen/signup";
 import ProductScreen from "./ProductScreen/product";
-import ForgotPasswordScreen from "./ForgotPasswordScreen";
-import OTPScreen from "./OTPScreen";
+import ForgotPasswordScreen from "./ForgotPasswordScreen/forgot_pass";
+import OTPScreen from "./OTPScreen/otp";
+import DetailScreen from "./DetailScreen/detail";
 
 export default function AppProvider() {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer style={styles.container}>
-      <Stack.Navigator initialRouteName="SplashScreen">
+      <Stack.Navigator initialRouteName="HomeScreen">
         <Stack.Screen
           name="SlashScreen"
           component={SlashScreen}
@@ -47,6 +48,11 @@ export default function AppProvider() {
         <Stack.Screen
           name="ProductScreen"
           component={ProductScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="DetailScreen"
+          component={DetailScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen

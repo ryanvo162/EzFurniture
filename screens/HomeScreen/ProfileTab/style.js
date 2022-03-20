@@ -26,13 +26,13 @@ export const styles = StyleSheet.create({
   },
 
   nameUser: {
-    fontSize: 24,
+    fontSize: Platform.OS === "ios" ? 24 : 18,
     color: "white",
     marginBottom: 8,
   },
 
   gmailUser: {
-    fontSize: 18,
+    fontSize: Platform.OS === "ios" ? 18 : 12,
     color: "white",
   },
 
@@ -51,7 +51,7 @@ export const styles = StyleSheet.create({
 
   itemsText: {
     marginLeft: 30,
-    fontSize: Platform.OS === "ios" ? 20 : 17,
+    fontSize: Platform.OS === "ios" ? 20 : 14,
     color: "white",
   },
 

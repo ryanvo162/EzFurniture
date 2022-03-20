@@ -31,31 +31,31 @@ export default function HomeScreen(props) {
 
             if (route.name === "Home") {
               tag = focused ? (
-                <Icon.Home stroke={color} />
+                <Icon.Home stroke={color} height={size} width={size}/>
               ) : (
                 <Icon.Home stroke={color} />
               );
             } else if (route.name === "Style") {
               tag = focused ? (
-                <Icon.Codesandbox stroke={color} />
+                <Icon.Codesandbox stroke={color} height={size} width={size} />
               ) : (
                 <Icon.Codesandbox stroke={color} />
               );
             } else if (route.name === "Notification") {
               tag = focused ? (
-                <Icon.Bell stroke={color} />
+                <Icon.Bell stroke={color} height={size} width={size} />
               ) : (
                 <Icon.Bell stroke={color} />
               );
             } else if (route.name === "Cart") {
               tag = focused ? (
-                <Icon.ShoppingCart stroke={color} />
+                <Icon.ShoppingCart stroke={color} height={size} width={size} />
               ) : (
                 <Icon.ShoppingCart stroke={color} />
               );
             } else if (route.name === "Profile") {
               tag = focused ? (
-                <Icon.User stroke={color} />
+                <Icon.User stroke={color} height={size} width={size} />
               ) : (
                 <Icon.User stroke={color} />
               );
@@ -91,10 +91,6 @@ export default function HomeScreen(props) {
                 borderRadius: 50,
               },
             }),
-
-            // borderRadius: 50,
-            // alignItems: "center",
-            // justifyContent: "center",
           },
         })}
       >

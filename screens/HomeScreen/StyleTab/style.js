@@ -7,5 +7,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "white",
     justifyContent: "center",
   },
-
+  flatList: {
+    width: "100%",
+  },
 });

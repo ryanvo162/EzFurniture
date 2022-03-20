@@ -2,14 +2,13 @@ import { StyleSheet, Platform } from "react-native";
 
 export const styles = StyleSheet.create({
   items: {
-    marginBottom: 16,
-    alignItems: "center",
-    justifyContent: "flex-end",
-  },
-
-  imageItem: {
-    width: 374,
+    flex: 1,
     height: 500,
+    marginHorizontal: "3%",
+    marginVertical: 8,
+    backgroundColor: "gray",
+    justifyContent: "center",
+    alignItems: "center",
     borderRadius: 20,
   },
 
@@ -25,9 +24,9 @@ export const styles = StyleSheet.create({
   },
 
   loading: {
-    position: "absolute",
     flex: 1,
-    bottom: "50%",
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   textStyle: {

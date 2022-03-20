@@ -2,8 +2,10 @@ import { StyleSheet, Platform } from "react-native";
 
 export const styles = StyleSheet.create({
   items: {
-    marginBottom: 12,
-    width: "100%",
+    flex: 1,
+    marginHorizontal: "3%",
+    marginVertical: 6,
+    marginHorizontal: "2%",
     alignItems: "center",
     backgroundColor: "white",
     flexDirection: "row",
@@ -11,14 +13,12 @@ export const styles = StyleSheet.create({
   },
 
   infoProduct: {
-    // backgroundColor: "red",
     marginLeft: "2%",
   },
 
   imageItem: {
     width: 140,
     height: 120,
-    // resizeMode: "contain",
     marginVertical: 10,
     borderRadius: 10,
     backgroundColor: "gray",
@@ -26,37 +26,12 @@ export const styles = StyleSheet.create({
   },
 
   name: {
-    fontSize: Platform.OS === "ios" ? 20 : 17,
+    fontSize: Platform.OS === "ios" ? 20 : 16,
     marginBottom: Platform.OS === "ios" ? 8 : 4,
   },
 
   price: {
-    fontSize: Platform.OS === "ios" ? 20 : 17,
+    fontSize: Platform.OS === "ios" ? 20 : 16,
     marginBottom: Platform.OS === "ios" ? 8 : 4,
-  },
-
-  quantity: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-
-  quantityButton: {
-    width: 40,
-    height: 28,
-    backgroundColor: "#636363",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 5,
-  },
-
-  quantityText: {
-    fontSize: Platform.OS === "ios" ? 20 : 17,
-    fontWeight: "bold",
-    color: "white",
-  },
-
-  quantityNumber: {
-    marginHorizontal: 12,
-    fontSize: Platform.OS === "ios" ? 19 : 15,
   },
 });

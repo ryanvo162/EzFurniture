@@ -23,7 +23,7 @@ export default function SignUpScreen(props) {
         style={styles.imageHeader}
         source={require("../../assets/img/imageHeaderLogin.png")}
       />
-      <ScrollView contentContainerStyle={{ flex: 1, alignItems: "center" }}>
+      <ScrollView overScrollMode="never" contentContainerStyle={{ flexGrow: 1, alignItems: "center" }}>
         <Text style={styles.titleText}>Register</Text>
         <Text style={styles.subTitleText}>Create a new account</Text>
         {/* text input */}

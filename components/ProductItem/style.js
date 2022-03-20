@@ -21,7 +21,13 @@ export const styles = StyleSheet.create({
     bottom: 20,
   },
 
+  loading: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
   name: {
     color: "white",
-  }
+  },
 });
