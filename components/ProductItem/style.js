@@ -29,5 +29,27 @@ export const styles = StyleSheet.create({
 
   name: {
     color: "white",
+    marginTop: 10,
+    marginHorizontal: 12,
+    //backgroundColor: "pink",
+    height: 20,
+    overflow: "hidden",
   },
+
+  price: {
+    marginTop: 5,
+    fontSize: 16,
+    marginHorizontal: 12,
+    color: "white",
+    //backgroundColor:"#212121",
+    
+    fontWeight: "bold",
+  },
+
+  iconStyle: {
+    position: "absolute",
+    bottom: 10,
+    right: 10,
+  },
+
 });

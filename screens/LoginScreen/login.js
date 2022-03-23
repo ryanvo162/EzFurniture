@@ -37,11 +37,17 @@ export default function LoginScreen(props) {
     //   .then((res) => res.json())
     //   .then((res) => {
     //     console.log(res.payload.status);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-    navigation.replace("HomeScreen");
+    //     setStatus(res.payload.status);
+    //     if (res.payload.status === true) {
+    navigation.navigate("HomeScreen");
+    // } else {
+    // console.log("Ngu lồn rồi");
+    //   }
+    // })
+    // .catch((err) => {
+    //   console.log("Lỗi rồi");
+    //   console.log(err);
+    // });
   };
 
   const handleGoToSignUp = () => {

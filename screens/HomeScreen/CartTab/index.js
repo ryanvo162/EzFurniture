@@ -52,7 +52,7 @@ export default function CartTab() {
   const renderItem = ({ item }) => <Item item={item} />;
 
   const handleChangeQuantity = (quantity,total) => { 
-    console.log(quantity,total)
+    // console.log(quantity,total)
   }
 
   const Item = ({ item }) => (

@@ -10,22 +10,23 @@ export default function HomeTab(props) {
 
   const [isLoading, setIsLoading] = useState(true);
   const [myArr, setMyArr] = useState();
-  
+
+  useEffect(async () => {
+    const data = await fetch(
+      "https://admin.furniture.bandn.online/mobile/category"
+    )
+      .then((res) => res.json())
+      .catch((err) => console.log(err));
+    setMyArr(data);
+    console.log(myArr);
+  }, []);
+
   const handleGoToProduct = (category) => {
-    console.log(category);
+    // console.log(category);
     navigation.navigate("ProductScreen", {
       data: myArr,
     });
   };
-
-  // useEffect(async () => {
-  //   const data = await fetch(
-  //     "https://admin.furniture.bandn.online/mobile/category/"
-  //   )
-  //     .then((res) => res.json())
-  //     .catch((err) => console.log(err));
-  //   myArr = data;
-  // }, []);
 
   return (
     <PagerView overScrollMode="never" style={styles.container} initialPage={0}>
@@ -72,10 +73,6 @@ export default function HomeTab(props) {
             color="white"
             onPress={handleGoToProduct}
           />
-
-          {/* <CategoryItem category="Sofa" color="white" /> */}
-          {/* <CategoryItem category="Sofa" color="white" /> */}
-          {/* <CategoryItem category="Sofa" color="white" /> */}
         </ImageBackground>
       </View>
 
@@ -154,10 +151,6 @@ export default function HomeTab(props) {
             color="white"
             onPress={handleGoToProduct}
           />
-
-          {/* <CategoryItem category="Sofa" color="white" /> */}
-          {/* <CategoryItem category="Sofa" color="white" /> */}
-          {/* <CategoryItem category="Sofa" color="white" /> */}
         </ImageBackground>
       </View>
 

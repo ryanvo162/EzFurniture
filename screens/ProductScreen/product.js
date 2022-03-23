@@ -58,10 +58,16 @@ export default function ProductScreen(props) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable style={styles.back} onPress={handleGoBack}>
-          <Icon.ChevronLeft stroke="#000000" width={32} height={32} />
-          <Text style={styles.titleBack}>Title</Text>
-        </Pressable>
+        <View style={styles.headerLeft}>
+          <Pressable onPress={handleGoBack}>
+            <Icon.ChevronLeft stroke="black" />
+          </Pressable>
+          <Text style={styles.headerLeftText}>Title</Text>
+        </View>
+        <View style={styles.headerRight}>
+          <Icon.Search style={styles.iconSearch} stroke="black" />
+          <Icon.ShoppingCart stroke="black" />
+        </View>
       </View>
       <FlatList
         contentContainerStyle={{ paddingBottom: 60 }}
