@@ -1,9 +1,22 @@
 import React from "react";
-import { View, Text, ScrollView, Image } from "react-native";
+import { View, Text, ScrollView, Image, Pressable } from "react-native";
 import { styles } from "./style";
 import * as Icon from "react-native-feather";
 
-export default function ProfileTab() {
+export default function ProfileTab(props) {
+  const { navigation } = props;
+  const handleGoToOrder = () => {
+    navigation.navigate("OrderScreen");
+  };
+  const handleGoToPaymentMethod = () => {};
+  const handleGoToDeliveryAddress = () => {};
+  const handleGoToVouchers = () => {
+    navigation.navigate("VoucherScreen");
+  };
+  const handleGoToInformation = () => {};
+  const handleGoToSupport = () => {};
+  const handleLogout = () => {};
+
   return (
     <View style={styles.container}>
       <ScrollView
@@ -25,7 +38,7 @@ export default function ProfileTab() {
         </View>
         {/* Functions list */}
         <View style={styles.functionsList}>
-          <View style={styles.items}>
+          <Pressable onPress={handleGoToOrder} style={styles.items}>
             <Icon.Package
               stroke="#fff"
               strokeWidth={1.5}
@@ -37,10 +50,10 @@ export default function ProfileTab() {
             <View style={styles.iconNext}>
               <Icon.ChevronRight stroke="#fff" />
             </View>
-          </View>
+          </Pressable>
           <View style={styles.hr}></View>
 
-          <View style={styles.items}>
+          <Pressable onPress={handleGoToPaymentMethod} style={styles.items}>
             <Icon.CreditCard
               stroke="#fff"
               strokeWidth={1.5}
@@ -52,10 +65,10 @@ export default function ProfileTab() {
             <View style={styles.iconNext}>
               <Icon.ChevronRight stroke="#fff" />
             </View>
-          </View>
+          </Pressable>
           <View style={styles.hr}></View>
 
-          <View style={styles.items}>
+          <Pressable onPress={handleGoToDeliveryAddress} style={styles.items}>
             <Icon.MapPin
               stroke="#fff"
               strokeWidth={1.5}
@@ -67,30 +80,30 @@ export default function ProfileTab() {
             <View style={styles.iconNext}>
               <Icon.ChevronRight stroke="#fff" />
             </View>
-          </View>
+          </Pressable>
           <View style={styles.hr}></View>
 
-          <View style={styles.items}>
+          <Pressable onPress={handleGoToVouchers} style={styles.items}>
             <Icon.Gift stroke="#fff" strokeWidth={1.5} height={30} width={30} />
             <Text style={styles.itemsText}>Gift card &amp; vouchers</Text>
 
             <View style={styles.iconNext}>
               <Icon.ChevronRight stroke="#fff" />
             </View>
-          </View>
+          </Pressable>
           <View style={styles.hr}></View>
 
-          <View style={styles.items}>
+          <Pressable onPress={handleGoToInformation} style={styles.items}>
             <Icon.User stroke="#fff" strokeWidth={1.5} height={30} width={30} />
             <Text style={styles.itemsText}>Information</Text>
 
             <View style={styles.iconNext}>
               <Icon.ChevronRight stroke="#fff" />
             </View>
-          </View>
+          </Pressable>
           <View style={styles.hr}></View>
 
-          <View style={styles.items}>
+          <Pressable onPress={handleGoToSupport} style={styles.items}>
             <Icon.HelpCircle
               stroke="#fff"
               strokeWidth={1.5}
@@ -102,17 +115,22 @@ export default function ProfileTab() {
             <View style={styles.iconNext}>
               <Icon.ChevronRight stroke="#fff" />
             </View>
-          </View>
+          </Pressable>
           <View style={styles.hr}></View>
 
-          <View style={styles.items}>
-            <Icon.Mail stroke="#fff" strokeWidth={1.5} height={30} width={30} />
-            <Text style={styles.itemsText}>Feedback</Text>
+          <Pressable onPress={handleLogout} style={styles.items}>
+            <Icon.LogOut
+              stroke="#fff"
+              strokeWidth={1.5}
+              height={30}
+              width={30}
+            />
+            <Text style={styles.itemsText}>Logout</Text>
 
             <View style={styles.iconNext}>
               <Icon.ChevronRight stroke="#fff" />
             </View>
-          </View>
+          </Pressable>
           <View style={styles.hr}></View>
         </View>
       </ScrollView>

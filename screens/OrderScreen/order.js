@@ -1,57 +1,73 @@
 import React, { useState } from "react";
 import { View, Text, FlatList, Pressable } from "react-native";
-import VoucherItem from "../../components/VoucherItem";
+import OrderItem from "../../components/OrderItem";
 
 import { Snackbar } from "react-native-paper";
 
 import * as Icon from "react-native-feather";
 import { styles } from "./style";
+import { styles as mainStyle } from "../../screens/styles";
 
 const DATA = [
   {
     id: "1",
-    title: "Sale 10%",
+    total: "566 000 VND",
+    dateText: "17/03/2022",
+    statusOrder: "Delivering",
+    address: "1162 Trường sa, P. 14, Q. Phú Nhận, TP HCM",
     image: require("../../assets/img/welcome_bg1.png"),
-    description: "For minimum order 100k",
-    date: "HSD: 31/03/2022",
   },
   {
     id: "2",
-    title: "Sale 100k",
+    total: "566 000 VND",
+    dateText: "17/03/2022",
+    statusOrder: "Delivering",
+    address: "1162 Trường sa, P. 14, Q. Phú Nhận, TP HCM",
     image: require("../../assets/img/welcome_bg1.png"),
-    description: "For minimum order 100k",
-    date: "HSD: 31/03/2022",
   },
   {
     id: "3",
-    title: "Sale 150k",
+    total: "566 000 VND",
+    dateText: "17/03/2022",
+    statusOrder: "statusOrder",
+    address: "1162 Trường sa, P. 14, Q. Phú Nhận, TP HCM",
     image: require("../../assets/img/welcome_bg1.png"),
-    description: "For minimum order 2000k",
-    date: "HSD: 31/03/2022",
   },
   {
     id: "4",
-    title: "First Item",
+    total: "566 000 VND",
+    dateText: "17/03/2022",
+    statusOrder: "Delivering",
+    address: "1162 Trường sa, P. 14, Q. Phú Nhận, TP HCM",
     image: require("../../assets/img/welcome_bg1.png"),
   },
   {
     id: "5",
-    title: "First Item",
+    total: "566 000 VND",
+    dateText: "17/03/2022",
+    statusOrder: "Delivering",
+    address: "1162 Trường sa, P. 14, Q. Phú Nhận, TP HCM",
     image: require("../../assets/img/welcome_bg1.png"),
   },
   {
     id: "6",
-    title: "First Item",
+    total: "566 000 VND",
+    dateText: "17/03/2022",
+    statusOrder: "Delivering",
+    address: "1162 Trường sa, P. 14, Q. Phú Nhận, TP HCM",
     image: require("../../assets/img/welcome_bg1.png"),
   },
   {
     id: "7",
-    title: "First Item",
+    total: "566 000 VND",
+    dateText: "17/03/2022",
+    statusOrder: "Delivering",
+    address: "1162 Trường sa, P. 14, Q. Phú Nhận, TP HCM",
     image: require("../../assets/img/welcome_bg1.png"),
   },
 ];
 
-export default function VoucherScreen(props) {
+export default function OrderScreen(props) {
   const { navigation } = props;
   const handleGoBack = () => {
     navigation.goBack();
@@ -60,11 +76,13 @@ export default function VoucherScreen(props) {
   const renderItem = ({ item }) => <Item item={item} />;
 
   const Item = ({ item }) => (
-    <VoucherItem
-      title={item.title}
+    <OrderItem
+      id={item.id}
       image={item.image}
-      description={item.description}
-      date={item.date}
+      total={item.total}
+      date={item.dateText}
+      statusOrder={item.statusOrder}
+      address={item.address}
     />
   );
 
@@ -73,14 +91,14 @@ export default function VoucherScreen(props) {
       <View style={styles.header}>
         <Pressable onPress={handleGoBack} style={styles.headerLeft}>
           <Icon.ChevronLeft stroke="black" />
-          <Text style={styles.headerLeftText}>Gift {"&"} vouchers</Text>
+          <Text style={styles.headerLeftText}>My Order</Text>
         </Pressable>
       </View>
       <FlatList
         overScrollMode="never"
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
-          paddingBottom: 100,
+          paddingBottom: 60,
         }}
         style={styles.flatList}
         data={DATA}
