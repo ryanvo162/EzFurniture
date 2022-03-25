@@ -1,28 +1,36 @@
 import { StyleSheet, Platform } from "react-native";
+import { gray3Color, primaryColor } from "../../global/colors";
+import { bold } from "../../global/fonts";
 
 export const styles = StyleSheet.create({
   quantity: {
     flexDirection: "row",
     alignItems: "center",
+    backgroundColor: primaryColor,
+    borderRadius: 15,
   },
 
   quantityButton: {
-    width: 40,
+    width: 30,
     height: 28,
-    backgroundColor: "#636363",
+    backgroundColor: primaryColor,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 5,
+    borderRadius: 15,
   },
 
   quantityText: {
-    fontSize: Platform.OS === "ios" ? 20 : 16,
-    fontWeight: "bold",
+    fontSize: bold.fontSize,
+    fontFamily: bold.fontFamily,
+    transform: [{ translateY: 2 }],
     color: "white",
   },
 
   quantityNumber: {
-    marginHorizontal: 12,
-    fontSize: Platform.OS === "ios" ? 19 : 15,
+    marginHorizontal: 10,
+    fontSize: bold.fontSize,
+    fontFamily: bold.fontFamily,
+    transform: [{ translateY: 2 }],
+    color: "white",
   },
 });

@@ -1,5 +1,6 @@
 import { StyleSheet, Platform } from "react-native";
 import { primaryColor, gray3Color, gray2Color } from "../../global/colors";
+import { bold12, body2 } from "../../global/fonts";
 
 export const styles = StyleSheet.create({
   items: {
@@ -50,12 +51,13 @@ export const styles = StyleSheet.create({
 
   titleItem: {
     flex: 1,
-    fontSize: 12,
-    fontWeight: "bold",
+    fontSize: bold12.fontSize,
+    fontFamily:bold12.fontFamily,
   },
 
   contentItem: {
     flex: 2,
-    fontSize: 12,
+    fontSize: body2.fontSize,
+    fontFamily: body2.fontFamily,
   },
 });

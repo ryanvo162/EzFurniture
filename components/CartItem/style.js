@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
-import {  bold } from "../../global/fonts";
+import { bold, body } from "../../global/fonts";
 export const styles = StyleSheet.create({
   items: {
     flex: 1,
@@ -26,12 +26,14 @@ export const styles = StyleSheet.create({
   },
 
   name: {
-    fontSize: Platform.OS === "ios" ? 20 : 16,
-    marginBottom: Platform.OS === "ios" ? 8 : 4,
+    fontSize: bold.fontSize,
+    fontFamily: bold.fontFamily,
+    textAlignVertical: "center",
   },
 
   price: {
-    fontSize: Platform.OS === "ios" ? 20 : 16,
-    marginBottom: Platform.OS === "ios" ? 8 : 4,
+    fontSize: body.fontSize,
+    fontFamily: body.fontFamily,
+    marginBottom: 8,
   },
 });
