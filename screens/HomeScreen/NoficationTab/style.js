@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
-
+import {  bold } from "../../../global/fonts";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -22,12 +22,14 @@ export const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     flexDirection: "row",
-    marginLeft: "5%",
+    marginLeft: 20,
   },
 
   headerReadingText: {
-    fontSize: Platform.OS === "ios" ? 14 : 11,
-    marginLeft: "3%",
+    fontSize: bold.fontSize,
+    fontFamily: bold.fontFamily,
+    marginLeft: 12,
+    transform: [{ translateY: 2 }],
   },
 
   headerRight: {

@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
-import { primaryColor, gray3Color, gray2Color } from "../../global/color";
+import { primaryColor, gray3Color, gray2Color } from "../../global/colors";
 
 export const styles = StyleSheet.create({
   items: {

@@ -14,7 +14,7 @@ const DATA = [
     title: "First Item",
     image: require("../../../assets/img/welcome_bg1.png"),
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In urna nam purus vulputate quis.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In urna nam purus vulputate quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In urna nam purus vulputate quis.",
     date: "12/02/2022",
   },
   {

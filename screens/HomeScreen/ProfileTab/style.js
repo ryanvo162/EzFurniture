@@ -1,4 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
+import { title2,body, body2 } from "../../../global/fonts";
 
 export const styles = StyleSheet.create({
   container: {
@@ -26,13 +27,15 @@ export const styles = StyleSheet.create({
   },
 
   nameUser: {
-    fontSize: Platform.OS === "ios" ? 24 : 18,
+    fontSize: title2.fontSize,
+    fontFamily:title2.fontFamily,
     color: "white",
     marginBottom: 8,
   },
 
   gmailUser: {
-    fontSize: Platform.OS === "ios" ? 18 : 12,
+    fontSize: body.fontSize,
+    fontFamily:body.fontFamily,
     color: "white",
   },
 
@@ -51,7 +54,8 @@ export const styles = StyleSheet.create({
 
   itemsText: {
     marginLeft: 30,
-    fontSize: Platform.OS === "ios" ? 20 : 14,
+    fontSize: 16,
+    fontFamily: body2.fontFamily,
     color: "white",
   },
 

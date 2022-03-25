@@ -1,5 +1,6 @@
 import { StyleSheet, Platform } from "react-native";
-import { primaryColor, gray2Color } from "../../global/color";
+import { primaryColor, gray2Color } from "../../global/colors";
+import { bold, title2, title1, body} from "../../global/fonts";
 
 export const styles = StyleSheet.create({
   container: {
@@ -39,27 +40,28 @@ export const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 22,
-    fontWeight: "bold",
+    fontSize: title1.fontSize,
+    fontFamily: title1.fontFamily,
     marginBottom: "1%",
   },
 
   price: {
-    fontSize: 18,
-    fontWeight: "bold",
+    fontSize: title2.fontSize,
+    fontFamily: title2.fontFamily,
     color: primaryColor,
   },
 
   descriptionTilte: {
-    fontSize: 14,
-    fontWeight: "bold",
+    fontSize: bold.fontSize,
+    fontFamily: bold.fontFamily,
     marginTop: "3%",
     marginBottom: "1%",
     color: primaryColor,
   },
 
   description: {
-    fontSize: 12,
+    fontSize: body.fontSize,
+    fontFamily: body.fontFamily,
   },
 
   bottomButtons: {
@@ -97,8 +99,8 @@ export const styles = StyleSheet.create({
   },
 
   textButton: {
-    fontSize: 16,
-    fontWeight: "bold",
+    fontSize: bold.fontSize,
+    fontFamily: bold.fontFamily,
     marginHorizontal: "3%",
     color: "#ffffff",
   },
@@ -131,6 +133,7 @@ export const styles = StyleSheet.create({
 
   quantityNumber: {
     marginHorizontal: 12,
-    fontSize: Platform.OS === "ios" ? 19 : 15,
+    fontSize: bold.fontSize,
+    fontFamily: bold.fontFamily,
   },
 });

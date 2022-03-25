@@ -1,16 +1,17 @@
 import { StyleSheet, Platform } from "react-native";
+import { title1, body2, bold12, bold } from "../../global/fonts";
+import { primaryColor, gray3Color, gray2Color } from "../../global/colors";
 
 export const styles = StyleSheet.create({
   items: {
     flex: 1,
     flexDirection: "row",
-
     paddingHorizontal: 12,
     marginHorizontal: 16,
     marginVertical: 6,
     backgroundColor: "white",
     alignItems: "center",
-    borderRadius: 20,
+    borderRadius: 5,
   },
 
   imageView: {
@@ -34,19 +35,19 @@ export const styles = StyleSheet.create({
 
   content: {
     flex: 1,
-    backgroundColor: "white",
-    marginVertical: 10,
-    marginLeft: 8,
+    marginVertical: 25,
+    marginLeft: 12,
   },
 
   title: {
-    fontSize: Platform.OS === "ios" ? 18 : 14,
-    fontWeight: "bold",
-    marginBottom: 5,
+    fontSize: bold.fontSize,
+    fontFamily: bold.fontFamily,
+    color: primaryColor,
   },
 
   description: {
-    fontSize: Platform.OS === "ios" ? 12 : 10,
+    fontSize: body2.fontSize,
+    fontFamily: body2.fontFamily,
   },
 
   icon: {
@@ -62,6 +63,8 @@ export const styles = StyleSheet.create({
   },
 
   dateText: {
-    fontSize: Platform.OS === "ios" ? 12 : 10,
+    fontSize: 12,
+    fontFamily: "Montserrat_400Regular_Italic",
+    color: primaryColor,
   },
 });

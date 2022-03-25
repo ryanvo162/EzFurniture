@@ -1,39 +1,39 @@
 import { StyleSheet, Platform } from "react-native";
-
+import { body, title1,bold12, body2} from "../../global/fonts";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
   },
   titleText: {
-    fontSize: Platform.OS === "ios" ? 30 : 23,
-    fontWeight: "bold",
-    marginTop: Platform.OS === "ios" ? "3%" : 20,
-    marginBottom: Platform.OS === "ios" ? 8 : 4,
+    fontSize: title1.fontSize,
+    fontFamily: title1.fontFamily,
+    marginTop: 60,
   },
   subTitleText: {
-    fontSize: Platform.OS === "ios" ? 14 : 11,
-    marginBottom: Platform.OS === "ios" ? 40 : 35,
-  },
-  inputTextEmail: {
-    marginTop: 1200,
+    fontSize: body.fontSize,
+    fontFamily: body.fontFamily,
+    marginTop: 12,
+    marginBottom: 18,
   },
   imageHeader: {
     width: "100%",
     height: "27%",
   },
   textForgotPassword: {
-    fontSize: 12,
-    color: "#242A37",
+    fontSize: body2.fontSize,
+    fontFamily:body2.fontFamily,
+    color: "black",
     marginLeft: "55%",
   },
   textNote: {
-    fontSize: 12,
-    color: "#242A37",
+    fontSize: body2.fontSize,
+    fontFamily:body2.fontFamily,
+    color: "black",
     marginTop: 10,
   },
   boldText: {
-    fontSize: 12,
-    fontWeight: "bold",
+    fontSize: bold12.fontSize,
+    fontFamily:bold12.fontFamily,
   },
 });

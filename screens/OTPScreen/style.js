@@ -1,4 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
+import { title1, body, bold12 } from "../../global/fonts";
 
 export const styles = StyleSheet.create({
   container: {
@@ -7,26 +8,29 @@ export const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     // justifyContent: "center",
   },
+
   titleText: {
-    fontSize: Platform.OS === "ios" ? 30 : 23,
-    fontWeight: "bold",
+    fontSize: title1.fontSize,
+    fontFamily: title1.fontFamily,
     marginTop: Platform.OS === "ios" ? 80 : 70,
     marginBottom: Platform.OS === "ios" ? 12 : 6,
   },
 
   subTitleText: {
     marginTop: Platform.OS === "ios" ? 32 : 16,
-    fontSize: Platform.OS === "ios" ? 16 : 12,
+    fontSize: body.fontSize,
+    fontFamily: body.fontFamily,
   },
+
   subTitleTextOne: {
-    fontSize: Platform.OS === "ios" ? 16 : 12,
+    fontSize: body.fontSize,
+    fontFamily: body.fontFamily,
     marginBottom: Platform.OS === "ios" ? 32 : 20,
   },
 
   textView: {
-    // backgroundColor: "red",
     width: "100%",
-    paddingLeft: "10%",
+    paddingHorizontal: "6%",
   },
 
   inputTextEmail: {
@@ -37,7 +41,7 @@ export const styles = StyleSheet.create({
     height: "25%",
   },
   timeVerify: {
-    fontSize: Platform.OS === "ios" ? 16 : 12,
-    fontWeight: "bold",
+    fontSize: bold12.fontSize,
+    fontFamily: bold12.fontFamily,
   },
 });

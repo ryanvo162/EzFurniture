@@ -21,7 +21,7 @@ export default function OTPScreen(props) {
       <View style={styles.textView}>
         <Text style={styles.subTitleText}>Please enter OTP verification</Text>
         <Text style={styles.subTitleTextOne}>
-          The time remaining to enter the code is:
+          The time remaining to enter the code is:{" "}
           <Text style={styles.timeVerify}>props</Text>
         </Text>
       </View>

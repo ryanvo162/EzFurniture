@@ -1,4 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
+import { bold, title2} from "../../global/fonts";
 
 export const styles = StyleSheet.create({
   container: {
@@ -15,13 +16,13 @@ export const styles = StyleSheet.create({
   },
 
   titleBack: {
-    fontSize: Platform.OS === "ios" ? 16 : 14,
-    fontWeight: "bold",
+    fontSize: bold.fontSize,
+    fontFamily: bold.fontFamily,
   },
 
   titleText: {
-    fontWeight: "bold",
-    fontSize: Platform.OS === "ios" ? 22 : 18,
+    fontSize: title2.fontSize,
+    fontFamily: title2.fontFamily,
     marginLeft: Platform.OS === "ios" ? 40 : 35,
   },
 

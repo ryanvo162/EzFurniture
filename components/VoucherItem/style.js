@@ -1,5 +1,6 @@
 import { StyleSheet, Platform } from "react-native";
-import { primaryColor, gray3Color,gray2Color } from "../../global/color";
+import { primaryColor, gray3Color,gray2Color } from "../../global/colors";
+import { bold} from "../../global/fonts";
 
 export const styles = StyleSheet.create({
   items: {
@@ -76,8 +77,8 @@ export const styles = StyleSheet.create({
   },
 
   textButton: {
-    fontSize: 16,
-    fontWeight: "bold",
+    fontSize: bold.fontSize,
+    fontFamily: bold.fontFamily,
     marginVertical: 5,
     marginHorizontal: 15,
     color: "#ffffff",

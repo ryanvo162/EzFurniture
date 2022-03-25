@@ -1,4 +1,6 @@
 import { StyleSheet, Platform } from "react-native";
+import { title1, body } from "../../global/fonts";
+import { gray2Color } from "../../global/colors";
 
 export const styles = StyleSheet.create({
   container: {
@@ -13,11 +15,11 @@ export const styles = StyleSheet.create({
   btnNext: {
     alignItems: "flex-end",
     paddingRight: 30,
-    marginTop: Platform.OS === "ios" ? 50 : 30,
+    marginTop: 30,
   },
 
   btn: {
-    backgroundColor: "#C4C4C4",
+    backgroundColor: gray2Color,
     alignItems: "center",
     justifyContent: "center",
     width: 50,
@@ -29,7 +31,8 @@ export const styles = StyleSheet.create({
     marginLeft: 30,
     marginTop: 40,
     textAlign: "left",
-    fontSize: 25,
+    fontSize: title1.fontSize,
+    fontFamily: title1.fontFamily,
     color: "#ffffff",
   },
 
@@ -37,8 +40,9 @@ export const styles = StyleSheet.create({
     width: 356,
     marginLeft: 30,
     marginTop: 10,
+    fontFamily: body.fontFamily,
     textAlign: "left",
-    fontSize: 14,
+    fontSize: body.fontSize,
     color: "#ffffff",
   },
 });

@@ -1,4 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
+import { bold } from "../../global/fonts";
 
 export const styles = StyleSheet.create({
   buttons: {
@@ -11,7 +12,8 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   textButton: {
-    fontSize: 18,
+    fontSize: bold.fontSize,
+    fontFamily: bold.fontFamily,
     color: "#ffffff",
   },
 });

@@ -1,4 +1,11 @@
-import { View, Text, Image } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import React, { useState } from "react";
 
 import { styles } from "./style";
@@ -86,13 +93,16 @@ export default function LoginScreen(props) {
   };
 
   return (
+    // <KeyboardAvoidingView
+    //   behavior={Platform.OS === "ios" ? "padding" : "height"}
+    //   style={styles.container}
+    // >
+    // <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <View style={styles.container}>
       <Image
         style={styles.imageHeader}
         source={require("../../assets/img/imageHeaderLogin.png")}
       />
-      <Text style={styles.titleText}>Welcome to Eazy</Text>
-      <Text style={styles.subTitleText}>Login to your account</Text>
       {/* text input */}
       <TextInputApp onChange={setEmail} placeholder="Email or phone..." />
       <TextInputApp
@@ -121,5 +131,7 @@ export default function LoginScreen(props) {
         </Text>
       </Text>
     </View>
+    //   </TouchableWithoutFeedback>
+    // </KeyboardAvoidingView>
   );
 }

@@ -12,7 +12,6 @@ export default function TextInputApp(props) {
         placeholder={placeholder}
         placeholderTextColor={"#ffffff"}
         onChangeText={onChange}
-        // value={props.value}
         color={"#ffffff"}
         keyboardType={type}
       />

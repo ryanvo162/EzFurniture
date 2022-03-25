@@ -1,4 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
+import { title2} from "../../../global/fonts";
 
 export const styles = StyleSheet.create({
   container: {
@@ -12,8 +13,8 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    fontSize: Platform.OS === "ios" ? 30 : 26,
-    fontWeight: "bold",
+    fontSize: title2.fontSize,
+    fontFamily: title2.fontFamily,
     backgroundColor: "#EFEEED",
     padding: 5,
     borderRadius: 12,

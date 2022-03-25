@@ -28,8 +28,8 @@ export default function SignUpScreen(props) {
         <Text style={styles.subTitleText}>Create a new account</Text>
         {/* text input */}
         <TextInputApp placeholder="Email..." />
-        <TextInputApp style={styles.inputTextEmail} placeholder="Password..." />
-        <TextInputApp placeholder="Phone..." />
+        <TextInputApp placeholder="Password..."/>
+        <TextInputApp placeholder="Phone..." type="phone-pad"/>
         <TextInputApp placeholder="Name..." />
         {/* google and facebook */}
         <AuthButton />
