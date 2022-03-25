@@ -36,5 +36,4 @@ export const styles = StyleSheet.create({
     fontSize: bold12.fontSize,
     fontFamily: bold12.fontFamily,
   },
-  // 
 });
