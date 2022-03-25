@@ -3,7 +3,7 @@ import { StyleSheet, Platform } from "react-native";
 export const styles = StyleSheet.create({
   items: {
     flex: 1,
-    height: 250,
+    height: 300,
     marginHorizontal: "3%",
     marginVertical: 8,
     backgroundColor: "gray",
