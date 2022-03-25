@@ -40,9 +40,9 @@ export const styles = StyleSheet.create({
     width: 356,
     marginLeft: 30,
     marginTop: 10,
-    fontFamily: body.fontFamily,
     textAlign: "left",
     fontSize: body.fontSize,
+    fontFamily: body.fontFamily,
     color: "#ffffff",
   },
 });

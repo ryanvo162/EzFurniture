@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
-
+import { title2 } from "../../global/fonts";
 export const styles = StyleSheet.create({
   items: {
     flex: 1,
@@ -30,7 +30,8 @@ export const styles = StyleSheet.create({
   },
 
   textStyle: {
-    fontSize: Platform.OS === "ios" ? 20 : 17,
+    fontSize: title2.fontSize,
+    fontFamily:title2.fontFamily,
     margin: 10,
     color: "white",
   },

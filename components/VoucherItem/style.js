@@ -1,6 +1,6 @@
 import { StyleSheet, Platform } from "react-native";
-import { primaryColor, gray3Color,gray2Color } from "../../global/colors";
-import { bold} from "../../global/fonts";
+import { primaryColor, gray3Color, gray2Color } from "../../global/colors";
+import { title2, body, bold } from "../../global/fonts";
 
 export const styles = StyleSheet.create({
   items: {
@@ -51,18 +51,20 @@ export const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: title2.fontSize,
+    fontFamily: title2.fontFamily,
     marginBottom: 5,
   },
 
   description: {
-    marginBottom: 5,
-    fontSize: 14,
+    fontSize: body.fontSize,
+    fontFamily: body.fontFamily,
+  
   },
 
   dateText: {
-    fontSize: 14,
+    fontSize: body.fontSize,
+    fontFamily: body.fontFamily,
     color: gray3Color,
   },
 

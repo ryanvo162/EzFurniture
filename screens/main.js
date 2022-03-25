@@ -19,7 +19,7 @@ export default function AppProvider() {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer style={styles.container}>
-      <Stack.Navigator initialRouteName="LoginScreen">
+      <Stack.Navigator initialRouteName="SlashScreen">
         <Stack.Screen
           name="SlashScreen"
           component={SlashScreen}
