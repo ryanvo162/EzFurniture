@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
-
+import {  bold } from "../../global/fonts";
 export const styles = StyleSheet.create({
   items: {
     flex: 1,

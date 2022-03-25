@@ -22,7 +22,6 @@ export default function CartItem(props) {
 
   useEffect(async() => {await onChange(quantity, total), []});
 
-
   return (
     <View style={styles.items}>
       <Image style={styles.imageItem} source={image} />
