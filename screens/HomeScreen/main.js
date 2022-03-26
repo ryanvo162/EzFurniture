@@ -24,7 +24,7 @@ export default function HomeScreen(props) {
     <>
       <Tab.Navigator
         style={styles.container}
-        initialRouteName="Home"
+        initialRouteName="Style"
         screenOptions={({ route, headerShown }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let tag;
