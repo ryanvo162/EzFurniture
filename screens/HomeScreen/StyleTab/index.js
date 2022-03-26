@@ -1,7 +1,9 @@
 import React from "react";
-import { View, FlatList } from "react-native";
+import { View, FlatList, Text, ScrollView } from "react-native";
 import StyleItem from "../../../components/StyleItem";
+import StyleNewItem from "../../../components/StyleNewItem";
 import { styles } from "./style";
+import SearchBar from "../../../components/SearchBar";
 
 const DATA = [
   {
@@ -50,14 +52,37 @@ const Item = ({ item }) => (
 
 export default function StyleTab() {
   const renderItem = ({ item }) => <Item item={item} />;
+  const [hidden, setHidden] = React.useState(false);
   return (
+
     <View style={styles.container}>
+
+      <SearchBar hidden={hidden}/>
+
+      <Text style={styles.textNewStyle}>New Style</Text>
+
+      <View style={styles.containerHorzontalScroll}>
+        <ScrollView
+          horizontal={true}
+          contentContainerStyle={styles.horizontalScroll}
+          overScrollMode="never"
+          showsHorizontalScrollIndicator={false}
+        >
+          <StyleNewItem name={DATA[0].title} image={DATA[0].image} />
+          <StyleNewItem name={DATA[1].title} image={DATA[1].image} />
+          <StyleNewItem name={DATA[2].title} image={DATA[2].image} />
+          <StyleNewItem name={DATA[3].title} image={DATA[3].image} />
+        </ScrollView>
+      </View>
+
+      <Text style={styles.textInteriorStyle}>Interior Design Styles</Text>
       <FlatList
+        // onScrollBeginDrag={() => setHidden(true)}
+        // onScrollEndDrag={() => setHidden(false)}
         overScrollMode="never"
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           paddingBottom: 100,
-          paddingTop: 45,
         }}
         style={styles.flatList}
         data={DATA}

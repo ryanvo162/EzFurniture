@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { styles } from "./style";
 
-export default function StyleItem(props) {
+export default function StyleNewItem(props) {
   const { name, image } = props;
   const [isLoading, setIsLoading] = useState(true);
   return (
