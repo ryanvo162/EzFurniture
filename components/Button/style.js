@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     width: 298,
     height: 50,
     borderRadius: 10,
-    marginTop: Platform.OS === "ios" ? 24 : 20,
+    marginTop: 12,
     backgroundColor: "#DDAC8B",
     justifyContent: "center",
     alignItems: "center",
@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
   textButton: {
     fontSize: bold.fontSize,
     fontFamily: bold.fontFamily,
-    color: "#ffffff",
+    color: "white",
+    transform: [{ translateY: 1 }],
   },
 });

@@ -67,29 +67,12 @@ export default function LoginScreen(props) {
 
   // connect login facebook
   const handleLoginFacebook = () => {
-    console.log("masseger: ERORR_Facebook");
+    console.log("Login Facebook");
   };
 
   // connect login google
   const handleLoginGoogle = () => {
-    // console.log("masseger: ERRORRR_Google");
-    // signIn = async () => {
-    //   try {
-    //     await GoogleSignin.hasPlayServices();
-    //     const userInfo = await GoogleSignin.signIn();
-    //     this.setState({ userInfo });
-    //   } catch (error) {
-    //     if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-    //       // user cancelled the login flow
-    //     } else if (error.code === statusCodes.IN_PROGRESS) {
-    //       // operation (e.g. sign in) is in progress already
-    //     } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-    //       // play services not available or outdated
-    //     } else {
-    //       // some other error happened
-    //     }
-    //   }
-    // };
+    console.log("Login Google");
   };
 
   return (
@@ -103,6 +86,7 @@ export default function LoginScreen(props) {
         style={styles.imageHeader}
         source={require("../../assets/img/imageHeaderLogin.png")}
       />
+      <Image style={styles.logo} source={require("../../assets/icon.png")} />
       {/* text input */}
       <TextInputApp onChange={setEmail} placeholder="Email or phone..." />
       <TextInputApp

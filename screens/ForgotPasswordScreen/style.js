@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
-import { bold, title2} from "../../global/fonts";
+import { bold, title2 } from "../../global/fonts";
 
 export const styles = StyleSheet.create({
   container: {
@@ -18,24 +18,25 @@ export const styles = StyleSheet.create({
   titleBack: {
     fontSize: bold.fontSize,
     fontFamily: bold.fontFamily,
+    transform: [{ translateY: 1 }],
   },
 
   titleText: {
     fontSize: title2.fontSize,
     fontFamily: title2.fontFamily,
-    marginLeft: Platform.OS === "ios" ? 40 : 35,
+    marginLeft: 34,
   },
 
   center: {
-    marginTop: Platform.OS === "ios" ? 40 : 30,
+    marginTop: 14,
     justifyContent: "center",
     alignItems: "center",
   },
 
   image: {
-    marginTop: Platform.OS === "ios" ? 55 : 45,
-    marginBottom: Platform.OS === "ios" ? 45 : 35,
-    resizeMode:'contain',
+    marginTop: 60,
+    marginBottom: 60,
+    resizeMode: "contain",
     width: 200,
     height: 200,
   },
