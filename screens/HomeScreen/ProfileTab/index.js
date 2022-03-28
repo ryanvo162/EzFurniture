@@ -15,7 +15,9 @@ export default function ProfileTab(props) {
   };
   const handleGoToInformation = () => {};
   const handleGoToSupport = () => {};
-  const handleLogout = () => {};
+  const handleLogout = () => {
+    navigation.replace("LoginScreen");
+  };
 
   return (
     <View style={styles.container}>

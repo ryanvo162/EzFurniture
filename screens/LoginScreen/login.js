@@ -7,19 +7,12 @@ import {
   Keyboard,
 } from "react-native";
 import React, { useState } from "react";
+import * as Facebook from 'expo-auth-session/providers/facebook';
 
 import { styles } from "./style";
 import TextInputApp from "../../components/InputText";
 import ButtonApp from "../../components/Button";
 import AuthButton from "../../components/AuthButton";
-
-// import {
-//   GoogleSignin,
-//   GoogleSigninButton,
-//   statusCodes,
-// } from "@react-native-google-signin/google-signin";
-
-// GoogleSignin.configure();
 
 export default function LoginScreen(props) {
   const { navigation } = props;
