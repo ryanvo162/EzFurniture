@@ -5,41 +5,42 @@ import ProductItem from "../../components/ProductItem";
 import * as Icon from "react-native-feather";
 
 import { styles } from "./style";
+import SearchBar from "../../components/SearchBar";
 
 const DATA = [
   {
     id: "1",
-    title: "First Item",
+    title: "Table Green",
     image: require("../../assets/img/welcome_bg1.png"),
   },
   {
     id: "2",
-    title: "First Item",
+    title: "Table Green ",
     image: require("../../assets/img/welcome_bg1.png"),
   },
   {
     id: "3",
-    title: "First Item",
+    title: "Table Green",
     image: require("../../assets/img/welcome_bg1.png"),
   },
   {
     id: "4",
-    title: "First Item",
+    title: "Table Green",
     image: require("../../assets/img/welcome_bg1.png"),
   },
   {
     id: "5",
-    title: "First Item",
+    title: "Table Green",
     image: require("../../assets/img/welcome_bg1.png"),
   },
   {
     id: "6",
-    title: "First Item",
+    title: "Table Green",
     image: require("../../assets/img/welcome_bg1.png"),
   },
   {
     id: "7",
-    title: "First Item",
+    title: "Table Green",
     image: require("../../assets/img/welcome_bg1.png"),
   },
 ];
@@ -62,13 +63,14 @@ export default function ProductScreen(props) {
           <Pressable onPress={handleGoBack}>
             <Icon.ChevronLeft stroke="black" />
           </Pressable>
-          <Text style={styles.headerLeftText}>Title</Text>
+          <Text style={styles.headerLeftText}>Category</Text>
         </View>
         <View style={styles.headerRight}>
-          <Icon.Search style={styles.iconSearch} stroke="black" />
           <Icon.ShoppingCart stroke="black" />
         </View>
       </View>
+      <View style={styles.searchbar}><SearchBar /></View>
+
       <FlatList
         contentContainerStyle={{ paddingBottom: 60 }}
         style={styles.flatList}
