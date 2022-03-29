@@ -6,8 +6,9 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import React, { useState } from "react";
-import * as Facebook from 'expo-auth-session/providers/facebook';
+import React, { useState, useEffect } from "react";
+import { ResponseType } from "expo-auth-session";
+import * as Facebook from "expo-auth-session/providers/facebook";
 
 import { styles } from "./style";
 import TextInputApp from "../../components/InputText";
@@ -20,34 +21,46 @@ export default function LoginScreen(props) {
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState("");
 
+  // Facebook
+  const [request, response, promptAsync] = Facebook.useAuthRequest({
+    expoClientId: "2640390062761981",
+    responseType: ResponseType.Code,
+  });
+
+  useEffect(() => {
+    if (response?.type === "success") {
+      const { code } = response.params;
+    }
+  }, [response]);
+
   const handleLogin = async () => {
-    // const check = await fetch(
-    //   "https://admin.furniture.bandn.online/mobile/login",
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       email: email,
-    //       password: password,
-    //     }),
-    //   }
-    // )
-    //   .then((res) => res.json())
-    //   .then((res) => {
-    //     console.log(res.payload.status);
-    //     setStatus(res.payload.status);
-    //     if (res.payload.status === true) {
-    navigation.navigate("HomeScreen");
-    // } else {
-    // console.log("Ngu lồn rồi");
-    //   }
-    // })
-    // .catch((err) => {
-    //   console.log("Lỗi rồi");
-    //   console.log(err);
-    // });
+    const check = await fetch(
+      "https://admin.furniture.bandn.online/mobile/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res.payload.status);
+        setStatus(res.payload.status);
+        if (res.payload.status === true) {
+          navigation.navigate("HomeScreen");
+        } else {
+          console.log("Login failed");
+        }
+      })
+      .catch((err) => {
+        console.log("Lỗi rồi");
+        console.log(err);
+      });
   };
 
   const handleGoToSignUp = () => {
@@ -61,6 +74,7 @@ export default function LoginScreen(props) {
   // connect login facebook
   const handleLoginFacebook = () => {
     console.log("Login Facebook");
+    promptAsync();
   };
 
   // connect login google
@@ -95,6 +109,7 @@ export default function LoginScreen(props) {
       </Text>
       {/* google and facebook */}
       <AuthButton
+        disabled={!request}
         onLoginFacebook={handleLoginFacebook}
         onLoginGoogle={handleLoginGoogle}
       />
