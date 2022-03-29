@@ -11,14 +11,21 @@ export default function HomeTab(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [myArr, setMyArr] = useState([]);
 
+  const tempData = myArr.length !== 0 ? [...myArr] : [];
+  if (tempData.length !== 0) {
+    console.log("tempData:", tempData[0].title);
+  }
+  console.log("tempData:", tempData);
+
   useEffect(() => {
-    const data = fetch("https://admin.furniture.bandn.online/mobile/category")
+    fetch("https://admin.furniture.bandn.online/mobile/category")
       .then((res) => res.json())
-      // .then((res) => setMyArr(res))
+      .then((res) => setMyArr(res.data))
       .catch((err) => console.log(err));
-    setMyArr(data);
   }, []);
-  
+
+  console.log("myArr:", myArr);
+
   const handleGoToProduct = (category) => {
     // console.log(category);
     navigation.navigate("ProductScreen", {
@@ -28,7 +35,7 @@ export default function HomeTab(props) {
 
   return (
     <>
-      {myArr && (
+      {tempData.length !== 0 && (
         <PagerView
           overScrollMode="never"
           style={styles.container}
@@ -50,7 +57,7 @@ export default function HomeTab(props) {
                 </View>
               )}
               <CategoryItem
-                // category={myArr.data[0].name}
+                category={tempData[0].name}
                 bottom={240}
                 right={50}
                 color="white"

@@ -1,25 +1,24 @@
 import { StyleSheet, Platform } from "react-native";
-import { title2, body } from "../../global/fonts";
+import { title2,body } from "../../global/fonts";
 import { primaryColor, gray2Color, gray3Color, gray1Color, blackColor, whiteColor } from "../../global/colors";
 export const styles = StyleSheet.create({
   items: {
     flex: 1,
-    height: 360,
-    marginHorizontal: 16,
-    marginVertical: 8,
-    backgroundColor: "gray",
+    height: 172,
+    width: 280,
+    marginRight: 16,
+    backgroundColor: gray3Color,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 5,
-    
   },
 
   textStyleView: {
     position: "absolute",
     width: "auto",
     height: "auto",
-    bottom: 33,
-    borderRadius: 5,
+    bottom: 16,
+    borderRadius: 10,
     backgroundColor: "rgba(33, 33, 33, 0.75)",
     alignContent: "center",
     justifyContent: "center",
