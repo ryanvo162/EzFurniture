@@ -23,14 +23,18 @@ export default function SignUpScreen(props) {
         style={styles.imageHeader}
         source={require("../../assets/img/imageHeaderLogin.png")}
       />
-      <ScrollView overScrollMode="never" contentContainerStyle={{ flexGrow: 1, alignItems: "center" }}>
+      <ScrollView
+        overScrollMode="never"
+        contentContainerStyle={{ flexGrow: 1, alignItems: "center" }}
+      >
         <Text style={styles.titleText}>Register</Text>
         <Text style={styles.subTitleText}>Create a new account</Text>
         {/* text input */}
-        <TextInputApp placeholder="Email..." />
-        <TextInputApp placeholder="Password..."/>
-        <TextInputApp placeholder="Phone..." type="phone-pad"/>
-        <TextInputApp placeholder="Name..." />
+        <TextInputApp placeholder="Email" />
+        <TextInputApp placeholder="Password" />
+        <TextInputApp placeholder="Name" />
+        <TextInputApp placeholder="Phone" type="phone-pad" />
+
         {/* google and facebook */}
         <AuthButton />
         {/* button app */}

@@ -3,7 +3,7 @@ import { body } from "../../global/fonts";
 
 export const styles = StyleSheet.create({
   container: {
-    width: "80%",
+    width: "85%",
   },
   textInput: {
     fontSize: body.fontSize,

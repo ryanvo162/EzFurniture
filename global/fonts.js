@@ -6,6 +6,11 @@ export const title2 = {
   fontFamily: "Poppins_600SemiBold",
   fontSize: 20,
 };
+export const title3 = {
+  fontFamily: "Poppins_400Regular",
+  fontSize: 16,
+};
+
 export const body = {
   fontFamily: "Montserrat_400Regular",
   fontSize: 14,

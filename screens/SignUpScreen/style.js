@@ -8,7 +8,8 @@ export const styles = StyleSheet.create({
   titleText: {
     fontSize: title1.fontSize,
     fontFamily: title1.fontFamily,
-    marginTop: 60,
+    marginTop: 50,
+    transform: [{ translateY: 3 }],
   },
   subTitleText: {
     fontSize: body.fontSize,
@@ -18,7 +19,7 @@ export const styles = StyleSheet.create({
   },
   imageHeader: {
     width: "100%",
-    height: "27%",
+    height: 220,
   },
   textForgotPassword: {
     fontSize: body2.fontSize,
