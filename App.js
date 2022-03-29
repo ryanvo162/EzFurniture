@@ -5,6 +5,7 @@ import AppLoading from "expo-app-loading";
 import {
   Poppins_700Bold,
   Poppins_600SemiBold,
+  Poppins_400Regular,
 } from "@expo-google-fonts/poppins";
 
 import { useFonts } from "expo-font";
@@ -26,6 +27,7 @@ export default function App() {
     Montserrat_400Regular,
     Montserrat_600SemiBold,
     Montserrat_400Regular_Italic,
+    Poppins_400Regular,
   });
   if (!fontsLoaded) {
     return null;
