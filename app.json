@@ -5,7 +5,7 @@
     "owner": "ryanvo.0162",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png", 
+    "icon": "./assets/icon.png",
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -24,6 +24,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "facebookScheme": "fb2640390062761981"
   }
 }

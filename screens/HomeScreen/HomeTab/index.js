@@ -11,17 +11,20 @@ export default function HomeTab(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [myArr, setMyArr] = useState([]);
 
-  const tempData = myArr ? [...myArr] : [];
+  const tempData = myArr.length !== 0 ? [...myArr] : [];
   if (tempData.length !== 0) {
     console.log("tempData:", tempData[0].title);
   }
+  console.log("tempData:", tempData);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
+    fetch("https://admin.furniture.bandn.online/mobile/category")
       .then((res) => res.json())
-      .then((res) => setMyArr(res))
+      .then((res) => setMyArr(res.data))
       .catch((err) => console.log(err));
   }, []);
+
+  console.log("myArr:", myArr);
 
   const handleGoToProduct = (category) => {
     // console.log(category);
@@ -54,7 +57,7 @@ export default function HomeTab(props) {
                 </View>
               )}
               <CategoryItem
-                category={tempData[0].title}
+                category={tempData[0].name}
                 bottom={240}
                 right={50}
                 color="white"
