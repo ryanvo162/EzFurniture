@@ -14,6 +14,8 @@ import OTPScreen from "./OTPScreen/otp";
 import DetailScreen from "./DetailScreen/detail";
 import VoucherScreen from "./VoucherScreen/voucher";
 import OrderScreen from "./OrderScreen/order";
+import InformationScreen from "./InformationScreen/information";
+
 
 export default function AppProvider() {
   const Stack = createNativeStackNavigator();
@@ -77,6 +79,13 @@ export default function AppProvider() {
           component={VoucherScreen}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="InformationScreen"
+          component={InformationScreen}
+          options={{ headerShown: false }}
+        />
+       
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
