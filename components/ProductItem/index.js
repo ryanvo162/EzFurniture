@@ -6,7 +6,9 @@ import * as Icon from "react-native-feather";
 export default function ProductItem(props) {
   const { name, image, price } = props;
   const [isLoading, setIsLoading] = useState(true);
+ 
   return (
+    
     <ImageBackground
       borderRadius={20}
       onLoadStart={() => setIsLoading(true)}
@@ -21,9 +23,10 @@ export default function ProductItem(props) {
       )}
       <View style={styles.infoProduct}>
         <Text style={styles.name}>{name}</Text>
-        <Text style={styles.price}>123.456{price}</Text>
+        <Text style={styles.price}>$48{price}</Text>
         <Icon.Heart stroke={"white"} style={styles.iconStyle} />
       </View>
     </ImageBackground>
+    
   );
 }

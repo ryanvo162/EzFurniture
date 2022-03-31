@@ -1,4 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
+import {  bold } from "../../global/fonts";
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,7 +10,7 @@ export const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     paddingTop: 55,
-    paddingBottom: 8,
+    paddingBottom: 16,
   },
 
   headerLeft: {
@@ -21,7 +22,8 @@ export const styles = StyleSheet.create({
   },
 
   headerLeftText: {
-    fontSize: 16,
+    fontSize: bold.fontSize,
+    fontFamily:bold.fontFamily,
     marginLeft: 10,
   },
 
@@ -32,11 +34,11 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
   },
 
-  iconSearch: {
-    marginRight: 14,
-  },
-
   flatList: {
     width: "100%",
   },
+  searchbar:{
+    marginBottom:16,
+    
+  }
 });
