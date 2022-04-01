@@ -7,11 +7,25 @@ import { styles as mainStyle } from "../../screens/styles";
 
 import * as Icon from "react-native-feather";
 import { Snackbar } from "react-native-paper";
+import QuantityButton from "../../components/QuantityButton";
 
 export default function DetailScreen(props) {
   const { navigation } = props;
 
   const [visible, setVisible] = useState(false);
+  const [quantity, setQuantity] = useState(0);
+
+  const handleMinus = () => {
+    if (quantity > 0) {
+      setQuantity(quantity - 1);
+    } else {
+      console.log("Quantity can not be less than 0");
+    }
+  };
+
+  const handlePlus = (count) => {
+    setQuantity(count + 1);
+  };
 
   const onToggleSnackBar = () => setVisible(!visible);
 
@@ -23,10 +37,22 @@ export default function DetailScreen(props) {
   const handleAddCart = () => {
     onToggleSnackBar();
   };
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
 
   return (
     <View style={styles.container}>
-      <StatusBar hidden />
+      <View style={styles.header}>
+        <Pressable onPress={handleGoBack} style={styles.headerLeft}>
+          <Icon.ChevronLeft stroke="white" />
+          <Text style={styles.headerLeftText}>Back</Text>
+        </Pressable>
+        <Pressable onPress={handleGoBack} style={styles.headerRight}>
+          <Icon.Heart stroke="white" />
+          {/* <Text style={styles.headerLeftText}>Back</Text> */}
+        </Pressable>
+      </View>
       <Image
         source={require("../../assets/img/bg_home1.png")}
         style={styles.imageContainer}
@@ -38,16 +64,15 @@ export default function DetailScreen(props) {
       >
         <View style={styles.modalContainer}>
           <View style={styles.crossBar}></View>
-          <View style={styles.quantity}>
-            <Pressable style={styles.quantityButton}>
-              <Text style={styles.quantityText}>-</Text>
-            </Pressable>
-            <Text style={styles.quantityNumber}>1 </Text>
-            <Pressable style={styles.quantityButton}>
-              <Text style={styles.quantityText}>+</Text>
-            </Pressable>
+          <View style={styles.containerTitle}>
+            <Text style={styles.title}>Product Name</Text>
+            <QuantityButton
+              quantity={quantity}
+              onPressPlus={handlePlus}
+              onPressMinus={handleMinus}
+            />
           </View>
-          <Text style={styles.title}>Product Name</Text>
+
           <Text style={styles.price}>$123.456</Text>
           <Text style={styles.descriptionTilte}>Description</Text>
           <Text style={styles.description}>

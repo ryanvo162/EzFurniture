@@ -4,6 +4,7 @@ import { bold } from "../../global/fonts";
 
 export const styles = StyleSheet.create({
   quantity: {
+    height: 30,
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: primaryColor,

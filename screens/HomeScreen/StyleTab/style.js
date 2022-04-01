@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
   horizontalScroll: {
     // backgroundColor: primaryColor,
     flexGrow: 1,
-    marginLeft: 16,
+    paddingHorizontal: 16,
     alignItems: "center",
   },
 

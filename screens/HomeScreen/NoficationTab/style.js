@@ -40,6 +40,6 @@ export const styles = StyleSheet.create({
   },
 
   snackbar: {
-    marginBottom: 90,
+    marginBottom: Platform.OS === "ios" ? 60 : 90,
   },
 });

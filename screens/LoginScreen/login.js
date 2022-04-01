@@ -34,33 +34,33 @@ export default function LoginScreen(props) {
   }, [response]);
 
   const handleLogin = async () => {
-    const check = await fetch(
-      "https://admin.furniture.bandn.online/mobile/login",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      }
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res.payload.status);
-        setStatus(res.payload.status);
-        if (res.payload.status === true) {
+    // const check = await fetch(
+    //   "https://admin.furniture.bandn.online/mobile/login",
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       email: email,
+    //       password: password,
+    //     }),
+    //   }
+    // )
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     console.log(res.payload.status);
+    //     setStatus(res.payload.status);
+    //     if (res.payload.status === true) {
           navigation.navigate("HomeScreen");
-        } else {
-          console.log("Login failed");
-        }
-      })
-      .catch((err) => {
-        console.log("Lỗi rồi");
-        console.log(err);
-      });
+      //   } else {
+      //     console.log("Login failed");
+      //   }
+      // })
+      // .catch((err) => {
+      //   console.log("Lỗi rồi");
+      //   console.log(err);
+      // });
   };
 
   const handleGoToSignUp = () => {
