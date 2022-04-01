@@ -6,7 +6,7 @@ import { primaryColor, gray2Color, gray3Color, gray1Color, blackColor, whiteColo
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // backgroundColor: primaryColor,
+        backgroundColor: whiteColor,
     },
 
     // containerScrollView: {
