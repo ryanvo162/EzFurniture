@@ -33,7 +33,6 @@ export default function InformationScreen(props) {
           <Icon.ChevronLeft stroke="white" />
           <Text style={styles.headerLeftText}>Information</Text>
         </Pressable>
-
       </View>
       <ScrollView
         overScrollMode="never"
