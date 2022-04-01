@@ -18,7 +18,7 @@ export default function StyleItem(props) {
       onLoadEnd={() => setIsLoading(false)}
       style={styles.items}
       resizeMode="cover"
-      source={image}
+      source={{ uri: image }}
     >
       {isLoading && (
         <View style={styles.loading}>

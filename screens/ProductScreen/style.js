@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
-import {  bold } from "../../global/fonts";
+import { bold } from "../../global/fonts";
 
 export const styles = StyleSheet.create({
   container: {
@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
 
   headerLeftText: {
     fontSize: bold.fontSize,
-    fontFamily:bold.fontFamily,
+    fontFamily: bold.fontFamily,
     marginLeft: 10,
   },
 
@@ -36,9 +36,10 @@ export const styles = StyleSheet.create({
 
   flatList: {
     width: "100%",
+    paddingHorizontal: 8,
   },
-  searchbar:{
-    marginBottom:16,
-    
-  }
+  
+  searchbar: {
+    marginBottom: 16,
+  },
 });

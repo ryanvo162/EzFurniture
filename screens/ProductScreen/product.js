@@ -45,12 +45,22 @@ const DATA = [
   },
 ];
 
-const Item = ({ item }) => <ProductItem name={item.title} image={item.image} />;
-
 export default function ProductScreen(props) {
   const { navigation } = props;
 
   const renderItem = ({ item }) => <Item item={item} />;
+
+  const Item = ({ item }) => (
+    <ProductItem
+      onPress={handleDetailProduct}
+      name={item.title}
+      image={item.image}
+    />
+  );
+
+  const handleDetailProduct = () => {
+    navigation.navigate("DetailScreen");
+  };
 
   const handleGoBack = () => {
     navigation.goBack();
@@ -69,9 +79,14 @@ export default function ProductScreen(props) {
           <Icon.ShoppingCart stroke="black" />
         </View>
       </View>
-      <View style={styles.searchbar}><SearchBar /></View>
+
+      <View style={styles.searchbar}>
+        <SearchBar />
+      </View>
 
       <FlatList
+        overScrollMode="never"
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 60 }}
         style={styles.flatList}
         data={DATA}

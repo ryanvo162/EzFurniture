@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
-import {  bold ,body2} from "../../global/fonts";
+import { bold, body2 } from "../../global/fonts";
 
 export const styles = StyleSheet.create({
   items: {
@@ -7,6 +7,12 @@ export const styles = StyleSheet.create({
     height: 220,
     marginHorizontal: 8,
     marginVertical: 8,
+    backgroundColor: "gray",
+    borderRadius: 10,
+  },
+
+  itemImage: {
+    flex: 1,
     backgroundColor: "gray",
     justifyContent: "center",
     alignItems: "center",
@@ -32,31 +38,26 @@ export const styles = StyleSheet.create({
     color: "white",
     marginTop: 6,
     marginHorizontal: 12,
-    //backgroundColor: "pink",
     height: 20,
     overflow: "hidden",
-    fontSize:body2.fontSize,
-    fontFamily:body2.fontFamily,
+    fontSize: body2.fontSize,
+    fontFamily: body2.fontFamily,
   },
 
   price: {
     marginTop: 3,
     fontSize: 14,
-    fontFamily:bold.fontFamily,
+    fontFamily: bold.fontFamily,
     marginHorizontal: 12,
     color: "white",
     //backgroundColor:"#212121",
-   
-    
   },
 
   iconStyle: {
     position: "absolute",
     bottom: 10,
     right: 10,
-    width:16,
+    width: 16,
     height: 16,
-    
   },
-
 });

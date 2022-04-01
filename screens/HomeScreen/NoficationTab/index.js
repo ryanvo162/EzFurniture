@@ -62,6 +62,7 @@ export default function NotificationTab() {
 
   const handleDelete = () => {
     onToggleSnackBar();
+    DATA.splice(0, 1);
   };
 
   const renderItem = ({ item }) => <Item item={item} />;
