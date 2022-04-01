@@ -8,7 +8,7 @@ import ShippingMethod from "../../components/ShippingMethod";
 import ButtonApp from "../../components/Button";
 import { primaryColor, gray2Color, gray3Color, gray1Color, blackColor, whiteColor } from "../../global/colors";
 
-export default function ComfirmOrderScreen() {
+export default function ConfirmOrderScreen() {
 
   const [value, setValue] = React.useState('cash');
 

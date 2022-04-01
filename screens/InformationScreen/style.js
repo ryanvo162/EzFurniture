@@ -33,6 +33,7 @@ export const styles = StyleSheet.create({
   headerLeftText: {
     fontSize: bold.fontSize,
     fontFamily: bold.fontFamily,
+    transform: [{ translateY: 1 }],
     color: "white",
     marginLeft: 10,
   },
