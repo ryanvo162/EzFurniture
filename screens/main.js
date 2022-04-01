@@ -17,13 +17,13 @@ import OrderScreen from "./OrderScreen/order";
 import ConfirmOrderScreen from "./ConfirmOrderScreen/confirm_order";
 import InformationScreen from "./InformationScreen/information";
 import DeliveryAddressScreen from "./DeliveryAddress/delivery_address";
-
+import SupportScreen from "./SupportScreen/support";
 
 export default function AppProvider() {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer style={styles.container}>
-      <Stack.Navigator initialRouteName="ProductScreen">
+      <Stack.Navigator initialRouteName="LoginScreen">
         <Stack.Screen
           name="SlashScreen"
           component={SlashScreen}
@@ -96,6 +96,12 @@ export default function AppProvider() {
           component={DeliveryAddressScreen}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="SupportScreen"
+          component={SupportScreen}
+          options={{ headerShown: false }}
+        />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
