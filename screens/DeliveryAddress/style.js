@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     // },
 
     header: {
-        backgroundColor: primaryColor,
+        backgroundColor: whiteColor,
         width: "100%",
         flexDirection: "row",
         paddingTop: 55,
@@ -52,7 +52,7 @@ export const styles = StyleSheet.create({
         marginBottom: 16,
         marginHorizontal: 27,
     },
-    btnnewDelivery: {
+    btnNewDelivery: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',

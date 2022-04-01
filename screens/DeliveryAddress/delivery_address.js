@@ -19,22 +19,14 @@ export default function DeliveryAddressScreen() {
                 </Pressable>
             </View>
 
-            {/* <ScrollView
-                overScrollMode="never"
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={styles.containerScrollView}>
-                <DeliveryAddress />
-    
-            </ScrollView> */}
              <DeliveryAddress />
 
-            <View style={styles.newDeliveryContainer}>
-                <View style={styles.btnnewDelivery}>
+            <Pressable style={styles.newDeliveryContainer}>
+                <View style={styles.btnNewDelivery}>
                     <Text style={styles.textNewDelivery}>Delivery Address</Text>
                     <Icon.Plus stroke={blackColor} strokeWidth={1} />
                 </View>
-
-            </View>
+            </Pressable>
 
         </View>
     );
