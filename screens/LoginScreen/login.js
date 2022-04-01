@@ -93,8 +93,9 @@ export default function LoginScreen(props) {
         style={styles.imageHeader}
         source={require("../../assets/img/imageHeaderLogin.png")}
       />
-      <Image style={styles.logo} source={require("../../assets/icon.png")} />
-      {/* text input */}
+      <Text style={styles.textLogin}>Login</Text>
+      <Text style={styles.textWelcome}>Welcome to EZ furniture</Text>
+    {/* text input */}
       <TextInputApp onChange={setEmail} placeholder="Email or phone..." />
       <TextInputApp
         onChange={setPassword}

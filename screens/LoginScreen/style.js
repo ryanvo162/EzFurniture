@@ -1,6 +1,6 @@
 import { StyleSheet, Platform } from "react-native";
-import { title1, body2, bold12 } from "../../global/fonts";
-import { primaryColor, gray3Color, gray2Color } from "../../global/colors";
+import { title1, body2,body, bold12 } from "../../global/fonts";
+import { primaryColor, gray3Color, gray2Color, blackColor } from "../../global/colors";
 
 export const styles = StyleSheet.create({
   container: {
@@ -16,16 +16,21 @@ export const styles = StyleSheet.create({
   imageHeader: {
     width: "100%",
     height: 220,
-    marginBottom: 20,
+    marginBottom: 40,
   },
-
-  logo: {
-    width: 100,
-    height: 100,
-    marginTop: 20,
-    marginBottom: 30,
-  },
-
+    textLogin:{
+      fontSize: title1.fontSize,
+      fontFamily: title1.fontFamily,
+      color: blackColor,
+    },
+    textWelcome:{
+      fontSize: body.fontSize,
+      fontFamily: body.fontFamily,
+      color: blackColor,
+      marginTop:12,
+      marginBottom:40,
+    },
+ 
   textForgotPassword: {
     fontSize: body2.fontSize,
     fontFamily: body2.fontFamily,
