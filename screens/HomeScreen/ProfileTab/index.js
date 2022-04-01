@@ -14,7 +14,9 @@ export default function ProfileTab(props) {
     navigation.navigate("VoucherScreen");
   };
   const handleGoToInformation = () => {};
-  const handleGoToSupport = () => {};
+  const handleGoToSupport = () => {
+    navigation.navigate("SupportScreen");
+  };
   const handleLogout = () => {
     navigation.replace("LoginScreen");
   };

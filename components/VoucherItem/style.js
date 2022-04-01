@@ -46,7 +46,7 @@ export const styles = StyleSheet.create({
 
   content: {
     flex: 1,
-    marginVertical: 10,
+    marginVertical: 35,
     marginLeft: 16,
   },
 

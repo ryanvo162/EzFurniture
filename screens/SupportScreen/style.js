@@ -60,16 +60,11 @@ export const styles = StyleSheet.create({
         justifyContent: "space-between",
         marginBottom: 11,
     },
+
     textQuestion: {
         fontSize: body.fontSize,
         fontFamily: body.fontFamily,
         color: gray3Color,
-     //   marginRight:10,
-    },
-    iconContainer: {
-        position: "absolute",
-        right: 16,
-        bottom:16,
-        top:16,
+        width: "90%",
     },
 });
