@@ -14,14 +14,16 @@ import OTPScreen from "./OTPScreen/otp";
 import DetailScreen from "./DetailScreen/detail";
 import VoucherScreen from "./VoucherScreen/voucher";
 import OrderScreen from "./OrderScreen/order";
+import ComfirmOrderScreen from "./ComfirmOrderScreen";
 import InformationScreen from "./InformationScreen/information";
+
 
 
 export default function AppProvider() {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer style={styles.container}>
-      <Stack.Navigator initialRouteName="ProductScreen">
+      <Stack.Navigator initialRouteName="HomeScreen">
         <Stack.Screen
           name="SlashScreen"
           component={SlashScreen}
@@ -80,12 +82,15 @@ export default function AppProvider() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
+          name="ComfirmOrderScreen"
+          component={ComfirmOrderScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
           name="InformationScreen"
           component={InformationScreen}
           options={{ headerShown: false }}
         />
-       
-        
       </Stack.Navigator>
     </NavigationContainer>
   );
