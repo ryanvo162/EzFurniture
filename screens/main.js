@@ -18,12 +18,13 @@ import ConfirmOrderScreen from "./ConfirmOrderScreen/confirm_order";
 import InformationScreen from "./InformationScreen/information";
 import DeliveryAddressScreen from "./DeliveryAddress/delivery_address";
 import SupportScreen from "./SupportScreen/support";
+import PaymentMethod from "./PaymentMethodScreen/payment_method";
 
 export default function AppProvider() {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer style={styles.container}>
-      <Stack.Navigator initialRouteName="LoginScreen">
+      <Stack.Navigator initialRouteName="PaymentMethod">
         <Stack.Screen
           name="SlashScreen"
           component={SlashScreen}
@@ -99,6 +100,11 @@ export default function AppProvider() {
         <Stack.Screen
           name="SupportScreen"
           component={SupportScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="PaymentMethod"
+          component={PaymentMethod}
           options={{ headerShown: false }}
         />
 
