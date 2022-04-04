@@ -24,7 +24,7 @@ export default function AppProvider() {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer style={styles.container}>
-      <Stack.Navigator initialRouteName="PaymentMethod">
+      <Stack.Navigator initialRouteName="HomeScreen">
         <Stack.Screen
           name="SlashScreen"
           component={SlashScreen}

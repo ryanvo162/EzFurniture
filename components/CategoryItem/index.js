@@ -3,10 +3,10 @@ import { Pressable, Text, Image } from "react-native";
 import { styles } from "./style";
 
 export default function CategoryItem(props) {
-  const { category, onPress, color, top, right, left, bottom } = props;
+  const { id,category, onPress, color, top, right, left, bottom } = props;
 
   const handleChoose = () => {
-    onPress(category);
+    onPress(category,id);
   };
   
   return (

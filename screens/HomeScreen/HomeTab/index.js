@@ -11,14 +11,14 @@ export default function HomeTab(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [myArr, setMyArr] = useState([]);
 
-  const tempData = myArr.length !== 0 ? [...myArr] : [];
-  if (tempData.length !== 0) {
-    console.log("tempData:", tempData[0].title);
+  const DATA = myArr.length !== 0 ? [...myArr] : [];
+  if (DATA.length !== 0) {
+    console.log("DATA[0].name:", DATA[0].name);
   }
-  console.log("tempData:", tempData);
+  console.log("DATA:", DATA);
 
-  useEffect(() => {
-    fetch("https://admin.furniture.bandn.online/mobile/category")
+  useEffect(async () => {
+    await fetch("https://admin.furniture.bandn.online/mobile/category")
       .then((res) => res.json())
       .then((res) => setMyArr(res.data))
       .catch((err) => console.log(err));
@@ -26,8 +26,8 @@ export default function HomeTab(props) {
 
   console.log("myArr:", myArr);
 
-  const handleGoToProduct = (category) => {
-    // console.log(category);
+  const handleGoToProduct = (id,category) => {
+    console.log(id,category);
     navigation.navigate("ProductScreen", {
       data: myArr,
     });
@@ -57,28 +57,32 @@ export default function HomeTab(props) {
                 </View>
               )}
               <CategoryItem
-                // category={tempData[0].name}
+                id={DATA[0]._id}
+                category={DATA[0].name}
                 bottom={240}
                 right={50}
                 color="white"
                 onPress={handleGoToProduct}
               />
               <CategoryItem
-                category="Picture"
+                id={DATA[1]._id}
+                category={DATA[1].name}
+                bottom={150}
+                left={102}
+                color="white"
+                onPress={handleGoToProduct}
+              />
+                <CategoryItem
+                id={DATA[2]._id}
+                category={DATA[2].name}
                 top={225}
                 right={100}
                 color="white"
                 onPress={handleGoToProduct}
               />
               <CategoryItem
-                category="Coffee Table"
-                bottom={150}
-                left={102}
-                color="white"
-                onPress={handleGoToProduct}
-              />
-              <CategoryItem
-                category="Carpet"
+                 id={DATA[3]._id}
+                category={DATA[3].name}
                 bottom={60}
                 right={27}
                 color="white"
@@ -102,14 +106,16 @@ export default function HomeTab(props) {
                 </View>
               )}
               <CategoryItem
-                category="Lamp"
+                  id={DATA[4]._id}
+                  category={DATA[4].name}
                 top={100}
                 right={40}
                 color="white"
                 onPress={handleGoToProduct}
               />
               <CategoryItem
-                category="Cabinet"
+                  id={DATA[5]._id}
+                  category={DATA[5].name}
                 bottom={130}
                 left={150}
                 color="white"
@@ -133,28 +139,24 @@ export default function HomeTab(props) {
                 </View>
               )}
               <CategoryItem
-                category="Bed"
+                  id={DATA[6]._id}
+                  category={DATA[6].name}
                 bottom={200}
                 right={60}
                 color="white"
                 onPress={handleGoToProduct}
               />
               <CategoryItem
-                category="Picture"
-                top={180}
-                right={30}
-                color="white"
-                onPress={handleGoToProduct}
-              />
-              <CategoryItem
-                category="Hanging Light"
+                  id={DATA[7]._id}
+                  category={DATA[7].name}
                 top={120}
                 left={50}
                 color="white"
                 onPress={handleGoToProduct}
               />
               <CategoryItem
-                category="Bedside Table"
+                  id={DATA[8]._id}
+                  category={DATA[8].name}
                 bottom={230}
                 left={30}
                 color="white"
@@ -178,21 +180,24 @@ export default function HomeTab(props) {
                 </View>
               )}
               <CategoryItem
-                category="Desk"
+                  id={DATA[9]._id}
+                  category={DATA[9].name}
                 bottom={170}
                 left={100}
                 color="white"
                 onPress={handleGoToProduct}
               />
               <CategoryItem
-                category="Chair"
+                  id={DATA[10]._id}
+                  category={DATA[10].name}
                 bottom={100}
                 right={15}
                 color="white"
                 onPress={handleGoToProduct}
               />
               <CategoryItem
-                category="Reading Lamp"
+                  id={DATA[11]._id}
+                  category={DATA[11].name}
                 bottom={380}
                 left={100}
                 color="white"
@@ -216,14 +221,16 @@ export default function HomeTab(props) {
                 </View>
               )}
               <CategoryItem
-                category="Dining Chairs"
+                 id={DATA[12]._id}
+                 category={DATA[12].name}
                 bottom={180}
                 right={50}
                 color="white"
                 onPress={handleGoToProduct}
               />
               <CategoryItem
-                category="Dinner Table"
+                 id={DATA[13]._id}
+                 category={DATA[13].name}
                 bottom={90}
                 left={60}
                 color="white"
