@@ -1,6 +1,6 @@
 import { StyleSheet, Platform } from "react-native";
 import { primaryColor, gray2Color } from "../../global/colors";
-import { bold, title2, title1, body} from "../../global/fonts";
+import { bold, title2, title1, body } from "../../global/fonts";
 
 export const styles = StyleSheet.create({
   container: {
@@ -13,6 +13,38 @@ export const styles = StyleSheet.create({
     height: "50%",
     position: "absolute",
     backgroundColor: "gray",
+  },
+
+  header: {
+    position: "absolute",
+    // backgroundColor: primaryColor,
+    width: "100%",
+    justifyContent: "space-between",
+    flexDirection: "row",
+    paddingTop: 55,
+    paddingBottom: 12,
+    zIndex: 1,
+  },
+
+  headerLeft: {
+    flex: 1,
+    // justifyContent: "flex-start",
+    alignItems: "center",
+    flexDirection: "row",
+    marginLeft: 20,
+  },
+  headerLeftText: {
+    fontSize: bold.fontSize,
+    fontFamily: bold.fontFamily,
+    transform: [{ translateY: 1 }],
+    color: "white",
+    marginLeft: 10,
+  },
+
+  headerRight: {
+    alignItems: "center",
+    flexDirection: "row",
+    marginRight: 24,
   },
 
   scrollViewContain: {
@@ -39,9 +71,16 @@ export const styles = StyleSheet.create({
     transform: [{ translateY: -10 }],
   },
 
+  containerTitle: {
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexDirection: "row",
+  },
+
   title: {
     fontSize: title1.fontSize,
     fontFamily: title1.fontFamily,
+    transform: [{ translateY: 3 }],
     marginBottom: "1%",
   },
 
@@ -105,7 +144,7 @@ export const styles = StyleSheet.create({
     color: "#ffffff",
   },
 
-  snackbar:{
+  snackbar: {
     marginBottom: "18%",
   },
 

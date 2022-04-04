@@ -14,10 +14,11 @@ import OTPScreen from "./OTPScreen/otp";
 import DetailScreen from "./DetailScreen/detail";
 import VoucherScreen from "./VoucherScreen/voucher";
 import OrderScreen from "./OrderScreen/order";
-import ComfirmOrderScreen from "./ComfirmOrderScreen";
+import ConfirmOrderScreen from "./ConfirmOrderScreen/confirm_order";
 import InformationScreen from "./InformationScreen/information";
-
-
+import DeliveryAddressScreen from "./DeliveryAddress/delivery_address";
+import SupportScreen from "./SupportScreen/support";
+import PaymentMethod from "./PaymentMethodScreen/payment_method";
 
 export default function AppProvider() {
   const Stack = createNativeStackNavigator();
@@ -82,8 +83,8 @@ export default function AppProvider() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="ComfirmOrderScreen"
-          component={ComfirmOrderScreen}
+          name="ConfirmOrderScreen"
+          component={ConfirmOrderScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
@@ -91,6 +92,22 @@ export default function AppProvider() {
           component={InformationScreen}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="DeliveryAddressScreen"
+          component={DeliveryAddressScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SupportScreen"
+          component={SupportScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="PaymentMethod"
+          component={PaymentMethod}
+          options={{ headerShown: false }}
+        />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

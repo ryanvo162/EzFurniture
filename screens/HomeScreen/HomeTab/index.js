@@ -35,7 +35,7 @@ export default function HomeTab(props) {
 
   return (
     <>
-      {DATA.length !== 0 && (
+      {/* {tempData.length !== 0 && ( */}
         <PagerView
           overScrollMode="never"
           style={styles.container}
@@ -239,7 +239,7 @@ export default function HomeTab(props) {
             </ImageBackground>
           </View>
         </PagerView>
-      )}
+      {/* )} */}
     </>
   );
 }

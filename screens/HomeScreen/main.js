@@ -31,7 +31,7 @@ export default function HomeScreen(props) {
 
             if (route.name === "Home") {
               tag = focused ? (
-                <Icon.Home stroke={color} height={size} width={size}/>
+                <Icon.Home stroke={color} height={size} width={size} />
               ) : (
                 <Icon.Home stroke={color} />
               );
@@ -64,7 +64,6 @@ export default function HomeScreen(props) {
             // You can return any component that you like here!
             return tag;
 
-            // return <Ionicons name={iconName} size={size} color={color} />;
           },
           tabBarActiveTintColor: "white",
           tabBarInactiveTintColor: "#CCCCCC",
