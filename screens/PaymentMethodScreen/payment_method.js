@@ -6,11 +6,11 @@ import * as Icon from "react-native-feather";
 import { primaryColor, gray2Color, gray3Color, gray1Color, blackColor, whiteColor } from "../../global/colors";
 import AddNewCard from "../../components/AddNewCard";
 
-export default function PaymentMethod() {
+export default function PaymentMethodScreen() {
     const handleGoBack = () => {
         navigation.goBack();
     };
-    const [value, setValue] = React.useState('cash');
+    const [value, setValue] = useState('cash');
     return (
         <View style={styles.container}>
 
