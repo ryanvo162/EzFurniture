@@ -65,5 +65,16 @@ export const styles = StyleSheet.create({
         color: blackColor,
 
     },
+    centeredView:{
+        flex:1,
+    },
+    textContainer:{
+        marginHorizontal: 27,
+    },
+    enterYourAddress:{
+        fontSize: body2.fontSize,
+        fontFamily: body2.fontFamily,
+        color: blackColor,
+    },
 
 });
