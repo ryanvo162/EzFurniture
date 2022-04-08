@@ -4,8 +4,13 @@ import { title1, body, bold12 } from "../../global/fonts";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    backgroundColor: "#ffffff",
+    // alignItems: "center",
+    backgroundColor: "white",
+  },
+  
+  inner: {
+    flex: 1,
+    // alignItems: "center",
   },
 
   titleText: {

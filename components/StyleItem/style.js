@@ -11,7 +11,15 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 5,
-    
+  },
+
+  itemImage: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 5,
   },
 
   textStyleView: {
@@ -21,7 +29,7 @@ export const styles = StyleSheet.create({
     bottom: 33,
     borderRadius: 5,
     backgroundColor: "rgba(33, 33, 33, 0.75)",
-    alignContent: "center",
+    alignItems: "center",
     justifyContent: "center",
   },
 

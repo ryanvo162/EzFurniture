@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: 8,
     marginVertical: 8,
     backgroundColor: "gray",
-    borderRadius: 10,
+    borderRadius: 5,
   },
 
   itemImage: {
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "gray",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 10,
+    borderRadius: 5,
   },
 
   infoProduct: {

@@ -6,7 +6,7 @@ export default function CategoryItem(props) {
   const { id,category, onPress, color, top, right, left, bottom } = props;
 
   const handleChoose = () => {
-    onPress(category,id);
+    onPress(id);
   };
   
   return (

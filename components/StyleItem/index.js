@@ -5,29 +5,42 @@ import {
   Image,
   ActivityIndicator,
   ImageBackground,
+  Pressable,
 } from "react-native";
 import { styles } from "./style";
 
 export default function StyleItem(props) {
-  const { name, image } = props;
+  const { id, name, image, onPress } = props;
   const [isLoading, setIsLoading] = useState(true);
+
+  const handlePress = () => {
+    onPress(id);
+  };
   return (
-    <ImageBackground
-      borderRadius={5}
-      onLoadStart={() => setIsLoading(true)}
-      onLoadEnd={() => setIsLoading(false)}
-      style={styles.items}
-      resizeMode="cover"
-      source={{ uri: image }}
-    >
-      {isLoading && (
-        <View style={styles.loading}>
-          <ActivityIndicator color="white" />
+    <Pressable style={styles.items} onPress={handlePress}>
+      <ImageBackground
+        borderRadius={5}
+        onLoadStart={() => setIsLoading(true)}
+        onLoadEnd={() => setIsLoading(false)}
+        style={styles.itemImage}
+        resizeMode="cover"
+        source={
+          image !== "Error: No files found"
+            ? { uri: image }
+            : {
+                uri: "https://picsum.photos/1000",
+              }
+        }
+      >
+        {isLoading && (
+          <View style={styles.loading}>
+            <ActivityIndicator color="white" />
+          </View>
+        )}
+        <View style={styles.textStyleView}>
+          <Text style={styles.textStyle}> {props.name} </Text>
         </View>
-      )}
-      <View style={styles.textStyleView}>
-        <Text style={styles.textStyle}> {props.name} </Text>
-      </View>
-    </ImageBackground>
+      </ImageBackground>
+    </Pressable>
   );
 }

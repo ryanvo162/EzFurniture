@@ -18,13 +18,23 @@ import { StatusBar } from "expo-status-bar";
 const Tab = createBottomTabNavigator();
 
 export default function HomeScreen(props) {
-  const { navigation } = props;
+  const { navigation, route } = props;
+  let screen;
+  if (route) {
+    if (route.params) {
+      screen = route.params;
+    } else {
+      screen = "Home";
+    }
+  }
+
+  // console.log(screen);
 
   return (
     <>
       <Tab.Navigator
         style={styles.container}
-        initialRouteName="Home"
+        initialRouteName={screen}
         screenOptions={({ route, headerShown }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let tag;
@@ -63,7 +73,6 @@ export default function HomeScreen(props) {
 
             // You can return any component that you like here!
             return tag;
-
           },
           tabBarActiveTintColor: "white",
           tabBarInactiveTintColor: "#CCCCCC",

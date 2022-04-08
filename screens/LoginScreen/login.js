@@ -20,7 +20,7 @@ import AuthButton from "../../components/AuthButton";
 import { styles as mainStyle } from "../../screens/styles";
 
 export default function LoginScreen(props) {
-  const { navigation } = props;
+  const { navigation, route } = props;
 
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
@@ -31,17 +31,13 @@ export default function LoginScreen(props) {
   const onToggleSnackBar = () => setVisible(!visible);
 
   const onDismissSnackBar = () => setVisible(false);
-  // Facebook
-  // const [request, response, promptAsync] = Facebook.useAuthRequest({
-  //   expoClientId: "2640390062761981",
-  //   responseType: ResponseType.Code,
-  // });
 
-  // useEffect(() => {
-  //   if (response?.type === "success") {
-  //     const { code } = response.params;
-  //   }
-  // }, [response]);
+  // let message;
+  // if (route.params) {
+  //   message = route.params.message;
+  //   setStatus(message);
+  //   onToggleSnackBar();
+  // }
 
   const formatEmail = (email) => {
     console.log(email);
@@ -60,33 +56,36 @@ export default function LoginScreen(props) {
       setStatus("Email is not valid");
       onToggleSnackBar();
     } else {
-      // const check = await fetch(
-      //   "https://admin.furniture.bandn.online/mobile/login",
-      //   {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify({
-      //       email: email,
-      //       password: password,
-      //     }),
-      //   }
-      // )
-      //   .then((res) => res.json())
-      //   .then((res) => {
-      //     console.log(res.payload.status);
-      //     setStatus(res.payload.status);
-      //     if (res.payload.status === true) {
-      navigation.navigate("HomeScreen");
-      //   } else {
-      //     console.log("Login failed");
-      //   }
-      // })
-      // .catch((err) => {
-      //   console.log("Lỗi rồi");
-      //   console.log(err);
-      // });
+      const check = await fetch(
+        "https://admin.furniture.bandn.online/mobile/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+        }
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res.payload.status);
+          setStatus(res.payload.status);
+          if (res.payload.status === true) {
+            setStatus("Login success");
+            onToggleSnackBar();
+            navigation.navigate("HomeScreen");
+          } else {
+            setStatus("Wrong email or password");
+            onToggleSnackBar();
+          }
+        })
+        .catch((err) => {
+          setStatus("Check server and try again");
+          console.log(err);
+        });
     }
   };
 
@@ -149,9 +148,9 @@ export default function LoginScreen(props) {
                 Forgot Password?
               </Text>
               <AuthButton
-                // disabled={!request}
-                // onLoginFacebook={handleLoginFacebook}
-                // onLoginGoogle={handleLoginGoogle}
+              // disabled={!request}
+              // onLoginFacebook={handleLoginFacebook}
+              // onLoginGoogle={handleLoginGoogle}
               />
               <ButtonApp
                 text="Login"
@@ -176,7 +175,7 @@ export default function LoginScreen(props) {
         action={{
           label: "Hide",
           onPress: () => {
-            // Do something
+            message = "";
           },
         }}
       >

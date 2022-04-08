@@ -10,17 +10,20 @@ import { styles } from "./style";
 import * as Icon from "react-native-feather";
 
 export default function ProductItem(props) {
-  const { name, image, price, onPress } = props;
+  const { name, image, price, onPress,id } = props;
   const [isLoading, setIsLoading] = useState(true);
 
+  const handleChoose = () => {
+    onPress(id);
+  };
+
   return (
-    <Pressable onPress={onPress} style={styles.items}>
+    <Pressable onPress={handleChoose} style={styles.items}>
       <ImageBackground
-        onPress={onPress}
-        borderRadius={10}
+        borderRadius={5}
         onLoadStart={() => setIsLoading(true)}
         onLoadEnd={() => setIsLoading(false)}
-        source={image}
+        source={{ uri: image }}
         style={styles.itemImage}
       >
         {isLoading && (
@@ -30,7 +33,7 @@ export default function ProductItem(props) {
         )}
         <View style={styles.infoProduct}>
           <Text style={styles.name}>{name}</Text>
-          <Text style={styles.price}>$48{price}</Text>
+          <Text style={styles.price}>${price}</Text>
           <Icon.Heart stroke={"white"} style={styles.iconStyle} />
         </View>
       </ImageBackground>

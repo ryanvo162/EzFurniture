@@ -48,8 +48,6 @@ export default function InformationScreen(props) {
         <TextInput
           style={styles.textInput}
           placeholder={'Username'}
-          // defaultValue={username}
-           
           placeholderTextColor={gray2Color}
           onChangeText={setUsername}
           color={"black"}

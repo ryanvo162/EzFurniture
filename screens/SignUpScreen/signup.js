@@ -28,14 +28,14 @@ export default function SignUpScreen(props) {
   const [status, setStatus] = useState(null);
 
   const formatEmail = (email) => {
-    console.log(email);
+    // console.log(email);
     const pattern =
       /[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g;
     return pattern.test(email);
   };
 
   const formatPhoneNumber = (phoneNumber) => {
-    console.log(phoneNumber);
+    // console.log(phoneNumber);
     const pattern = /(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/;
     return pattern.test(phoneNumber);
   };
@@ -46,7 +46,7 @@ export default function SignUpScreen(props) {
 
   const onDismissSnackBar = () => setVisible(false);
 
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
     console.log("handleSignUp");
     if (
       email == null ||
@@ -72,19 +72,46 @@ export default function SignUpScreen(props) {
       setStatus("Phone number is not valid");
       onToggleSnackBar();
     } else {
-      navigation.replace("OTPScreen", {
-        data: {
-          email: email,
-          password: password,
-          name: name,
-          phoneNumber: phoneNumber,
-        },
-      });
+      const check = await fetch(
+        "https://admin.furniture.bandn.online/mobile/createAccount",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+          }),
+        }
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          if (res.status === "email is sent") {
+            setStatus("Email is sent");
+            onToggleSnackBar();
+            navigation.replace("OTPScreen", {
+              data: {
+                email: email,
+                password: password,
+                name: name,
+                phoneNumber: phoneNumber,
+              },
+            });
+          } else {
+            setStatus("Email is already used");
+            onToggleSnackBar();
+          }
+        })
+        .catch((err) => {
+          setStatus("Check server and try again");
+          console.log(err);
+        });
     }
   };
 
   const handleGoToLogin = () => {
-    navigation.replace("LoginScreen");
+    navigation.replace("LoginScreen",{message: "check"});
   };
 
   return (
@@ -101,7 +128,11 @@ export default function SignUpScreen(props) {
             />
             <ScrollView
               overScrollMode="never"
-              contentContainerStyle={{ flexGrow: 1, alignItems: "center" }}
+              contentContainerStyle={{
+                flexGrow: 1,
+                alignItems: "center",
+                paddingBottom: 20,
+              }}
             >
               <Text style={styles.titleText}>Register</Text>
               <Text style={styles.subTitleText}>Create a new account</Text>
@@ -116,12 +147,12 @@ export default function SignUpScreen(props) {
                 onChange={setPassword}
                 placeholder="Password"
                 autoComplete="password"
-                type="visible-password"
+                // type="visible-password"
                 secureTextEntry={true}
               />
               <TextInputApp
                 onChange={setConfirmPassword}
-                placeholder="Re-enter password"
+                placeholder="Confirm Password"
                 autoComplete="password"
                 type="visible-password"
                 secureTextEntry={true}

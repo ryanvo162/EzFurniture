@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
-import { body } from "../../global/fonts";
+import { body, bold } from "../../global/fonts";
 
 export const styles = StyleSheet.create({
   container: {
@@ -27,8 +27,8 @@ export const styles = StyleSheet.create({
   },
 
   headerLeftText: {
-    fontSize: body.fontSize,
-    fontFamily:body.fontFamily,
+    fontSize: bold.fontSize,
+    fontFamily: bold.fontFamily,
     marginLeft: 10,
   },
 });

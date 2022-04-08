@@ -1,38 +1,43 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { View, FlatList, Text, ScrollView } from "react-native";
 import StyleItem from "../../../components/StyleItem";
 import StyleNewItem from "../../../components/StyleNewItem";
 import { styles } from "./style";
 import SearchBar from "../../../components/SearchBar";
 
-const Item = ({ item }) => (
-  <StyleItem
-    image={item.images}
-    name={item.name}
-  />
-);
+export default function StyleTab(props) {
+  const { navigation, route } = props;
+  const Item = ({ item }) => (
+    <StyleItem
+      id={item._id}
+      image={item.images}
+      name={item.name}
+      onPress={handleGoToProduct}
+    />
+  );
 
-export default function StyleTab() {
+  const [myArr, setMyArr] = useState([]);
 
-   const [myArr, setMyArr] = useState([]);
+  const data = myArr.length !== 0 ? [...myArr] : [];
+  if (data.length !== 0) {
+    console.log("data:", data[0].name);
+  }
+  console.log("data:", data);
 
-   const data = myArr.length !== 0 ? [...myArr] : [];
-   if (data.length !== 0) {
-     console.log("data:", data[0].name);
-   }
-   console.log("data:", data);
+  useEffect(() => {
+    fetch("https://admin.furniture.bandn.online/mobile/style")
+      .then((res) => res.json())
+      .then((res) => setMyArr(res.data))
+      .catch((err) => console.log(err));
+  }, []);
 
-   useEffect(() => {
-     fetch("https://admin.furniture.bandn.online/mobile/style")
-       .then((res) => res.json())
-       .then((res) => setMyArr(res.data))
-       .catch((err) => console.log(err));
-   }, []);
-
-   console.log("myArr:", myArr);
+  console.log("myArr:", myArr);
+  const handleGoToProduct = (id) => {
+    navigation.navigate("ProductScreen", { _id_style: id, title: "Style" });
+  };
 
   const renderItem = ({ item }) => <Item item={item} />;
- 
+
   return (
     <View style={styles.container}>
       <SearchBar />
@@ -48,10 +53,30 @@ export default function StyleTab() {
         >
           {data.length !== 0 && (
             <>
-              <StyleNewItem name={data[0].name} image={data[0].images} />
-              <StyleNewItem name={data[0].name} image={data[0].images} />
-              <StyleNewItem name={data[0].name} image={data[0].images} />
-              <StyleNewItem name={data[0].name} image={data[0].images} />
+              <StyleNewItem
+                id={data[0]._id}
+                onPress={handleGoToProduct}
+                name={data[0].name}
+                image={data[0].images}
+              />
+              <StyleNewItem
+                id={data[0]._id}
+                onPress={handleGoToProduct}
+                name={data[0].name}
+                image={data[0].images}
+              />
+              <StyleNewItem
+                id={data[0]._id}
+                onPress={handleGoToProduct}
+                name={data[0].name}
+                image={data[0].images}
+              />
+              <StyleNewItem
+                id={data[0]._id}
+                onPress={handleGoToProduct}
+                name={data[0].name}
+                image={data[0].images}
+              />
             </>
           )}
         </ScrollView>

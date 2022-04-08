@@ -26,16 +26,13 @@ export default function HomeTab(props) {
 
   console.log("myArr:", myArr);
 
-  const handleGoToProduct = (id,category) => {
-    console.log(id,category);
-    navigation.navigate("ProductScreen", {
-      data: myArr,
-    });
+  const handleGoToProduct = (id) => {
+    navigation.navigate("ProductScreen", { _id_category: id , title: "Category"});
   };
 
   return (
     <>
-      {/* {tempData.length !== 0 && ( */}
+      {DATA.length !== 0 && (
         <PagerView
           overScrollMode="never"
           style={styles.container}
@@ -239,7 +236,7 @@ export default function HomeTab(props) {
             </ImageBackground>
           </View>
         </PagerView>
-      {/* )} */}
+      )}
     </>
   );
 }

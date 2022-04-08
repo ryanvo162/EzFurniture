@@ -13,6 +13,15 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
   },
 
+  itemImage: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 5,
+  },
+
   textStyleView: {
     position: "absolute",
     width: "auto",
