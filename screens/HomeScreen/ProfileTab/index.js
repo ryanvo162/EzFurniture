@@ -8,12 +8,18 @@ export default function ProfileTab(props) {
   const handleGoToOrder = () => {
     navigation.navigate("OrderScreen");
   };
-  const handleGoToPaymentMethod = () => {};
-  const handleGoToDeliveryAddress = () => {};
+  const handleGoToPaymentMethod = () => {
+    navigation.navigate("PaymentMethodScreen");
+  };
+  const handleGoToDeliveryAddress = () => {
+    navigation.navigate("DeliveryAddressScreen");
+  };
   const handleGoToVouchers = () => {
     navigation.navigate("VoucherScreen");
   };
-  const handleGoToInformation = () => {};
+  const handleGoToInformation = () => {
+    navigation.navigate("InformationScreen");
+  };
   const handleGoToSupport = () => {
     navigation.navigate("SupportScreen");
   };

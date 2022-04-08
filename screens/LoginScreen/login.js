@@ -32,9 +32,8 @@ export default function LoginScreen(props) {
 
   const onDismissSnackBar = () => setVisible(false);
 
-  // let message;
   // if (route.params) {
-  //   message = route.params.message;
+  //   const message = route.params.message;
   //   setStatus(message);
   //   onToggleSnackBar();
   // }
@@ -84,6 +83,7 @@ export default function LoginScreen(props) {
         })
         .catch((err) => {
           setStatus("Check server and try again");
+          onToggleSnackBar();
           console.log(err);
         });
     }
@@ -137,7 +137,6 @@ export default function LoginScreen(props) {
                 onChange={setPassword}
                 style={styles.inputTextEmail}
                 autoComplete="password"
-                type="visible-password"
                 placeholder="Password"
                 secureTextEntry={true}
               />
@@ -169,15 +168,15 @@ export default function LoginScreen(props) {
       </KeyboardAvoidingView>
       <Snackbar
         visible={visible}
-        duration={1000}
+        duration={1500}
         style={[mainStyle.snackbar, styles.snackbar]}
         onDismiss={onDismissSnackBar}
-        action={{
-          label: "Hide",
-          onPress: () => {
-            message = "";
-          },
-        }}
+        // action={{
+        //   label: "Hide",
+        //   onPress: () => {
+
+        //   },
+        // }}
       >
         {status}
       </Snackbar>

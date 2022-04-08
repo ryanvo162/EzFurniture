@@ -146,15 +146,13 @@ export default function SignUpScreen(props) {
               <TextInputApp
                 onChange={setPassword}
                 placeholder="Password"
-                autoComplete="password"
-                // type="visible-password"
+                autoComplete="password"   
                 secureTextEntry={true}
               />
               <TextInputApp
                 onChange={setConfirmPassword}
                 placeholder="Confirm Password"
                 autoComplete="password"
-                type="visible-password"
                 secureTextEntry={true}
               />
               <TextInputApp

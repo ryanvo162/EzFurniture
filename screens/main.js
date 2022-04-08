@@ -25,7 +25,7 @@ export default function AppProvider() {
   return (
     <NavigationContainer style={styles.container}>
       <Stack.Navigator
-        initialRouteName="HomeScreen"
+        initialRouteName="SplashScreen"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="SlashScreen" component={SlashScreen} />

@@ -6,12 +6,17 @@ import { primaryColor, gray3Color } from "../../global/colors";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // alignItems: "center",
     backgroundColor: "white",
+  },
+  inner: {
+    flex: 1,
+    // alignItems: "center",
   },
 
   containerScrollView: {
     flexGrow: 1,
-    minHeight: 800,
+    paddingBottom: 100,
   },
 
   header: {
@@ -38,7 +43,7 @@ export const styles = StyleSheet.create({
     marginLeft: 10,
   },
 
-  avatar: {
+  avatarView: {
     width: 142,
     height: 142,
     position: "absolute",
@@ -46,7 +51,12 @@ export const styles = StyleSheet.create({
     bottom: -65,
     backgroundColor: "gray",
     borderRadius: 100,
+  },
 
+  avatar: {
+    width: "100%",
+    height: "100%",
+    borderRadius: 100,
   },
 
   containerImage: {
@@ -72,7 +82,6 @@ export const styles = StyleSheet.create({
     paddingVertical: 12,
     borderColor: gray3Color,
     borderWidth: 1,
-    // backgroundColor: "#77787B",
     width: "90%",
     marginBottom: 16,
   },
@@ -81,7 +90,9 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     bottom: 25,
-    // backgroundColor: "blue",
-    // marginTop:16,
+  },
+  snackbar: {
+    marginBottom: Platform.OS === "ios" ? 80 : 110,
+    backgroundColor: gray3Color,
   },
 });
