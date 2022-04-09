@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text,Pressable } from "react-native";
 import { styles } from "./style";
 import * as Icon from "react-native-feather";
 import { primaryColor } from "../../global/colors";
 
-export default function DeliveryAddressItem() {
+
+
+export default function DeliveryAddressItem(props) {
+    const { onPress } = props;
     return (
-        <View style={styles.container}>
+        <Pressable style={styles.container} onPress={onPress}>
 
             <View style={styles.usernameContainer}>
 
@@ -23,6 +26,6 @@ export default function DeliveryAddressItem() {
 
 
 
-        </View>
+        </Pressable>
     );
 }
