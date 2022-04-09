@@ -76,7 +76,7 @@ export default function OTPScreen(props) {
           console.log(res);
           setStatus(res.status);
           onToggleSnackBar();
-          navigation.navigate("LoginScreen" , {message: "Login success"});
+          navigation.replace("LoginScreen" , {message: "Login success", data: data});
         })
         .catch((err) => {
           setStatus("Check server and try again");

@@ -21,9 +21,13 @@ import { styles as mainStyle } from "../../screens/styles";
 
 export default function LoginScreen(props) {
   const { navigation, route } = props;
+  let data
+  if (route.params) {
+    data = route.params;
+  }
 
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [email, setEmail] = useState(data?.email ?? null);
+  const [password, setPassword] = useState(data?.password ?? null);
   const [status, setStatus] = useState(null);
 
   const [visible, setVisible] = useState(false);
@@ -70,6 +74,7 @@ export default function LoginScreen(props) {
       )
         .then((res) => res.json())
         .then((res) => {
+          console.log(res);
           console.log(res.payload.status);
           setStatus(res.payload.status);
           if (res.payload.status === true) {
@@ -129,6 +134,7 @@ export default function LoginScreen(props) {
               <Text style={styles.textWelcome}>Welcome to EzFurniture</Text>
               <TextInputApp
                 onChange={setEmail}
+                defaultValue={email}
                 autoComplete="email"
                 placeholder="Email"
                 type="email-address"
@@ -136,6 +142,7 @@ export default function LoginScreen(props) {
               <TextInputApp
                 onChange={setPassword}
                 style={styles.inputTextEmail}
+                defaultValue={password}
                 autoComplete="password"
                 placeholder="Password"
                 secureTextEntry={true}
