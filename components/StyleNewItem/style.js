@@ -20,6 +20,12 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 5,
+    backgroundColor: gray3Color,
+  },
+
+  anim: {
+    width: "100%",
+    height: "100%",
   },
 
   textStyleView: {

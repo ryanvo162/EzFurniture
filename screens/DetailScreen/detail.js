@@ -1,6 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
-import { View, Image, Pressable, Text, ScrollView } from "react-native";
+import {
+  View,
+  Image,
+  Pressable,
+  Text,
+  ScrollView,
+  ActivityIndicator,
+} from "react-native";
 
 import { styles } from "./style";
 import { styles as mainStyle } from "../../screens/styles";
@@ -11,22 +18,29 @@ import QuantityButton from "../../components/QuantityButton";
 
 export default function DetailScreen(props) {
   const { navigation, route } = props;
-  const { id } = route.params;
-  console.log(id);
+  let id, quantityProduct;
+  if (route.params) {
+    id = route.params.id;
+    quantityProduct = route.params.quantityProduct;
+  }
+  console.log("id:", id);
   const [visible, setVisible] = useState(false);
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(quantityProduct ?? 1);
   const [product, setProduct] = useState(null);
+  const [status, setStatus] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleMinus = () => {
-    if (quantity > 0) {
+    if (quantity > 1) {
       setQuantity(quantity - 1);
     } else {
-      console.log("Quantity can not be less than 0");
+      setStatus("Quantity can not be less than 1");
+      onToggleSnackBar();
     }
   };
 
-  const handlePlus = (count) => {
-    setQuantity(count + 1);
+  const handlePlus = () => {
+    setQuantity(quantity + 1);
   };
 
   useEffect(async () => {
@@ -44,11 +58,11 @@ export default function DetailScreen(props) {
     )
       .then((res) => res.json())
       .then((res) => {
-        // console.log(res.product);
         setProduct(res.product);
       })
       .catch((err) => {
-        console.log("Lỗi rồi");
+        setStatus("Can not get product detail");
+        onToggleSnackBar();
         console.log(err);
       });
   }, []);
@@ -72,46 +86,91 @@ export default function DetailScreen(props) {
     <View style={styles.container}>
       <View style={styles.header}>
         <Pressable onPress={handleGoBack} style={styles.headerLeft}>
-          <Icon.ChevronLeft stroke="white" />
+          <Icon.ChevronLeft stroke="black" />
           <Text style={styles.headerLeftText}>Back</Text>
         </Pressable>
         <Pressable onPress={handleGoBack} style={styles.headerRight}>
-          <Icon.Heart stroke="white" />
+          <Icon.Heart stroke="black" />
           {/* <Text style={styles.headerLeftText}>Back</Text> */}
         </Pressable>
       </View>
-      {product !== null && (
-        <>
-          <Image
-            source={{uri: product.thumbnail}}
-            style={styles.imageContainer}
-          />
-          <ScrollView
-            overScrollMode="never"
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={styles.scrollViewContain}
-          >
-            <View style={styles.modalContainer}>
-              <View style={styles.crossBar}></View>
-              <View style={styles.containerTitle}>
-                <Text style={styles.title}>{product.name}</Text>
-                <QuantityButton
-                  quantity={quantity}
-                  onPressPlus={handlePlus}
-                  onPressMinus={handleMinus}
-                />
-              </View>
 
-              <Text style={styles.price}>{product.price }</Text>
-              <Text style={styles.descriptionTilte}>Description</Text>
-              <Text style={styles.description}>
-                {product.description}
-              </Text>
-              
+      {(product !== null && (
+        <View style={styles.imageContainer}>
+          <Image
+            source={{ uri: product.thumbnail }}
+            style={styles.image}
+            onLoadStart={() => setIsLoading(true)}
+            onLoadEnd={() => setIsLoading(false)}
+          />
+          {isLoading && (
+            <View style={styles.loading}>
+              <ActivityIndicator color="white" />
             </View>
-          </ScrollView>
-        </>
+          )}
+        </View>
+      )) || (
+        <View
+          style={{
+            width: "100%",
+            height: "50%",
+            position: "absolute",
+            backgroundColor: "white",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Image
+            onLoadStart={() => setIsLoading(true)}
+            onLoadEnd={() => setIsLoading(false)}
+            source={{
+              uri: "https://cdn.dribbble.com/users/1011039/screenshots/7187121/media/4da7811f4d21bfd0e1a0abb4b2d0b646.gif",
+            }}
+            style={{ width: "30%", height: "30%" }}
+          />
+          {isLoading && (
+            <View style={styles.loading}>
+              <ActivityIndicator color="gray" />
+            </View>
+          )}
+        </View>
       )}
+      <ScrollView
+        overScrollMode="never"
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollViewContain}
+      >
+        {(product !== null && (
+          <View style={styles.modalContainer}>
+            <View style={styles.crossBar}></View>
+            <View style={styles.containerTitle}>
+              <Text style={styles.title}>{product.name}</Text>
+
+              <QuantityButton
+                quantity={quantity}
+                onPressPlus={handlePlus}
+                onPressMinus={handleMinus}
+              />
+            </View>
+
+            <Text style={styles.price}>{product.price}</Text>
+            <Text style={styles.descriptionTilte}>Description</Text>
+            <Text style={styles.description}>{product.description}</Text>
+          </View>
+        )) || (
+          <View style={styles.modalContainer}>
+            <View style={styles.crossBar}></View>
+            <View style={styles.containerTitle}>
+              <Text style={styles.title}>Loading...</Text>
+              <QuantityButton
+                quantity={quantity}
+                onPressPlus={handlePlus}
+                onPressMinus={handleMinus}
+              />
+            </View>
+          </View>
+        )}
+      </ScrollView>
       <View style={styles.bottomButtons}>
         <Pressable onPress={handleAddCart} style={styles.buttonCart}>
           <Icon.ShoppingCart stroke="white" />
@@ -135,7 +194,7 @@ export default function DetailScreen(props) {
         //   },
         // }}
       >
-        Please add quantity you want.
+        {status}
       </Snackbar>
     </View>
   );

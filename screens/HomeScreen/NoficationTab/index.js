@@ -12,7 +12,7 @@ const DATA = [
   {
     id: "1",
     title: "First Item",
-    image: require("../../../assets/img/welcome_bg1.png"),
+    image: "https://picsum.photos/1000",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In urna nam purus vulputate quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In urna nam purus vulputate quis.",
     date: "12/02/2022",
@@ -20,32 +20,32 @@ const DATA = [
   {
     id: "2",
     title: "First Item",
-    image: require("../../../assets/img/welcome_bg1.png"),
+    image: "https://picsum.photos/1000",
   },
   {
     id: "3",
     title: "First Item",
-    image: require("../../../assets/img/welcome_bg1.png"),
+    image: "https://picsum.photos/1000",
   },
   {
     id: "4",
     title: "First Item",
-    image: require("../../../assets/img/welcome_bg1.png"),
+    image: "https://picsum.photos/1000",
   },
   {
     id: "5",
     title: "First Item",
-    image: require("../../../assets/img/welcome_bg1.png"),
+    image: "https://picsum.photos/1000",
   },
   {
     id: "6",
     title: "First Item",
-    image: require("../../../assets/img/welcome_bg1.png"),
+    image: "https://picsum.photos/1000",
   },
   {
     id: "7",
     title: "First Item",
-    image: require("../../../assets/img/welcome_bg1.png"),
+    image: "https://picsum.photos/1000",
   },
 ];
 

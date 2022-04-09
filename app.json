@@ -26,13 +26,18 @@
       "favicon": "./assets/favicon.png"
     },
     "facebookScheme": "fb2640390062761981",
-    "plugins": [
-      [
-        "expo-image-picker",
+    "plugins": ["sentry-expo"],
+    "hooks": {
+      "postPublish": [
         {
-          "photosPermission": "The app accesses your photos to let you share them with your friends."
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "ezfurniture",
+            "project": "react-native",
+            "authToken": "e3063b1af99c4d4381c3d7bfebb03df3883efa831f694056886ec56c9608d376"
+          }
         }
       ]
-    ]
+    }
   }
 }

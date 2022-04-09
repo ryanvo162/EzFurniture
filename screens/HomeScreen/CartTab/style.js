@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
   btnPayment: {
     width: "100%",
     position: "absolute",
-    bottom: 106,
+    bottom: 95,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -31,6 +31,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)',
     // marginTop: 20,
   },
   modalView: {

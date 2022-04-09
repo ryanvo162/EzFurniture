@@ -105,6 +105,7 @@ export default function SignUpScreen(props) {
         })
         .catch((err) => {
           setStatus("Check server and try again");
+          onToggleSnackBar();
           console.log(err);
         });
     }

@@ -12,7 +12,21 @@ export const styles = StyleSheet.create({
     width: "100%",
     height: "50%",
     position: "absolute",
-    backgroundColor: "gray",
+    backgroundColor: gray2Color,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  image: {
+    width: "100%",
+    height: "100%",
+  },
+
+  loading: {
+    flex: 1,
+    position: "absolute",
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   header: {
@@ -37,7 +51,7 @@ export const styles = StyleSheet.create({
     fontSize: bold.fontSize,
     fontFamily: bold.fontFamily,
     transform: [{ translateY: 1 }],
-    color: "white",
+    color: "black",
     marginLeft: 10,
   },
 
