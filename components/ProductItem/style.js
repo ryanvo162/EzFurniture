@@ -14,18 +14,18 @@ export const styles = StyleSheet.create({
   itemImage: {
     flex: 1,
     backgroundColor: "gray",
-    justifyContent: "center",
+    justifyContent: "flex-end",
     alignItems: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 15,
     borderRadius: 5,
   },
 
   infoProduct: {
-    position: "absolute",
-    width: "75%",
-    height: "25%",
+    paddingHorizontal: 12,
+    paddingVertical: 6,
     backgroundColor: "rgba(33,33,33,0.75)",
     borderRadius: 10,
-    bottom: 20,
   },
 
   loading: {
@@ -36,28 +36,22 @@ export const styles = StyleSheet.create({
 
   name: {
     color: "white",
-    marginTop: 6,
-    marginHorizontal: 12,
-    height: 20,
-    overflow: "hidden",
+    marginBottom: 3,
     fontSize: body2.fontSize,
     fontFamily: body2.fontFamily,
   },
 
   price: {
-    marginTop: 3,
     fontSize: 14,
     fontFamily: bold.fontFamily,
-    marginHorizontal: 12,
     color: "white",
-    //backgroundColor:"#212121",
+    transform: [{ translateY: 2 }],
+    // backgroundColor:"#212121",
   },
 
   iconStyle: {
     position: "absolute",
     bottom: 10,
     right: 10,
-    width: 16,
-    height: 16,
   },
 });

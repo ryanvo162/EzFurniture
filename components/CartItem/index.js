@@ -1,42 +1,88 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Image, Pressable } from "react-native";
+import { formatDisplayPrice, formatNumber } from "../../global/format";
+import { useStore } from "../../provider";
 import QuantityButton from "../QuantityButton";
 import { styles } from "./style";
 
 export default function CartItem(props) {
-  const { id_product,name, image, price, onChange, onPress } = props;
-  const [quantity, setQuantity] = useState(0);
-  const total = price * quantity;
-  
-  const handleMinus = () => {
-    if (quantity > 0) {
-      setQuantity(quantity - 1);
+  const [state, dispatch] = useStore();
+  const { id_product, name, image, price, onPress, quantity, onDelete } = props;
+  const [quantityCart, setQuantity] = useState(quantity);
+  const priceFormat = formatNumber(price);
+  const total = priceFormat * quantityCart;
+
+  const handleMinus = async () => {
+    if (quantityCart > 1) {
+      setQuantity(quantityCart - 1);
+      await fetch("https://admin.furniture.bandn.online/cart/updateCart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: state.cart.id,
+          data: {
+            product_id: id_product,
+            quantity: quantityCart-1,
+          },
+        }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log("res:", res);
+          if (res.cart.return === true) {
+            //do something
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     } else {
-      console.log("Quantity can not be less than 0");
+      onDelete(id_product);
     }
   };
 
-  const handlePlus = (count) => {
-    setQuantity(count + 1);
+  const handlePlus = async () => {
+    setQuantity(quantityCart + 1);
+    await fetch("https://admin.furniture.bandn.online/cart/updateCart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: state.cart.id,
+        data: {
+          product_id: id_product,
+          quantity: quantityCart+1,
+        },
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log("res:", res);
+        if (res.cart.return === true) {
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   const handleChoose = () => {
-    onPress(id_product,quantity);
-  }
-
-  useEffect(async() => {await onChange(quantity, total), []});
+    onPress(id_product, quantityCart);
+  };
 
   return (
     <Pressable onPress={handleChoose} style={styles.items}>
-      <Image style={styles.imageItem} source={image} />
+      <Image style={styles.imageItem} source={{ uri: image }} />
       <View style={styles.infoProduct}>
         <Text style={styles.name}>{name}</Text>
-        <Text style={styles.price}>{total}</Text>
+        <Text style={styles.price}>{formatDisplayPrice(total)}</Text>
         <QuantityButton
-          // onPress={handleChange}
           onPressPlus={handlePlus}
           onPressMinus={handleMinus}
-          quantity={quantity}
+          quantity={quantityCart}
         />
       </View>
     </Pressable>

@@ -88,6 +88,7 @@ export default function LoginScreen(props) {
             }
             if (res.data.cart[0]) {
               let data = res.data.cart[0];
+              console.log("cart", data);
               dispatch(
                 actions.setCart({
                   id: data._id,
@@ -106,8 +107,8 @@ export default function LoginScreen(props) {
           }
         })
         .catch((err) => {
-          setStatus("Wrong email or password");
-          // setStatus("Check server and try again");
+          // setStatus("Wrong email or password");
+          setStatus("Check server and try again");
           onToggleSnackBar();
           console.log(err);
         });

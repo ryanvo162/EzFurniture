@@ -1,6 +1,20 @@
 import { StyleSheet, Platform } from "react-native";
-import { title2, title3, body, bold, body2, bold12 } from "../../../global/fonts";
-import { primaryColor, gray2Color, gray3Color, gray1Color, blackColor, whiteColor } from "../../../global/colors";
+import {
+  title2,
+  title3,
+  body,
+  bold,
+  body2,
+  bold12,
+} from "../../../global/fonts";
+import {
+  primaryColor,
+  gray2Color,
+  gray3Color,
+  gray1Color,
+  blackColor,
+  whiteColor,
+} from "../../../global/colors";
 
 export const styles = StyleSheet.create({
   container: {
@@ -12,11 +26,26 @@ export const styles = StyleSheet.create({
     width: "100%",
     paddingTop: 55,
   },
+
   title: {
     fontSize: title2.fontSize,
     fontFamily: title2.fontFamily,
     backgroundColor: whiteColor,
+    paddingBottom:3,
     paddingLeft: "3%",
+  },
+
+  emptyCart: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingBottom: "20%",
+  },
+
+  textEmptyCart: {
+    fontSize: title3.fontSize,
+    fontFamily: title3.fontFamily,
+    color: gray3Color,
   },
 
   btnPayment: {
@@ -29,9 +58,9 @@ export const styles = StyleSheet.create({
   //Modal
   centeredView: {
     flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: "flex-end",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
     // marginTop: 20,
   },
   modalView: {
@@ -40,7 +69,7 @@ export const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     padding: 26,
-    alignItems: 'center',
+    alignItems: "center",
   },
 
   containerSubTotal: {
@@ -76,5 +105,7 @@ export const styles = StyleSheet.create({
   containerTotal: {
     marginTop: 20,
   },
-
+  snackbar: {
+    marginBottom: Platform.OS === "ios" ? 60 : 90,
+  },
 });

@@ -30,9 +30,9 @@ export default function StyleTab(props) {
 
   const data = myArr.length !== 0 ? [...myArr] : [];
   if (data.length !== 0) {
-    console.log("data:", data[0].name);
+    // console.log("data:", data[0].name);
   }
-  console.log("data:", data);
+  // console.log("data:", data);
 
   useEffect(() => {
     fetch("https://admin.furniture.bandn.online/mobile/style")

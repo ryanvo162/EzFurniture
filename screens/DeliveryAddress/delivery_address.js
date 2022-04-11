@@ -17,7 +17,8 @@ import { blackColor, whiteColor, primaryColor } from "../../global/colors";
 import ButtonApp from "../../components/Button";
 
 
-export default function DeliveryAddressScreen() {
+export default function DeliveryAddressScreen(props) {
+    const { navigation } = props;
     const [modalVisible, setModalVisible] = useState(false);
     const handleGoBack = () => {
         navigation.goBack();

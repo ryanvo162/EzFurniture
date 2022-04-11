@@ -32,9 +32,11 @@ export default function ProductItem(props) {
           </View>
         )}
         <View style={styles.infoProduct}>
-          <Text style={styles.name}>{name}</Text>
-          <Text style={styles.price}>${price}</Text>
-          <Icon.Heart stroke={"white"} style={styles.iconStyle} />
+          <Text numberOfLines={1} ellipsizeMode="tail" style={styles.name}>
+            {name}
+          </Text>
+          <Text style={styles.price} >${price}</Text>
+          <Icon.Heart stroke={"white"} width={16} height={16} style={styles.iconStyle} />
         </View>
       </ImageBackground>
     </Pressable>

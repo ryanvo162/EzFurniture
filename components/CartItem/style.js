@@ -6,6 +6,8 @@ export const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 16,
     marginBottom: 12,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
     alignItems: "center",
     backgroundColor: "white",
     flexDirection: "row",
@@ -16,21 +18,19 @@ export const styles = StyleSheet.create({
 
   infoProduct: {
     marginLeft: "2%",
+    flex: 1,
   },    
 
   imageItem: {
     width: 140,
     height: 120,
-    marginVertical: 10,
     borderRadius: 5,
     backgroundColor: "gray",
-    marginLeft: 12,
   }, 
 
   name: {
     fontSize: bold.fontSize,
     fontFamily: bold.fontFamily,
-    textAlignVertical: "center",
   },
 
   price: {

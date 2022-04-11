@@ -15,15 +15,17 @@ import { styles as mainStyle } from "../../screens/styles";
 import * as Icon from "react-native-feather";
 import { Snackbar } from "react-native-paper";
 import QuantityButton from "../../components/QuantityButton";
+import { useStore } from "../../provider";
 
 export default function DetailScreen(props) {
   const { navigation, route } = props;
+  const [state, dispatch] = useStore();
   let id, quantityProduct;
   if (route.params) {
     id = route.params.id;
     quantityProduct = route.params.quantityProduct;
   }
-  console.log("id:", id);
+  // console.log("id:", id);
   const [visible, setVisible] = useState(false);
   const [quantity, setQuantity] = useState(quantityProduct ?? 1);
   const [product, setProduct] = useState(null);
@@ -39,7 +41,7 @@ export default function DetailScreen(props) {
     }
   };
 
-  const handlePlus = () => {
+  const handlePlus = async () => {
     setQuantity(quantity + 1);
   };
 
@@ -66,7 +68,6 @@ export default function DetailScreen(props) {
         console.log(err);
       });
   }, []);
-  console.log(product);
 
   const onToggleSnackBar = () => setVisible(!visible);
 
@@ -75,9 +76,37 @@ export default function DetailScreen(props) {
   const handleBuyNow = () => {
     onToggleSnackBar();
   };
-  const handleAddCart = () => {
-    onToggleSnackBar();
+
+  const handleAddCart = async () => {
+    await fetch("https://admin.furniture.bandn.online/cart/updateCart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: state.cart.id,
+        data: {
+          product_id: id,
+          quantity: quantity,
+        },
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log("res:", res);
+        if (res.cart.return === true) {
+          setStatus("Add to cart success");
+          onToggleSnackBar();
+          navigation.replace("HomeScreen", {screen: "Cart"});
+        }
+      })
+      .catch((err) => {
+        setStatus("Check server and try again");
+        onToggleSnackBar();
+        console.error(err);
+      });
   };
+
   const handleGoBack = () => {
     navigation.goBack();
   };
@@ -91,7 +120,6 @@ export default function DetailScreen(props) {
         </Pressable>
         <Pressable onPress={handleGoBack} style={styles.headerRight}>
           <Icon.Heart stroke="black" />
-          {/* <Text style={styles.headerLeftText}>Back</Text> */}
         </Pressable>
       </View>
 
@@ -145,12 +173,13 @@ export default function DetailScreen(props) {
             <View style={styles.crossBar}></View>
             <View style={styles.containerTitle}>
               <Text style={styles.title}>{product.name}</Text>
-
-              <QuantityButton
-                quantity={quantity}
-                onPressPlus={handlePlus}
-                onPressMinus={handleMinus}
-              />
+              <View style={styles.quantity}>
+                <QuantityButton
+                  quantity={quantity}
+                  onPressPlus={handlePlus}
+                  onPressMinus={handleMinus}
+                />
+              </View>
             </View>
 
             <Text style={styles.price}>{product.price}</Text>

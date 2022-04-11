@@ -89,15 +89,20 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "row",
+    // backgroundColor: "red",
   },
 
   title: {
     fontSize: title1.fontSize,
     fontFamily: title1.fontFamily,
+    flex: 1,
+    // backgroundColor: "blue",
     transform: [{ translateY: 3 }],
     marginBottom: "1%",
   },
-
+  quantity: {
+    // flex: 1,
+  },
   price: {
     fontSize: title2.fontSize,
     fontFamily: title2.fontFamily,
@@ -162,31 +167,4 @@ export const styles = StyleSheet.create({
     marginBottom: "18%",
   },
 
-  quantity: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: primaryColor,
-  },
-
-  quantityButton: {
-    width: 40,
-    height: 28,
-    backgroundColor: "#636363",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 5,
-  },
-
-  quantityText: {
-    fontSize: Platform.OS === "ios" ? 20 : 16,
-    fontWeight: "bold",
-    color: "white",
-  },
-
-  quantityNumber: {
-    marginHorizontal: 12,
-    fontSize: bold.fontSize,
-    fontFamily: bold.fontFamily,
-  },
 });
