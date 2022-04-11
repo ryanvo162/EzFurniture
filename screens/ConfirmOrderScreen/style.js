@@ -50,7 +50,7 @@ export const styles = StyleSheet.create({
         fontSize: body.fontSize,
         fontFamily: body.fontFamily,
     },
-    itemProductName:{
+    itemProductName: {
         flexDirection: 'row',
         alignItems: 'center',
         marginTop: 10,
@@ -58,13 +58,13 @@ export const styles = StyleSheet.create({
     brand: {
         fontSize: title3.fontSize,
         fontFamily: title3.fontFamily,
-        color:whiteColor,
+        color: whiteColor,
         backgroundColor: primaryColor,
         padding: 4,
-        borderRadius:5,
+        borderRadius: 5,
         marginRight: 10,
         marginLeft: 16,
-        
+
     },
     productName: {
         fontSize: bold.fontSize,
@@ -76,95 +76,155 @@ export const styles = StyleSheet.create({
         marginHorizontal: 16,
         marginTop: 10,
     },
-    textTotalProducts:{
+    textTotalProducts: {
         fontSize: bold12.fontSize,
         fontFamily: bold12.fontFamily,
         color: blackColor,
     },
-    textAmount:{
+    textAmount: {
         fontSize: bold12.fontSize,
         fontFamily: bold12.fontFamily,
         color: primaryColor,
     },
-    voucher:{
+    voucher: {
         flexDirection: 'row',
         marginTop: 10,
         marginHorizontal: 16,
         justifyContent: 'space-between',
         alignItems: 'center',
     },
-    textVoucher:{
+    textVoucher: {
         fontSize: bold12.fontSize,
         fontFamily: bold12.fontFamily,
         color: blackColor,
     },
-    choseVoucherContainer:{
+    choseVoucherContainer: {
         flexDirection: 'row',
     },
-    choseVoucher:{
+    choseVoucher: {
         fontSize: body2.fontSize,
         fontFamily: body2.fontFamily,
         color: gray3Color,
     },
-    payment:{
+    payment: {
         marginTop: 10,
         marginHorizontal: 16,
         marginBottom: 10,
     },
-    paymentMethod:{
+    paymentMethod: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         marginBottom: 10,
     },
-    textMethod:{
+    textMethod: {
         fontSize: bold12.fontSize,
         fontFamily: bold12.fontFamily,
         color: blackColor,
 
     },
-    textPaymentMethod:{
+    textPaymentMethod: {
         fontSize: bold12.fontSize,
         fontFamily: bold12.fontFamily,
         color: primaryColor,
     },
 
-    radioItem:{
+    radioItem: {
         fontSize: bold12.fontSize,
         fontFamily: bold12.fontFamily,
         color: blackColor,
         backgroundColor: gray1Color,
-        padding:5,
+        padding: 5,
         // borderRadius:5,
     },
-    
-    labelStyle:{
+
+    labelStyle: {
         fontSize: bold12.fontSize,
         fontFamily: bold12.fontFamily,
         color: blackColor,
     },
-    totalContainer:{
+    totalContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginHorizontal:38,
-        marginTop:26,
+        marginHorizontal: 38,
+        marginTop: 26,
     },
-    textTotal:{
-        fontSize:bold.fontSize,
-        fontFamily:bold.fontFamily,
-        color:blackColor,
+    textTotal: {
+        fontSize: bold.fontSize,
+        fontFamily: bold.fontFamily,
+        color: blackColor,
     },
-    textPrice:{
-        fontSize:title2.fontSize,
-        fontFamily:title2.fontFamily,
-        color:primaryColor,
+    textPrice: {
+        fontSize: title2.fontSize,
+        fontFamily: title2.fontFamily,
+        color: primaryColor,
     },
-    btnOrder:{
-      
+    btnOrder: {
+
         alignItems: 'center',
-        marginTop:40,
-        marginBottom:40,
+        marginTop: 40,
+        marginBottom: 40,
 
     },
+    containerKeyboard: {
+        flex: 1,
+       // width: '100%',
+    },
+
+    inner: {
+        flex: 1,
+    },
+    centeredView: {
+        flex: 1,
+    },
+
+    modalView: {
+        width: "100%",
+        position: 'absolute',
+        bottom: 0,
+        backgroundColor: primaryColor,
+        borderTopEndRadius: 5,
+        borderTopStartRadius: 5,
+        padding: 27,
+        alignItems: 'center',
+    },
+    textContainer: {
+        width: "100%",
+        backgroundColor: whiteColor,
+        padding: 20,
+        borderRadius: 5,
+        marginBottom: 10,
+
+    },
+    enterYourAddress: {
+        width: "100%",
+        fontSize: body2.fontSize,
+        fontFamily: body2.fontFamily,
+        color: blackColor,
+
+    },
+
+    inputContainer: {
+        flex:1, 
+        // marginTop: 10,
+        marginHorizontal: 34,
+    },
+
+    input: {
+        width: 374,
+        padding: 20,
+        borderRadius: 5,
+        backgroundColor: whiteColor,
+        marginTop: 20,
+        borderColor: primaryColor,
+        fontSize: body.fontSize,
+        fontFamily: body.fontFamily,
+        borderWidth: 1,
+
+    },
+    btnContainer: {
+        marginTop:33,
+    },
+
 });

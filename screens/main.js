@@ -19,14 +19,14 @@ import InformationScreen from "./InformationScreen/information";
 import DeliveryAddressScreen from "./DeliveryAddress/delivery_address";
 import SupportScreen from "./SupportScreen/support";
 import PaymentMethodScreen from "./PaymentMethodScreen/payment_method";
-
+import ChangePasswordScreen from "./ChangePasswordScreen/change_password";
 
 export default function AppProvider() {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer style={styles.container}>
       <Stack.Navigator
-        initialRouteName="HomeScreen"
+        initialRouteName="ConfirmOrderScreen"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="SlashScreen" component={SlashScreen} />
@@ -56,6 +56,10 @@ export default function AppProvider() {
         <Stack.Screen
           name="PaymentMethodScreen"
           component={PaymentMethodScreen}
+        />
+        <Stack.Screen
+          name="ChangePasswordScreen"
+          component={ChangePasswordScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
