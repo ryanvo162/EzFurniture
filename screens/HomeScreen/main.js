@@ -20,25 +20,21 @@ const Tab = createBottomTabNavigator();
 export default function HomeScreen(props) {
   const { navigation, route } = props;
   let screen;
-  if (route) {
-    if (route.params) {
-      screen = route.params;
-    } else {
-      screen = "Home";
-    }
+  if (route.params) {
+    screen = route.params.screen;
+  } else {
+    screen = "Home";
   }
-
-  // console.log(screen);
 
   return (
     <>
       <Tab.Navigator
         style={styles.container}
-        initialRouteName={screen}
+        // initialRouteName={screen}
+        initialRouteName="Cart"
         screenOptions={({ route, headerShown }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let tag;
-
             if (route.name === "Home") {
               tag = focused ? (
                 <Icon.Home stroke={color} height={size} width={size} />

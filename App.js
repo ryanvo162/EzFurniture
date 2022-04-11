@@ -1,7 +1,6 @@
 import AppProvider from "./screens/main";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 // Fonts App
-import AppLoading from "expo-app-loading";
 import {
   Poppins_700Bold,
   Poppins_600SemiBold,
@@ -15,6 +14,7 @@ import {
   Montserrat_400Regular_Italic,
 } from "@expo-google-fonts/montserrat";
 import * as Sentry from "sentry-expo";
+import {Provider} from "./provider";
 const theme = {
   ...DefaultTheme,
   colors: {
@@ -29,7 +29,6 @@ Sentry.init({
   enableInExpoDevelopment: true,
   debug: false, // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
 });
-
 
 // Access any @sentry/react-native exports via:
 // Sentry.Native.*
@@ -50,8 +49,10 @@ export default function App() {
   }
  
   return (
-    <PaperProvider theme={theme}>
-      <AppProvider />
-    </PaperProvider>
+    <Provider>
+      <PaperProvider theme={theme}>
+        <AppProvider />
+      </PaperProvider>
+    </Provider>
   );
 }

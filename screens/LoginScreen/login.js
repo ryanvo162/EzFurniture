@@ -18,29 +18,23 @@ import TextInputApp from "../../components/InputText";
 import ButtonApp from "../../components/Button";
 import AuthButton from "../../components/AuthButton";
 import { styles as mainStyle } from "../../screens/styles";
+import { actions, useStore } from "../../provider";
 
 export default function LoginScreen(props) {
   const { navigation, route } = props;
-  let data
+  let data;
   if (route.params) {
-    data = route.params;
+    data = route.params.data;
   }
+  const [state, dispatch] = useStore();
 
   const [email, setEmail] = useState(data?.email ?? null);
   const [password, setPassword] = useState(data?.password ?? null);
+
   const [status, setStatus] = useState(null);
-
   const [visible, setVisible] = useState(false);
-
   const onToggleSnackBar = () => setVisible(!visible);
-
   const onDismissSnackBar = () => setVisible(false);
-
-  // if (route.params) {
-  //   const message = route.params.message;
-  //   setStatus(message);
-  //   onToggleSnackBar();
-  // }
 
   const formatEmail = (email) => {
     console.log(email);
@@ -74,10 +68,35 @@ export default function LoginScreen(props) {
       )
         .then((res) => res.json())
         .then((res) => {
-          console.log(res);
-          console.log(res.payload.status);
-          setStatus(res.payload.status);
-          if (res.payload.status === true) {
+          console.log(res.data);
+          if (res.data.payload.status === true) {
+            if (res.data.payload.data_user) {
+              let data = res.data.payload.data_user;
+              dispatch(
+                actions.setUser({
+                  id: data._id,
+                  email: data.email,
+                  name: data.name,
+                  phone: data.phone,
+                  addresses: data.addresses,
+                  avatar: data.avatar,
+                })
+              );
+            } else {
+              setStatus("Something went wrong in data_user");
+              onToggleSnackBar();
+            }
+            if (res.data.cart[0]) {
+              let data = res.data.cart[0];
+              dispatch(
+                actions.setCart({
+                  id: data._id,
+                })
+              );
+            } else {
+              setStatus("Something went wrong in cart");
+              onToggleSnackBar();
+            }
             setStatus("Login success");
             onToggleSnackBar();
             navigation.navigate("HomeScreen");
@@ -87,7 +106,8 @@ export default function LoginScreen(props) {
           }
         })
         .catch((err) => {
-          setStatus("Check server and try again");
+          setStatus("Wrong email or password");
+          // setStatus("Check server and try again");
           onToggleSnackBar();
           console.log(err);
         });
