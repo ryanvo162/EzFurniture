@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, FlatList, Modal, Alert } from "react-native";
+import { View, Text, FlatList, Modal, Alert, Pressable } from "react-native";
 import ButtonApp from "../../../components/Button";
 import CartItem from "../../../components/CartItem";
 import { whiteColor, primaryColor } from "../../../global/colors";
@@ -9,6 +9,7 @@ import { actions, useStore } from "../../../provider";
 
 import { Snackbar } from "react-native-paper";
 import { styles as mainStyle } from "../../../screens/styles";
+import * as Icon from "react-native-feather";
 
 export default function CartTab(props) {
   const [state, dispatch] = useStore();
@@ -172,7 +173,7 @@ export default function CartTab(props) {
               .then((res) => res.json())
               .then((res) => {
                 console.log(res);
-                if (res.cart.payload.status===true) {
+                if (res.cart.payload.status === true) {
                   setStatus("Delete success");
                   onToggleSnackBar();
                   setMyArr([]);
@@ -253,6 +254,13 @@ export default function CartTab(props) {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
+
+            <Pressable style={styles.closeContainer}   onPress={() => setModalVisible(true)} >
+              <View style={styles.btnClose}>
+                <Icon.X  color={whiteColor} />
+              </View>
+            </Pressable>
+        
             <View style={styles.containerSubTotal}>
               <Text style={styles.titleTotal}>Subtotal:</Text>
               <Text style={styles.priceTotal}>$78.00</Text>
@@ -269,13 +277,15 @@ export default function CartTab(props) {
               <Text style={styles.titleTotal}>Total:</Text>
               <Text style={styles.priceTotal}>$98.00</Text>
             </View>
-
+            <View style={styles.btnContainer}>
             <ButtonApp
               text={"Confirm"}
               onPress={handleCheck}
               color={whiteColor}
               textColor={primaryColor}
             />
+            </View>
+           
           </View>
         </View>
       </Modal>

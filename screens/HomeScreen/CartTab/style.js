@@ -69,7 +69,7 @@ export const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     padding: 26,
-    alignItems: "center",
+   // alignItems: "center",
   },
 
   containerSubTotal: {
@@ -107,5 +107,15 @@ export const styles = StyleSheet.create({
   },
   snackbar: {
     marginBottom: Platform.OS === "ios" ? 60 : 90,
+  },
+
+  closeContainer:{
+    justifyContent: "flex-end",
+    alignItems: "flex-end",
+    marginBottom: 20,
+  },
+  btnContainer: {
+    width: "100%",
+    alignItems: "center",
   },
 });

@@ -14,7 +14,8 @@ import * as Icon from "react-native-feather";
 import ButtonApp from "../../components/Button";
 import { blackColor, whiteColor, primaryColor, gray1Color, gray2Color, gray3Color } from "../../global/colors";
 
-export default function ChangePasswordScreen() {
+export default function ChangePasswordScreen(props) {
+    const { navigation } = props;
     const handleGoBack = () => {
         navigation.goBack();
     };

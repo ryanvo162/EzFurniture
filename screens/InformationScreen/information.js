@@ -45,6 +45,9 @@ export default function InformationScreen(props) {
   const handleGoBack = () => {
     navigation.goBack();
   };
+  const handleGoToChangePassword = () => {
+    navigation.navigate("ChangePasswordScreen");
+  };
 
   const [image, setImage] = useState(null);
 
@@ -128,6 +131,9 @@ export default function InformationScreen(props) {
                 <Pressable onPress={handleGoBack} style={styles.headerLeft}>
                   <Icon.ChevronLeft stroke="white" />
                   <Text style={styles.headerLeftText}>Information</Text>
+                </Pressable>
+                <Pressable onPress={handleGoToChangePassword} style={styles.headerRight}>
+                  <Icon.Lock stroke="white" />
                 </Pressable>
               </View>
               <ScrollView
