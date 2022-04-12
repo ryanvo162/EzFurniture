@@ -131,7 +131,7 @@ export default function CartTab(props) {
         });
   };
 
-  console.log("myArr:", myArr);
+  // console.log("myArr:", myArr);
 
   const { navigation } = props;
   const [modalVisible, setModalVisible] = useState(false);
@@ -198,6 +198,7 @@ export default function CartTab(props) {
   const handlePaymentConfirm = () => {
     setModalVisible(true);
   };
+  
   const handleCheck = () => {
     setModalVisible(!modalVisible);
   };

@@ -8,6 +8,7 @@ export const initialState = {
     addresses: [],
     phone: 0,
     avatar: "",
+    dob: "",
   },
   cart: {
     id: "",
