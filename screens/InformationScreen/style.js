@@ -43,6 +43,13 @@ export const styles = StyleSheet.create({
     marginLeft: 10,
   },
 
+  headerRight: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 21,
+
+  },
+
   avatarView: {
     width: 142,
     height: 142,
