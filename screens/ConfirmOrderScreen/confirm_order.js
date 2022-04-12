@@ -15,7 +15,7 @@ import {
 import { styles } from "./style";
 import { RadioButton } from "react-native-paper";
 import * as Icon from "react-native-feather";
-import ComfirmProductItem from "../../components/ComfirmProductItem";
+import ConfirmProductItem from "../../components/ConfirmProductItem";
 import ShippingMethod from "../../components/ShippingMethod";
 import ButtonApp from "../../components/Button";
 import {
@@ -69,7 +69,7 @@ export default function ConfirmOrderScreen(props) {
   };
 
   const Item = ({ item }) => (
-    <ComfirmProductItem
+    <ConfirmProductItem
       id={item._id}
       title={item.title}
       image={item.image}

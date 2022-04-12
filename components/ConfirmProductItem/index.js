@@ -4,7 +4,7 @@ import { styles } from "./style";
 import * as Icon from "react-native-feather";
 import { formatDisplayPrice } from "../../global/format";
 
-export default function ComfirmProductItem(props) {
+export default function ConfirmProductItem(props) {
   const { title, image, price, quantity, onPress } = props;
   const [isLoading, setIsLoading] = useState(true);
   const total = price * quantity;
