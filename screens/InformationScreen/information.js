@@ -20,14 +20,19 @@ import { styles } from "./style";
 import { gray2Color } from "../../global/colors";
 import ButtonApp from "../../components/Button";
 import { styles as mainStyle } from "../../screens/styles";
+import { useStore } from "../../provider";
 
 export default function InformationScreen(props) {
   const { navigation } = props;
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [dob, setDOB] = useState("");
+  const [state, dispatch] = useStore();
+
+  console.log("state:", state);
+
+  const [name, setName] = useState(state.user.name ?? "");
+  const [email, setEmail] = useState(state.user.email ?? "");
+  const [phone, setPhone] = useState(state.user.phone ?? "");
+  const [dob, setDOB] = useState(state.user.dob ?? "");
 
   const [status, setStatus] = useState(null);
 
@@ -133,10 +138,7 @@ export default function InformationScreen(props) {
                 <View style={styles.containerImage}>
                   <Pressable onPress={pickImage} style={styles.avatarView}>
                     {image && (
-                      <Image
-                        source={{ uri: image }}
-                        style={styles.avatar}
-                      />
+                      <Image source={{ uri: image }} style={styles.avatar} />
                     )}
                   </Pressable>
                 </View>
@@ -195,11 +197,6 @@ export default function InformationScreen(props) {
               duration={1000}
               style={[mainStyle.snackbar, styles.snackbar]}
               onDismiss={onDismissSnackBar}
-              // action={{
-              //   label: "Hide",
-              //   onPress: () => {
-              //   },
-              // }}
             >
               {status}
             </Snackbar>

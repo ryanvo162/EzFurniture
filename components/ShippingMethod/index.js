@@ -1,27 +1,33 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import { styles } from "./style";
 import * as Icon from "react-native-feather";
+import { formatDisplayPrice } from "../../global/format";
 
-export default function ShippingMethod() {
-
+export default function ShippingMethod(props) {
+  const { method, price, time } = props;
   return (
-    <View style={styles.container}>
-
+    <Pressable style={styles.container}>
       <Text style={styles.textShippingMethod}>Shipping method</Text>
       <View style={styles.line2} />
 
       <View style={styles.statusFast}>
-        <Text style={styles.textStatus}>Fast</Text>
-        <View style={styles.priceFast}>
-          <Text style={styles.textPrice}>$5.00</Text>
-          <Icon.ChevronRight stroke="black" strokeWidth={1} width={18} height={18} />
+        <Text style={styles.textStatus}>{method}</Text>
+        <View style={styles.price}>
+          <Text style={styles.textPrice}>{formatDisplayPrice(price)}</Text>
+          <Icon.ChevronRight
+            stroke="black"
+            strokeWidth={1}
+            width={18}
+            height={18}
+          />
         </View>
       </View>
 
-      <Text style={styles.dateDelivery}>Receive goods on March 26, 2022</Text>
-      <Text style={styles.voucherDelivery}>(Enter the voucher to get free shipping)</Text>
-
-    </View>
+      <Text style={styles.dateDelivery}>Estimated delivery in {time}</Text>
+      <Text style={styles.voucherDelivery}>
+        (Enter to choose a different shipping method)
+      </Text>
+    </Pressable>
   );
 }

@@ -2,9 +2,11 @@ import React from "react";
 import { View, Text, ScrollView, Image, Pressable } from "react-native";
 import { styles } from "./style";
 import * as Icon from "react-native-feather";
+import { useStore } from "../../../provider";
 
 export default function ProfileTab(props) {
   const { navigation } = props;
+  const [state, dispatch] = useStore();
   const handleGoToOrder = () => {
     navigation.navigate("OrderScreen");
   };
@@ -39,11 +41,11 @@ export default function ProfileTab(props) {
       >
         {/* headerView */}
         <View style={styles.profileUser}>
-          <Image style={styles.imageUser}></Image>
+          <Image source={{ uri: state.user.avatar }} style={styles.imageUser}></Image>
 
           <View style={styles.profileInfoUser}>
-            <Text style={styles.nameUser}>Kristin Watson</Text>
-            <Text style={styles.gmailUser}>kristin@gmail.com</Text>
+            <Text style={styles.nameUser}>{state.user.name}</Text>
+            <Text style={styles.gmailUser}>{state.user.email}</Text>
           </View>
         </View>
         {/* Functions list */}

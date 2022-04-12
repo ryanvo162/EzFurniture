@@ -5,6 +5,7 @@ export function formatNumber(number) {
 }
 
 export function formatDisplayPrice(price) {
-    let priceFormat= price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    return priceFormat+= " đ";
+  let priceFormat = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  let priceDisplay;
+  return priceDisplay = "$" + priceFormat;
 }

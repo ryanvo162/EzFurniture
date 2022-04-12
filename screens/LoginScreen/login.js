@@ -80,6 +80,7 @@ export default function LoginScreen(props) {
                   phone: data.phone,
                   addresses: data.addresses,
                   avatar: data.avatar,
+                  dob: data.dob,
                 })
               );
             } else {
