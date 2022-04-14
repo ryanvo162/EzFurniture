@@ -1,21 +1,23 @@
 import { StyleSheet, Platform } from "react-native";
 import { bold,title1, title2, title3, body2, bold12 } from "../../global/fonts";
-import { primaryColor, gray3Color, blackColor } from "../../global/colors";
+import { primaryColor,whiteColor, gray3Color, blackColor } from "../../global/colors";
 
 
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: primaryColor,
+        backgroundColor: whiteColor,
     },
 
     scrollView: {
-        flex: 1,
+        flexGrow: 1,
+        paddingVertical: 200,
     },
 
     iconThankyou: {
         alignItems: "center",
         justifyContent: "center",
+        
 
     },
 
@@ -35,12 +37,14 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         marginTop:5,
+        marginHorizontal:70,
     },
 
     textInforOrderTitle: {
         fontSize: bold.fontSize,
         fontFamily: bold.fontFamily,
         color: gray3Color,
+        textAlign: "center",
     },
 
     codeOrder: {

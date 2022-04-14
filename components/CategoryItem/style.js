@@ -1,9 +1,13 @@
 import { StyleSheet, Platform } from "react-native";
-
+import {primaryColor} from "../../global/colors";
 export const styles = StyleSheet.create({
   image: {
-    width: 100,
-    height: 100,
+    width: 80,
+    height: 80,
     resizeMode: "contain",
+  },
+  container: {
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

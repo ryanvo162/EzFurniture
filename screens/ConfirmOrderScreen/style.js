@@ -97,7 +97,7 @@ export const styles = StyleSheet.create({
   totalProducts: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBotton: 8,
+    marginBottom: 8,
   },
 
   textTotalProducts: {

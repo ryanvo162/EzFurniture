@@ -20,14 +20,14 @@ import DeliveryAddressScreen from "./DeliveryAddress/delivery_address";
 import SupportScreen from "./SupportScreen/support";
 import PaymentMethodScreen from "./PaymentMethodScreen/payment_method";
 import ChangePasswordScreen from "./ChangePasswordScreen/change_password";
-import ThankYouScreen from "./ThankYouScreen/thanks_you";
+import ThankYouScreen from "./ThankYouScreen/thank_you";
 
 export default function AppProvider() {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer style={styles.container}>
       <Stack.Navigator
-        initialRouteName="LoginScreen"
+        initialRouteName="ThankYouScreen"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="SlashScreen" component={SlashScreen} />

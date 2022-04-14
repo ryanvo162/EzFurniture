@@ -9,14 +9,18 @@ import * as Icon from "react-native-feather";
 import ButtonApp from "../../components/Button";
 import { blackColor, whiteColor, primaryColor, gray1Color, gray2Color, gray3Color } from "../../global/colors";
 
-export default function ThankYouScreen() {
+export default function ThankYouScreen(props) {
+    const { navigation } = props;
+    const handleGoHome = () => {
+        navigation.replace("HomeScreen");
+    };
     return (
         <View style={styles.container}>
 
-            <ScrollView style={styles.scrollView} showsVerticalScrollIndicator="fasle">
+            <ScrollView contentContainerStyle={styles.scrollView} showsVerticalScrollIndicator="fasle" overScrollMode="never">
 
                 <View style={styles.iconThankyou}>
-                    <Icon.CheckCircle width={240} height={240} color={primaryColor} />
+                    <Icon.CheckCircle strokeWidth={.8} width={240} height={240} color={primaryColor} />
                 </View>
 
                 <View style={styles.textThankyou}>
@@ -25,14 +29,14 @@ export default function ThankYouScreen() {
 
                 <View style={styles.textInforOrder}>
                     <Text style={styles.textInforOrderTitle}>Your order
-                     <Text style={styles.codeOrder}>#132541</Text>
-                        is completed.
-                        Please check the delivery status at
+                     <Text style={styles.codeOrder} > #132541 </Text>
+                         is completed.
+                        Please check your order status at
                         My Order page</Text>
                 </View>
 
                 <View style={styles.btnContainer}>
-                    <ButtonApp title="OK" color={whiteColor} />
+                    <ButtonApp text="OK" color={primaryColor} onPress={handleGoHome} />
                 </View>
 
             </ScrollView>

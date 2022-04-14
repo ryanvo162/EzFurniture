@@ -1,5 +1,5 @@
 import React from "react";
-import { Pressable, Text, Image } from "react-native";
+import { Pressable,View, Text, Image } from "react-native";
 import { styles } from "./style";
 
 export default function CategoryItem(props) {
@@ -20,21 +20,23 @@ export default function CategoryItem(props) {
         right: right,
       }}
     >
+      <View style={styles.container}>
       <Image
         style={styles.image}
-        source={require("../../assets/img/typehome.png")}
+        source={require("../../assets/img/polygon_home.png")}
       />
       <Text
         style={{
           position: "absolute",
-          bottom: 24,
-          left: 12,
           color: color,
           fontSize: 14,
+          textAlign: "center",
+    
         }}
       >
         {category}
       </Text>
+      </View>
     </Pressable>
   );
 }
