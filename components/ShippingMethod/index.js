@@ -2,17 +2,20 @@ import React from "react";
 import { View, Text, Pressable } from "react-native";
 import { styles } from "./style";
 import * as Icon from "react-native-feather";
-import { formatDisplayPrice } from "../../global/format";
+import { capitalizeFirstLetter, formatDisplayPrice } from "../../global/format";
 
 export default function ShippingMethod(props) {
-  const { method, price, time } = props;
+  const { method, price, time, onPress } = props;
+  const handlePress = () => {
+    onPress(method, price, time);
+  };
   return (
-    <Pressable style={styles.container}>
+    <Pressable onPress={handlePress} style={styles.container}>
       <Text style={styles.textShippingMethod}>Shipping method</Text>
       <View style={styles.line2} />
 
       <View style={styles.statusFast}>
-        <Text style={styles.textStatus}>{method}</Text>
+        <Text style={styles.textStatus}>{capitalizeFirstLetter(method)}</Text>
         <View style={styles.price}>
           <Text style={styles.textPrice}>{formatDisplayPrice(price)}</Text>
           <Icon.ChevronRight

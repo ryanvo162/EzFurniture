@@ -145,8 +145,8 @@ export default function CartTab(props) {
         }
       })
       .catch((err) => {
-        // setStatus("Check server and try again");
-        // onToggleSnackBar();
+        setStatus("Check server and try again");
+        onToggleSnackBar();
         console.error(err);
       });
   };

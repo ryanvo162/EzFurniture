@@ -5,12 +5,16 @@ import * as Icon from "react-native-feather";
 import { formatDisplayPrice } from "../../global/format";
 
 export default function ConfirmProductItem(props) {
-  const { title, image, price, quantity, onPress } = props;
+  const {id, title, image, price, quantity, onPress } = props;
   const [isLoading, setIsLoading] = useState(true);
   const total = price * quantity;
 
+  const handleChoose = () => {
+    onPress(id);
+  };
+
   return (
-    <Pressable onPress={onPress} style={styles.items}>
+    <Pressable onPress={handleChoose} style={styles.items}>
       <Image
         onLoadStart={() => setIsLoading(true)}
         onLoadEnd={() => setIsLoading(false)}
@@ -20,9 +24,9 @@ export default function ConfirmProductItem(props) {
       <View style={styles.infoProduct}>
         <View style={styles.infoNamePrice}>
           <Text style={styles.productName}>{title}</Text>
-          <Text style={styles.price}>{formatDisplayPrice(total)}</Text>
         </View>
         <Text style={styles.quantity}>x {quantity}</Text>
+        <Text style={styles.price}>{formatDisplayPrice(total)}</Text>
       </View>
     </Pressable>
   );

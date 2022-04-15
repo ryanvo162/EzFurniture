@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -27,42 +27,46 @@ import {
   whiteColor,
 } from "../../global/colors";
 
-const data = [
-  {
-    id: 1,
-    title: "Product 1",
-    image: "https://picsum.photos/500",
-    price: 100,
-    quantity: 1,
-  },
-  {
-    id: 2,
-    title: "Product 2",
-    image: "https://picsum.photos/500",
-    price: 200,
-    quantity: 1,
-  },
-  {
-    id: 3,
-    title: "Product 3",
-    image: "https://picsum.photos/500",
-    price: 300,
-    quantity: 1,
-  },
-];
+import { Snackbar } from "react-native-paper";
+import { styles as mainStyle } from "../../screens/styles";
+
+import { useStore } from "../../provider";
+import { formatDisplayPrice, formatPhoneNumber } from "../../global/format";
 
 export default function ConfirmOrderScreen(props) {
   const { navigation, route } = props;
+  const { data, subTotal } = route.params;
+  const [state, dispatch] = useStore();
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible1, setModalVisible1] = useState(false);
+
+  const [products, setProducts] = useState([]);
+  const [vnpURL, setVnpURL] = useState("");
+
+  const [status, setStatus] = useState(null);
+  const [visible, setVisible] = useState(false);
+  const onToggleSnackBar = () => setVisible(!visible);
+  const onDismissSnackBar = () => setVisible(false);
+
   const handleDeliveryAddress = () => {
-    console.log("handleDeliveryAddress");
     setModalVisible(!modalVisible);
+  };
+
+  const handleChooseShippingMethod = () => {
+    setModalVisible1(!modalVisible1);
   };
 
   const handleCheck = () => {
     setModalVisible(!modalVisible);
   };
-  const handleGoToProduct = () => {};
+
+  const handleCancel = () => {
+    setModalVisible1(!modalVisible1);
+  };
+
+  const handleGoToDetail = (id) => {
+    navigation.navigate("DetailScreen", { id: id });
+  };
 
   const handleGoBack = () => {
     navigation.goBack();
@@ -70,21 +74,128 @@ export default function ConfirmOrderScreen(props) {
 
   const Item = ({ item }) => (
     <ConfirmProductItem
-      id={item._id}
-      title={item.title}
+      id={item.id}
+      title={item.name}
       image={item.image}
       price={item.price}
       quantity={item.quantity}
-      onPress={handleGoToProduct}
+      onPress={handleGoToDetail}
     />
   );
   const renderItem = ({ item }) => <Item item={item} />;
 
-  const [value, setValue] = useState("cash");
+  const [paymentMethod, setPaymentMethod] = useState("cash");
   //info location
-  const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("");
-  const [name, setName] = useState("");
+  const [address, setAddress] = useState(
+    state.user.addresses[0] ?? "Click here to add address"
+  );
+  const [phone, setPhone] = useState(formatPhoneNumber(state.user.phone) ?? "");
+  const [name, setName] = useState(state.user.name ?? "");
+  //shipping method
+  const [shippingMethod, setShippingMethod] = useState("fast");
+  const [shippingPrice, setShippingPrice] = useState(2);
+  const [estimate, setEstimate] = useState("1-2 days");
+  const handleChangeShippingMethod = (method) => {
+    if (method === "fast") {
+      setShippingMethod(method);
+      setShippingPrice(2);
+      setEstimate("1-2 days");
+      setModalVisible1(!modalVisible1);
+    } else if (method === "normal") {
+      setShippingMethod(method);
+      setShippingPrice(0);
+      setEstimate("3-5 days");
+      setModalVisible1(!modalVisible1);
+    } else if (method === "express") {
+      setShippingMethod(method);
+      setShippingPrice(4);
+      setEstimate("4-7hrs");
+      setModalVisible1(!modalVisible1);
+    }
+  };
+
+  //voucher
+  const handleChooseVoucher = () => {
+    setStatus("Feature is developing");
+    onToggleSnackBar();
+  };
+
+  useEffect(() => {
+    setProducts([]);
+    data.map((item) => {
+      setProducts((products) => [...products, {product_id: item.id}]);
+    });
+  }, [data]);
+
+  //checkout
+  const handleCheckout = async () => {
+    if (
+      name === "" ||
+      phone === "" ||
+      address === "" ||
+      shippingMethod === "" ||
+      address === "Click here to add address"
+    ) {
+      setStatus("Please fill all information");
+      onToggleSnackBar();
+    } else {
+      let isOnline;
+      if (paymentMethod === "cash") {
+        isOnline = false;
+      } else {
+        isOnline = true;
+      }
+      await fetch(
+        "https://admin.furniture.bandn.online/order/create_payment_url",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            Address: address,
+            phone: phone,
+            name: name,
+            transportation: {
+              name: shippingMethod,
+              price: shippingPrice,
+            },
+            price: subTotal + shippingPrice,
+            voucher: 0,
+            isOnlinePayment: isOnline,
+            customer_id: state.user.id,
+            status: "request",
+            info_payment: {},
+            infoATM: {
+              bankCode: "",
+              amount: (subTotal + shippingPrice) * 22000,
+              orderDescription: "Thanh toán đơn hàng EzFurniture",
+              orderType: "billpayment",
+              language: "vn",
+            },
+            products_id: products,
+          }),
+        }
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          if (res) {
+            if (res.payload) {
+              if(res.payload.status===true){
+                navigation.navigate("ThankYouScreen",{id:res.payload.data._id});
+              }
+            } else {
+              setVnpURL(res.vnpUrl);
+            }
+          }
+        })
+        .catch((err) => {
+          setStatus("Check server and try again");
+          onToggleSnackBar();
+          console.error(err);
+        });
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -94,7 +205,6 @@ export default function ConfirmOrderScreen(props) {
         ListHeaderComponent={
           <>
             <View style={styles.line1} />
-
             <Pressable
               onPress={handleDeliveryAddress}
               style={styles.chooseLocation}
@@ -108,11 +218,9 @@ export default function ConfirmOrderScreen(props) {
               </View>
 
               <View style={styles.address}>
-                <Text style={styles.textInfoAddress}>Leslie Alexander</Text>
-                <Text style={styles.textInfoAddress}>(+84) 0123 456 789</Text>
-                <Text style={styles.textInfoAddress}>
-                  4517 Washington Ave. Manchester, Kentucky 39495
-                </Text>
+                <Text style={styles.textInfoAddress}>{name}</Text>
+                <Text style={styles.textInfoAddress}>{phone}</Text>
+                <Text style={styles.textInfoAddress}>{address}</Text>
               </View>
             </Pressable>
 
@@ -129,22 +237,31 @@ export default function ConfirmOrderScreen(props) {
           <>
             <View style={styles.line1} />
 
-            <ShippingMethod method={"Fast"} price={2} time={"2 days"} />
+            <ShippingMethod
+              method={shippingMethod}
+              price={shippingPrice}
+              time={estimate}
+              onPress={handleChooseShippingMethod}
+            />
 
             <View style={styles.line1} />
 
             <View style={styles.totalProducts}>
               <Text style={styles.textTotalProducts}>Subtotal:</Text>
-              <Text style={styles.textAmount}>$100</Text>
+              <Text style={styles.textAmount}>
+                {formatDisplayPrice(subTotal)}
+              </Text>
             </View>
-            <View style={styles.totalProducts}>
+            <View style={styles.totalProducts1}>
               <Text style={styles.textTotalProducts}>Shipping:</Text>
-              <Text style={styles.textAmount}>$2</Text>
+              <Text style={styles.textAmount}>
+                {formatDisplayPrice(shippingPrice)}
+              </Text>
             </View>
 
             <View style={styles.line1} />
 
-            <View style={styles.voucher}>
+            <Pressable onPress={handleChooseVoucher} style={styles.voucher}>
               <Text style={styles.textVoucher}>Voucher</Text>
               <View style={styles.choseVoucherContainer}>
                 <Text style={styles.choseVoucher}>Choose or enter a code</Text>
@@ -155,7 +272,7 @@ export default function ConfirmOrderScreen(props) {
                   height={18}
                 />
               </View>
-            </View>
+            </Pressable>
 
             <View style={styles.line1} />
 
@@ -167,8 +284,8 @@ export default function ConfirmOrderScreen(props) {
 
               <RadioButton.Group
                 contentContainerStyle={styles.radioGroup}
-                onValueChange={(value) => setValue(value)}
-                value={value}
+                onValueChange={(value) => setPaymentMethod(value)}
+                value={paymentMethod}
               >
                 <RadioButton.Item
                   label="Cash"
@@ -191,10 +308,12 @@ export default function ConfirmOrderScreen(props) {
 
             <View style={styles.totalContainer}>
               <Text style={styles.textTotal}>Total:</Text>
-              <Text style={styles.textPrice}>$1,000.00</Text>
+              <Text style={styles.textPrice}>
+                {formatDisplayPrice(subTotal + shippingPrice)}
+              </Text>
             </View>
             <View style={styles.btnOrder}>
-              <ButtonApp text="Order" />
+              <ButtonApp onPress={handleCheckout} text="Order" />
             </View>
           </>
         }
@@ -212,7 +331,6 @@ export default function ConfirmOrderScreen(props) {
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
           setModalVisible(!modalVisible);
         }}
       >
@@ -229,6 +347,8 @@ export default function ConfirmOrderScreen(props) {
                       style={styles.input}
                       placeholder="Name"
                       placeholderTextColor={gray3Color}
+                      defaultValue={name}
+                      onChangeText={(text) => setName(text)}
                       color={blackColor}
                       cursorColor={primaryColor}
                       selectionColor={primaryColor}
@@ -236,6 +356,8 @@ export default function ConfirmOrderScreen(props) {
                     <TextInput
                       style={styles.input}
                       placeholder="Phone"
+                      defaultValue={phone}
+                      onChangeText={(text) => setPhone(text)}
                       placeholderTextColor={gray3Color}
                       color={blackColor}
                       cursorColor={primaryColor}
@@ -244,6 +366,8 @@ export default function ConfirmOrderScreen(props) {
                     <TextInput
                       style={styles.input}
                       placeholder="Address"
+                      defaultValue={address}
+                      onChangeText={(text) => setAddress(text)}
                       placeholderTextColor={gray3Color}
                       color={blackColor}
                       cursorColor={primaryColor}
@@ -264,6 +388,57 @@ export default function ConfirmOrderScreen(props) {
           </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
       </Modal>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible1}
+        onRequestClose={() => {
+          setModalVisible1(!modalVisible1);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <RadioButton.Group
+              contentContainerStyle={styles.radioGroup}
+              onValueChange={handleChangeShippingMethod}
+              value={shippingMethod}
+            >
+              <RadioButton.Item
+                label="Fast"
+                value="fast"
+                labelStyle={styles.labelStyle}
+                color={primaryColor}
+                style={styles.radioItem}
+              />
+              <RadioButton.Item
+                label="Normal"
+                value="normal"
+                labelStyle={styles.labelStyle}
+                color={primaryColor}
+                style={styles.radioItem}
+              />
+              <RadioButton.Item
+                label="Express"
+                value="express"
+                labelStyle={styles.labelStyle}
+                color={primaryColor}
+                style={styles.radioItem}
+              />
+            </RadioButton.Group>
+          </View>
+          <Pressable style={styles.closeContainer} onPress={handleCancel}>
+            <Icon.X color={whiteColor} />
+          </Pressable>
+        </View>
+      </Modal>
+      <Snackbar
+        visible={visible}
+        duration={1500}
+        style={[mainStyle.snackbar, styles.snackbar]}
+        onDismiss={onDismissSnackBar}
+      >
+        {status}
+      </Snackbar>
     </View>
   );
 }

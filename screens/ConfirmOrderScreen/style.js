@@ -12,6 +12,7 @@ import {
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: whiteColor,
   },
 
   btnBack: {
@@ -109,6 +110,11 @@ export const styles = StyleSheet.create({
     marginBottom: 8,
   },
 
+  totalProducts1: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+
   textTotalProducts: {
     fontSize: bold12.fontSize,
     fontFamily: bold12.fontFamily,
@@ -198,8 +204,12 @@ export const styles = StyleSheet.create({
   inner: {
     flex: 1,
   },
+
   centeredView: {
     flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
   },
 
   modalView: {
@@ -210,7 +220,7 @@ export const styles = StyleSheet.create({
     borderTopEndRadius: 5,
     borderTopStartRadius: 5,
     padding: 27,
-    alignItems: "center",
+    // alignItems: "center",
   },
   textContainer: {
     width: "100%",
@@ -228,12 +238,11 @@ export const styles = StyleSheet.create({
 
   inputContainer: {
     flex: 1,
-    // marginTop: 10,
-    marginHorizontal: 34,
   },
 
   input: {
     width: 374,
+    alignSelf: "center",
     paddingVertical: Platform.OS === "ios" ? 20 : 10,
     paddingHorizontal: 20,
     borderRadius: 5,
@@ -245,6 +254,15 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
   },
   btnContainer: {
-    // marginTop: 33,
+    alignSelf: "center",
+  },
+  closeContainer: {
+    position: "absolute",
+    right: 20,
+    bottom: 220,
+  },
+
+  snackbar: {
+    marginBottom: Platform.OS === "ios" ? 60 : 90,
   },
 });

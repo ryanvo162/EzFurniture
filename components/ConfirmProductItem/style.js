@@ -34,6 +34,11 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
 
+  infoNamePrice: {
+    flex: 1,
+    paddingRight: 5,
+  },
+
   productName: {
     fontSize: title3.fontSize,
     fontFamily: title3.fontFamily,
@@ -46,8 +51,11 @@ export const styles = StyleSheet.create({
   },
 
   price: {
-    fontSize: title3.fontSize,
-    fontFamily: title3.fontFamily,
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    fontSize: bold12.fontSize,
+    fontFamily: bold12.fontFamily,
     color: blackColor,
     // marginRight: 180,
   },
