@@ -109,11 +109,12 @@ export const styles = StyleSheet.create({
     marginBottom: Platform.OS === "ios" ? 60 : 90,
   },
 
-  closeContainer:{
-    justifyContent: "flex-end",
-    alignItems: "flex-end",
-    marginBottom: 20,
+  closeContainer: {
+    position: "absolute",
+    right: 20,
+    bottom: 275,
   },
+
   btnContainer: {
     width: "100%",
     alignItems: "center",

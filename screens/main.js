@@ -26,7 +26,7 @@ export default function AppProvider() {
   return (
     <NavigationContainer style={styles.container}>
       <Stack.Navigator
-        initialRouteName="ConfirmOrderScreen"
+        initialRouteName="SlashScreen"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="SlashScreen" component={SlashScreen} />

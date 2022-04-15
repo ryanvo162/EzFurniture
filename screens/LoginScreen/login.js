@@ -13,6 +13,8 @@ import React, { useState, useEffect } from "react";
 import { ResponseType } from "expo-auth-session";
 import * as Facebook from "expo-auth-session/providers/facebook";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import { styles } from "./style";
 import TextInputApp from "../../components/InputText";
 import ButtonApp from "../../components/Button";
@@ -27,6 +29,7 @@ export default function LoginScreen(props) {
     data = route.params.data;
   }
   const [state, dispatch] = useStore();
+  // let storeData;
 
   const [email, setEmail] = useState(data?.email ?? null);
   const [password, setPassword] = useState(data?.password ?? null);
@@ -68,39 +71,43 @@ export default function LoginScreen(props) {
       )
         .then((res) => res.json())
         .then((res) => {
-          console.log(res.data);
-          if (res.data.payload.status === true) {
-            if (res.data.payload.data_user) {
-              let data = res.data.payload.data_user;
-              dispatch(
-                actions.setUser({
-                  id: data._id,
-                  email: data.email,
-                  name: data.name,
-                  phone: data.phone,
-                  addresses: data.addresses,
-                  avatar: data.avatar,
-                  dob: data.dob,
-                })
-              );
+          console.log(res);
+          if (res.status === true) {
+            if (res.data.user) {
+              let data = res.data.user;
+              // dispatch(
+              //   actions.setUser({
+              //     id: data._id,
+              //     email: data.email,
+              //     name: data.name,
+              //     phone: data.phone,
+              //     addresses: data.addresses,
+              //     avatar: data.avatar,
+              //     dob: data.dob,
+              //   })
+              // );
+              const jsonValue = JSON.stringify(data);
+              AsyncStorage.setItem("@data_user", jsonValue);
             } else {
               setStatus("Something went wrong in data_user");
               onToggleSnackBar();
             }
             if (res.data.cart[0]) {
               let data = res.data.cart[0];
-              console.log("cart", data);
-              dispatch(
-                actions.setCart({
-                  id: data._id,
-                })
-              );
+              // console.log("cart", data);
+              // dispatch(
+              //   actions.setCart({
+              //     id: data._id,
+              //   })
+              // );
+              AsyncStorage.setItem("@id_cart", data._id);
             } else {
               setStatus("Something went wrong in cart");
               onToggleSnackBar();
             }
             setStatus("Login success");
             onToggleSnackBar();
+            AsyncStorage.setItem("@is_login", "true");
             navigation.navigate("HomeScreen");
           } else {
             setStatus("Wrong email or password");
@@ -108,10 +115,9 @@ export default function LoginScreen(props) {
           }
         })
         .catch((err) => {
-          // setStatus("Wrong email or password");
           setStatus("Check server and try again");
           onToggleSnackBar();
-          console.log(err);
+          console.error(err);
         });
     }
   };

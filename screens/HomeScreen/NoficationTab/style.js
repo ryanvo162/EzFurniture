@@ -11,10 +11,12 @@ export const styles = StyleSheet.create({
   },
 
   header: {
+    position: "absolute",
     width: "100%",
     flexDirection: "row",
-    paddingTop: Platform.OS === "ios" ? 55 : 35,
+    paddingTop: 55,
     paddingBottom: 8,
+    backgroundColor: "rgba(239, 238, 237, 0.95)",
   },
 
   headerLeft: {

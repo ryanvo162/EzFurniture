@@ -10,6 +10,7 @@ import { actions, useStore } from "../../../provider";
 import { Snackbar } from "react-native-paper";
 import { styles as mainStyle } from "../../../screens/styles";
 import * as Icon from "react-native-feather";
+import { formatDisplayPrice, formatNumber } from "../../../global/format";
 
 export default function CartTab(props) {
   const [state, dispatch] = useStore();
@@ -20,15 +21,14 @@ export default function CartTab(props) {
   const onDismissSnackBar = () => setVisible(false);
 
   const [myArr, setMyArr] = useState([]);
+  const [subTotal, setSubTotal] = useState(0);
+  const [shippingFee, setShippingFee] = useState(2);
 
   const data = myArr.length !== 0 ? [...myArr] : [];
-  if (data.length !== 0) {
-    console.log("data:", data[0].name);
-  }
-  console.log("data:", data);
 
   useEffect(async () => {
-    setMyArr([]),
+    setMyArr([]), setSubTotal(0);
+    if (state.user.id) {
       await fetch("https://admin.furniture.bandn.online/cart", {
         method: "POST",
         headers: {
@@ -40,58 +40,71 @@ export default function CartTab(props) {
       })
         .then((res) => res.json())
         .then((res) => {
-          let arr = res.cart[0].products_id;
-          arr.map((item) => {
-            let quantity = item.quantity;
-            fetch("https://admin.furniture.bandn.online/mobile/productDetail", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                id: item.product_id,
-              }),
-            })
-              .then((res) => res.json())
-              .then((res) => {
-                setMyArr((myArr) => [
-                  ...myArr,
-                  {
-                    name: res.product.name,
-                    quantity: quantity,
-                    image: res.product.thumbnail,
-                    price: res.product.price,
-                    id: res.product._id,
+          if (res) {
+            let arr = res.cart[0].products_id;
+            arr.map((item) => {
+              let quantity = item.quantity;
+              fetch(
+                "https://admin.furniture.bandn.online/mobile/productDetail",
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
                   },
-                ]);
-              })
-              .catch((err) => {
-                setStatus("Can not get product detail");
-                onToggleSnackBar();
-                console.log(err);
-              });
-          });
+                  body: JSON.stringify({
+                    id: item.product_id,
+                  }),
+                }
+              )
+                .then((res) => res.json())
+                .then((res) => {
+                  setMyArr((myArr) => [
+                    ...myArr,
+                    {
+                      name: res.product.name,
+                      quantity: quantity,
+                      image: res.product.thumbnail,
+                      price: formatNumber(res.product.price),
+                      id: res.product._id,
+                    },
+                  ]);
+                  setSubTotal(
+                    (subTotal) => subTotal + formatNumber(res.product.price) * quantity
+                  );
+                })
+                .catch((err) => {
+                  setStatus("Can not get product detail");
+                  onToggleSnackBar();
+                  console.log(err);
+                });
+            });
+          } else {
+            setStatus("Loading...");
+            onToggleSnackBar();
+          }
         })
         .catch((err) => {
           setStatus("Check server and try again");
           onToggleSnackBar();
           console.error(err);
         });
-  }, []);
+    }
+  }, [state.user.id]);
 
   const fetchData = async () => {
-    setMyArr([]),
-      await fetch("https://admin.furniture.bandn.online/cart", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: state.user.id,
-        }),
-      })
-        .then((res) => res.json())
-        .then((res) => {
+    setMyArr([]), setSubTotal(0);
+    await fetch("https://admin.furniture.bandn.online/cart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: state.user.id,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res) {
           let arr = res.cart[0].products_id;
           arr.map((item) => {
             let quantity = item.quantity;
@@ -112,10 +125,13 @@ export default function CartTab(props) {
                     name: res.product.name,
                     quantity: quantity,
                     image: res.product.thumbnail,
-                    price: res.product.price,
+                    price: formatNumber(res.product.price),
                     id: res.product._id,
                   },
                 ]);
+                setSubTotal(
+                  (subTotal) => subTotal + formatNumber(res.product.price) * quantity
+                );
               })
               .catch((err) => {
                 setStatus("Can not get product detail");
@@ -123,12 +139,16 @@ export default function CartTab(props) {
                 console.log(err);
               });
           });
-        })
-        .catch((err) => {
-          setStatus("Check server and try again");
+        } else {
+          setStatus("Loading...");
           onToggleSnackBar();
-          console.error(err);
-        });
+        }
+      })
+      .catch((err) => {
+        // setStatus("Check server and try again");
+        // onToggleSnackBar();
+        console.error(err);
+      });
   };
 
   // console.log("myArr:", myArr);
@@ -195,11 +215,16 @@ export default function CartTab(props) {
     );
   };
 
-  const handlePaymentConfirm = () => {
+  const handlePay = () => {
     setModalVisible(true);
   };
-  
-  const handleCheck = () => {
+
+  const handleConfirm = () => {
+    setModalVisible(!modalVisible);
+    navigation.navigate("ConfirmOrderScreen",{data:myArr,subTotal:subTotal});
+  };
+
+  const handleCancel = () => {
     setModalVisible(!modalVisible);
   };
 
@@ -210,6 +235,7 @@ export default function CartTab(props) {
       price={item.price}
       image={item.image}
       quantity={item.quantity}
+      onChangeQuantity={fetchData}
       onPress={handleSeeDetail}
       onDelete={handleDelete}
     />
@@ -240,9 +266,14 @@ export default function CartTab(props) {
           <Text style={styles.textEmptyCart}>Your cart is empty</Text>
         </View>
       )}
+       {data.length !== 0 ? (
       <View style={styles.btnPayment}>
-        <ButtonApp text={"Payment"} onPress={handlePaymentConfirm} />
+        <ButtonApp
+          text={"Get it " + "(" + formatDisplayPrice(subTotal) + ")"}
+          onPress={handlePay}
+        />
       </View>
+      ) : null}
 
       <Modal
         animationType="slide"
@@ -254,39 +285,34 @@ export default function CartTab(props) {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-
-            <Pressable style={styles.closeContainer}   onPress={() => setModalVisible(true)} >
-              <View style={styles.btnClose}>
-                <Icon.X  color={whiteColor} />
-              </View>
-            </Pressable>
-        
             <View style={styles.containerSubTotal}>
               <Text style={styles.titleTotal}>Subtotal:</Text>
-              <Text style={styles.priceTotal}>$78.00</Text>
+              <Text style={styles.priceTotal}>{formatDisplayPrice(subTotal)}</Text>
             </View>
 
             <View style={styles.containerSubTotal}>
-              <Text style={styles.titleTotal}>Shipping Cost:</Text>
-              <Text style={styles.priceTotal}>$27</Text>
+              <Text style={styles.titleTotal}>Shipping Fee:</Text>
+              <Text style={styles.priceTotal}>{formatDisplayPrice(shippingFee)}</Text>
             </View>
 
             <View style={styles.line} />
 
             <View style={[styles.containerSubTotal, styles.containerTotal]}>
               <Text style={styles.titleTotal}>Total:</Text>
-              <Text style={styles.priceTotal}>$98.00</Text>
+              <Text style={styles.priceTotal}>{formatDisplayPrice(shippingFee + subTotal)}</Text>
             </View>
             <View style={styles.btnContainer}>
-            <ButtonApp
-              text={"Confirm"}
-              onPress={handleCheck}
-              color={whiteColor}
-              textColor={primaryColor}
-            />
+              <ButtonApp
+                text={"Confirm"}
+                onPress={handleConfirm}
+                color={whiteColor}
+                textColor={primaryColor}
+              />
             </View>
-           
           </View>
+          <Pressable style={styles.closeContainer} onPress={handleCancel}>
+            <Icon.X color={whiteColor} />
+          </Pressable>
         </View>
       </Modal>
       <Snackbar

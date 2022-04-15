@@ -7,7 +7,16 @@ import { styles } from "./style";
 
 export default function CartItem(props) {
   const [state, dispatch] = useStore();
-  const { id_product, name, image, price, onPress, quantity, onDelete } = props;
+  const {
+    id_product,
+    name,
+    image,
+    price,
+    onPress,
+    quantity,
+    onDelete,
+    onChangeQuantity,
+  } = props;
   const [quantityCart, setQuantity] = useState(quantity);
   const priceFormat = formatNumber(price);
   const total = priceFormat * quantityCart;
@@ -24,7 +33,7 @@ export default function CartItem(props) {
           id: state.cart.id,
           data: {
             product_id: id_product,
-            quantity: quantityCart-1,
+            quantity: quantityCart - 1,
           },
         }),
       })
@@ -41,6 +50,7 @@ export default function CartItem(props) {
     } else {
       onDelete(id_product);
     }
+    onChangeQuantity();
   };
 
   const handlePlus = async () => {
@@ -54,7 +64,7 @@ export default function CartItem(props) {
         id: state.cart.id,
         data: {
           product_id: id_product,
-          quantity: quantityCart+1,
+          quantity: quantityCart + 1,
         },
       }),
     })
@@ -67,6 +77,7 @@ export default function CartItem(props) {
       .catch((err) => {
         console.error(err);
       });
+    onChangeQuantity();
   };
 
   const handleChoose = () => {

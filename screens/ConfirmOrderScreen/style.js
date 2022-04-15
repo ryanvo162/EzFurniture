@@ -82,22 +82,31 @@ export const styles = StyleSheet.create({
   itemProductName: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 10,
+    borderRadius: 5,
+    // backgroundColor: primaryColor,
+  },
+
+  viewTitleProduct: {
+    // flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: "red",
+    backgroundColor: primaryColor,
+    borderRadius: 3,
   },
 
   titleListProduct: {
     fontSize: title3.fontSize,
     fontFamily: title3.fontFamily,
     color: whiteColor,
-    backgroundColor: primaryColor,
     padding: 4,
-    borderRadius: 5,
   },
 
   totalProducts: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBotton: 8,
+    marginBottom: 8,
   },
 
   textTotalProducts: {
@@ -130,7 +139,6 @@ export const styles = StyleSheet.create({
     color: gray3Color,
   },
   payment: {
-
     marginBottom: 10,
   },
   paymentMethod: {
@@ -167,7 +175,7 @@ export const styles = StyleSheet.create({
   totalContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   textTotal: {
     fontSize: bold.fontSize,
@@ -226,16 +234,17 @@ export const styles = StyleSheet.create({
 
   input: {
     width: 374,
-    padding: 20,
+    paddingVertical: Platform.OS === "ios" ? 20 : 10,
+    paddingHorizontal: 20,
     borderRadius: 5,
     backgroundColor: whiteColor,
-    marginTop: 20,
+    marginBottom: 16,
     borderColor: primaryColor,
     fontSize: body.fontSize,
     fontFamily: body.fontFamily,
     borderWidth: 1,
   },
   btnContainer: {
-    marginTop: 33,
+    // marginTop: 33,
   },
 });

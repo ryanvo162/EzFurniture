@@ -119,7 +119,9 @@ export default function ConfirmOrderScreen(props) {
             <View style={styles.line1} />
 
             <View style={styles.itemProductName}>
-              <Text style={styles.titleListProduct}>Products</Text>
+              <View style={styles.viewTitleProduct}>
+                <Text style={styles.titleListProduct}>Products</Text>
+              </View>
             </View>
           </>
         }
@@ -132,15 +134,11 @@ export default function ConfirmOrderScreen(props) {
             <View style={styles.line1} />
 
             <View style={styles.totalProducts}>
-              <Text style={styles.textTotalProducts}>
-                Subtotal:
-              </Text>
+              <Text style={styles.textTotalProducts}>Subtotal:</Text>
               <Text style={styles.textAmount}>$100</Text>
             </View>
             <View style={styles.totalProducts}>
-              <Text style={styles.textTotalProducts}>
-                Shipping:
-              </Text>
+              <Text style={styles.textTotalProducts}>Shipping:</Text>
               <Text style={styles.textAmount}>$2</Text>
             </View>
 
@@ -180,25 +178,8 @@ export default function ConfirmOrderScreen(props) {
                   style={styles.radioItem}
                 />
                 <RadioButton.Item
-                  label="Visa Debit/Credit"
-                  disabled={true}
-                  value="visa"
-                  color={primaryColor}
-                  labelStyle={styles.labelStyle}
-                  style={styles.radioItem}
-                />
-                <RadioButton.Item
-                  label="ATM Card"
-                  disabled={true}
-                  value="atm"
-                  labelStyle={styles.labelStyle}
-                  color={primaryColor}
-                  style={styles.radioItem}
-                />
-                <RadioButton.Item
-                  label="Momo"
-                  disabled={true}
-                  value="momo"
+                  label="Online"
+                  value="online"
                   labelStyle={styles.labelStyle}
                   color={primaryColor}
                   style={styles.radioItem}
@@ -246,7 +227,7 @@ export default function ConfirmOrderScreen(props) {
                   <View style={styles.inputContainer}>
                     <TextInput
                       style={styles.input}
-                      placeholder="Password"
+                      placeholder="Name"
                       placeholderTextColor={gray3Color}
                       color={blackColor}
                       cursorColor={primaryColor}
@@ -254,7 +235,7 @@ export default function ConfirmOrderScreen(props) {
                     />
                     <TextInput
                       style={styles.input}
-                      placeholder="New Password"
+                      placeholder="Phone"
                       placeholderTextColor={gray3Color}
                       color={blackColor}
                       cursorColor={primaryColor}
@@ -262,7 +243,7 @@ export default function ConfirmOrderScreen(props) {
                     />
                     <TextInput
                       style={styles.input}
-                      placeholder="Confirm New Password"
+                      placeholder="Address"
                       placeholderTextColor={gray3Color}
                       color={blackColor}
                       cursorColor={primaryColor}

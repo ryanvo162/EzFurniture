@@ -12,14 +12,11 @@ export default function SupportScreen(props) {
   };
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <View style={styles.header}>
-          <Pressable onPress={handleGoBack} style={styles.headerLeft}>
-            <Icon.ChevronLeft stroke="black" />
-            <Text style={styles.headerLeftText}>Support</Text>
-          </Pressable>
-        </View>
-
+      <ScrollView
+        overScrollMode="never"
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.containerScrollView}
+      >
         <SearchBar />
 
         <View style={styles.line1} />
@@ -60,6 +57,12 @@ export default function SupportScreen(props) {
         </View>
         <View style={styles.line2} />
       </ScrollView>
+      <View style={styles.header}>
+        <Pressable onPress={handleGoBack} style={styles.headerLeft}>
+          <Icon.ChevronLeft stroke="black" />
+          <Text style={styles.headerLeftText}>Support</Text>
+        </Pressable>
+      </View>
     </View>
   );
 }

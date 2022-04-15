@@ -127,18 +127,9 @@ export default function InformationScreen(props) {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.inner}>
             <View style={styles.container}>
-              <View style={styles.header}>
-                <Pressable onPress={handleGoBack} style={styles.headerLeft}>
-                  <Icon.ChevronLeft stroke="white" />
-                  <Text style={styles.headerLeftText}>Information</Text>
-                </Pressable>
-                <Pressable onPress={handleGoToChangePassword} style={styles.headerRight}>
-                  <Icon.Lock stroke="white" />
-                </Pressable>
-              </View>
               <ScrollView
                 overScrollMode="never"
-                showsHorizontalScrollIndicator={false}
+                showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.containerScrollView}
               >
                 <View style={styles.containerImage}>
@@ -208,6 +199,18 @@ export default function InformationScreen(props) {
             </Snackbar>
           </View>
         </TouchableWithoutFeedback>
+        <View style={styles.header}>
+          <Pressable onPress={handleGoBack} style={styles.headerLeft}>
+            <Icon.ChevronLeft stroke="white" />
+            <Text style={styles.headerLeftText}>Information</Text>
+          </Pressable>
+          <Pressable
+            onPress={handleGoToChangePassword}
+            style={styles.headerRight}
+          >
+            <Icon.Lock stroke="white" />
+          </Pressable>
+        </View>
       </KeyboardAvoidingView>
     </>
   );

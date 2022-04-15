@@ -16,10 +16,12 @@ export const styles = StyleSheet.create({
 
   containerScrollView: {
     flexGrow: 1,
+    paddingTop: 80,
     paddingBottom: 100,
   },
 
   header: {
+    position: "absolute",
     backgroundColor: primaryColor,
     width: "100%",
     flexDirection: "row",
@@ -47,7 +49,6 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginRight: 21,
-
   },
 
   avatarView: {

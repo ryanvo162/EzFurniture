@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Platform } from "react-native";
 
 import { styles } from "./style";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import HomeTab from "./HomeTab";
 import StyleTab from "./StyleTab";
@@ -14,17 +15,64 @@ import ProfileTab from "./ProfileTab";
 
 import * as Icon from "react-native-feather";
 import { StatusBar } from "expo-status-bar";
+import { actions, useStore } from "../../provider";
 
 const Tab = createBottomTabNavigator();
 
 export default function HomeScreen(props) {
   const { navigation, route } = props;
+  const [state, dispatch] = useStore();
   let screen;
   if (route.params) {
     screen = route.params.screen;
   } else {
     screen = "Home";
   }
+
+  useEffect(() => {
+    const getDataUser = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem("@data_user");
+        return jsonValue != null ? JSON.parse(jsonValue) : null;
+      } catch (e) {
+        console.log("error:", e);
+      }
+    };
+
+    const getDataCart = async () => {
+      try {
+        const value = await AsyncStorage.getItem("@id_cart");
+        if (value !== null) {
+          return value;
+        } else {
+          return null;
+        }
+      } catch (e) {
+        console.log("error:", e);
+      }
+    };
+
+    getDataUser().then((data) => {
+      dispatch(
+        actions.setUser({
+          id: data._id,
+          email: data.email,
+          name: data.name,
+          phone: data.phone,
+          addresses: data.addresses,
+          avatar: data.avatar,
+          dob: data.dob,
+        })
+      );
+    });
+    getDataCart().then((data) => {
+      dispatch(
+        actions.setCart({
+          id: data,
+        })
+      );
+    });
+  }, []);
 
   return (
     <>
@@ -66,8 +114,6 @@ export default function HomeScreen(props) {
                 <Icon.User stroke={color} />
               );
             }
-
-            // You can return any component that you like here!
             return tag;
           },
           tabBarActiveTintColor: "white",

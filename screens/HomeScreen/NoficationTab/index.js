@@ -80,21 +80,12 @@ export default function NotificationTab() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.headerLeft}>
-          <Icon.CheckCircle stroke="black" />
-          <Text style={styles.headerReadingText}>Reading</Text>
-        </View>
-        <View style={styles.headerRight}>
-          <Icon.Settings stroke="black" />
-        </View>
-      </View>
       <FlatList
         overScrollMode="never"
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           paddingBottom: 100,
-          // paddingTop: 45,
+          paddingTop: 95,
         }}
         style={styles.flatList}
         data={DATA}
@@ -115,6 +106,15 @@ export default function NotificationTab() {
       >
         Delete successfully
       </Snackbar>
+      <View style={styles.header}>
+        <View style={styles.headerLeft}>
+          <Icon.CheckCircle stroke="black" />
+          <Text style={styles.headerReadingText}>Reading</Text>
+        </View>
+        <View style={styles.headerRight}>
+          <Icon.Settings stroke="black" />
+        </View>
+      </View>
     </View>
   );
 }
