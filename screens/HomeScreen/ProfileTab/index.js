@@ -3,6 +3,7 @@ import { View, Text, ScrollView, Image, Pressable } from "react-native";
 import { styles } from "./style";
 import * as Icon from "react-native-feather";
 import { useStore } from "../../../provider";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function ProfileTab(props) {
   const { navigation } = props;
@@ -26,6 +27,7 @@ export default function ProfileTab(props) {
     navigation.navigate("SupportScreen");
   };
   const handleLogout = () => {
+    AsyncStorage.setItem("@is_login", "false");
     navigation.replace("LoginScreen");
   };
 
@@ -73,7 +75,6 @@ export default function ProfileTab(props) {
               width={30}
             />
             <Text style={styles.itemsText}>Payment method</Text>
-
             <View style={styles.iconNext}>
               <Icon.ChevronRight stroke="#fff" />
             </View>

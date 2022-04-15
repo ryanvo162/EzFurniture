@@ -12,6 +12,7 @@ import {
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: whiteColor,
   },
 
   btnBack: {
@@ -82,22 +83,36 @@ export const styles = StyleSheet.create({
   itemProductName: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 10,
+    borderRadius: 5,
+    // backgroundColor: primaryColor,
+  },
+
+  viewTitleProduct: {
+    // flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: "red",
+    backgroundColor: primaryColor,
+    borderRadius: 3,
   },
 
   titleListProduct: {
     fontSize: title3.fontSize,
     fontFamily: title3.fontFamily,
     color: whiteColor,
-    backgroundColor: primaryColor,
     padding: 4,
-    borderRadius: 5,
   },
 
   totalProducts: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 8,
+  },
+
+  totalProducts1: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 
   textTotalProducts: {
@@ -130,7 +145,6 @@ export const styles = StyleSheet.create({
     color: gray3Color,
   },
   payment: {
-
     marginBottom: 10,
   },
   paymentMethod: {
@@ -167,7 +181,7 @@ export const styles = StyleSheet.create({
   totalContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   textTotal: {
     fontSize: bold.fontSize,
@@ -190,8 +204,12 @@ export const styles = StyleSheet.create({
   inner: {
     flex: 1,
   },
+
   centeredView: {
     flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
   },
 
   modalView: {
@@ -202,7 +220,7 @@ export const styles = StyleSheet.create({
     borderTopEndRadius: 5,
     borderTopStartRadius: 5,
     padding: 27,
-    alignItems: "center",
+    // alignItems: "center",
   },
   textContainer: {
     width: "100%",
@@ -220,22 +238,31 @@ export const styles = StyleSheet.create({
 
   inputContainer: {
     flex: 1,
-    // marginTop: 10,
-    marginHorizontal: 34,
   },
 
   input: {
     width: 374,
-    padding: 20,
+    alignSelf: "center",
+    paddingVertical: Platform.OS === "ios" ? 20 : 10,
+    paddingHorizontal: 20,
     borderRadius: 5,
     backgroundColor: whiteColor,
-    marginTop: 20,
+    marginBottom: 16,
     borderColor: primaryColor,
     fontSize: body.fontSize,
     fontFamily: body.fontFamily,
     borderWidth: 1,
   },
   btnContainer: {
-    marginTop: 33,
+    alignSelf: "center",
+  },
+  closeContainer: {
+    position: "absolute",
+    right: 20,
+    bottom: 220,
+  },
+
+  snackbar: {
+    marginBottom: Platform.OS === "ios" ? 60 : 90,
   },
 });

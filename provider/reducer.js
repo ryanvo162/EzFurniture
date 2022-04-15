@@ -1,4 +1,4 @@
-import { SET_USER , SET_CART } from "./constants";
+import { SET_USER, SET_CART } from "./constants";
 
 export const initialState = {
   user: {
