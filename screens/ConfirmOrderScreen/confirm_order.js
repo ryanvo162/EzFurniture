@@ -32,6 +32,8 @@ import { styles as mainStyle } from "../../screens/styles";
 
 import { useStore } from "../../provider";
 import { formatDisplayPrice, formatPhoneNumber } from "../../global/format";
+import { ENDPOINT } from "../../socket.io-client/link";
+import { io } from "socket.io-client";
 
 export default function ConfirmOrderScreen(props) {
   const { navigation, route } = props;
@@ -41,7 +43,6 @@ export default function ConfirmOrderScreen(props) {
   const [modalVisible1, setModalVisible1] = useState(false);
 
   const [products, setProducts] = useState([]);
-  const [vnpURL, setVnpURL] = useState("");
 
   const [status, setStatus] = useState(null);
   const [visible, setVisible] = useState(false);
@@ -123,9 +124,9 @@ export default function ConfirmOrderScreen(props) {
   useEffect(() => {
     setProducts([]);
     data.map((item) => {
-      setProducts((products) => [...products, {product_id: item.id}]);
+      setProducts((products) => [...products, { product_id: item.id }]);
     });
-  }, [data]);
+  }, []);
 
   //checkout
   const handleCheckout = async () => {
@@ -181,11 +182,36 @@ export default function ConfirmOrderScreen(props) {
         .then((res) => {
           if (res) {
             if (res.payload) {
-              if(res.payload.status===true){
-                navigation.navigate("ThankYouScreen",{id:res.payload.data._id});
+              if (res.payload.status === true) {
+                navigation.replace("ThankYouScreen", {
+                  id: res.payload.data._id,
+                });
               }
             } else {
-              setVnpURL(res.vnpUrl);
+              navigation.navigate("VNPayScreen", {
+                uri: res.vnpUrl,
+                data: {
+                  Address: address,
+                  phone: phone,
+                  name: name,
+                  transportation: {
+                    name: shippingMethod,
+                    price: shippingPrice,
+                  },
+                  price: subTotal + shippingPrice,
+                  voucher: 0,
+                  isOnlinePayment: isOnline,
+                  customer_id: state.user.id,
+                  infoATM: {
+                    bankCode: "",
+                    amount: (subTotal + shippingPrice) * 22000,
+                    orderDescription: "Thanh toán đơn hàng EzFurniture",
+                    orderType: "billpayment",
+                    language: "vn",
+                  },
+                  products_id: products,
+                },
+              });
             }
           }
         })

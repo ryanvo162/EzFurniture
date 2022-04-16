@@ -243,19 +243,13 @@ export default function CartTab(props) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.title}>
-          <Text style={styles.title}>My Cart</Text>
-        </View>
-      </View>
       {data.length !== 0 ? (
         <FlatList
           overScrollMode="never"
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{
-            paddingBottom: 150,
-            paddingTop: 12,
-          }}
+          contentContainerStyle={
+            styles.flatList
+          }
           style={styles.flatList}
           data={data}
           renderItem={renderItem}
@@ -266,13 +260,13 @@ export default function CartTab(props) {
           <Text style={styles.textEmptyCart}>Your cart is empty</Text>
         </View>
       )}
-       {data.length !== 0 ? (
-      <View style={styles.btnPayment}>
-        <ButtonApp
-          text={"Get it " + "(" + formatDisplayPrice(subTotal) + ")"}
-          onPress={handlePay}
-        />
-      </View>
+      {data.length !== 0 ? (
+        <View style={styles.btnPayment}>
+          <ButtonApp
+            text={"Get it " + "(" + formatDisplayPrice(subTotal) + ")"}
+            onPress={handlePay}
+          />
+        </View>
       ) : null}
 
       <Modal
@@ -287,19 +281,25 @@ export default function CartTab(props) {
           <View style={styles.modalView}>
             <View style={styles.containerSubTotal}>
               <Text style={styles.titleTotal}>Subtotal:</Text>
-              <Text style={styles.priceTotal}>{formatDisplayPrice(subTotal)}</Text>
+              <Text style={styles.priceTotal}>
+                {formatDisplayPrice(subTotal)}
+              </Text>
             </View>
 
             <View style={styles.containerSubTotal}>
               <Text style={styles.titleTotal}>Shipping Fee:</Text>
-              <Text style={styles.priceTotal}>{formatDisplayPrice(shippingFee)}</Text>
+              <Text style={styles.priceTotal}>
+                {formatDisplayPrice(shippingFee)}
+              </Text>
             </View>
 
             <View style={styles.line} />
 
             <View style={[styles.containerSubTotal, styles.containerTotal]}>
               <Text style={styles.titleTotal}>Total:</Text>
-              <Text style={styles.priceTotal}>{formatDisplayPrice(shippingFee + subTotal)}</Text>
+              <Text style={styles.priceTotal}>
+                {formatDisplayPrice(shippingFee + subTotal)}
+              </Text>
             </View>
             <View style={styles.btnContainer}>
               <ButtonApp
@@ -323,6 +323,11 @@ export default function CartTab(props) {
       >
         {status}
       </Snackbar>
+      <View style={styles.header}>
+        <View style={styles.title}>
+          <Text style={styles.title}>My Cart</Text>
+        </View>
+      </View>
     </View>
   );
 }

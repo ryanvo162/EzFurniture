@@ -15,6 +15,11 @@ export const styles = StyleSheet.create({
     backgroundColor: whiteColor,
   },
 
+  webView: {
+    // position: "absolute",
+    flex: 1,
+  },
+
   btnBack: {
     position: "absolute",
     flexDirection: "row",

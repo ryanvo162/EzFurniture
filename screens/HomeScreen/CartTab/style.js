@@ -22,16 +22,22 @@ export const styles = StyleSheet.create({
     backgroundColor: whiteColor,
   },
 
+  flatList: {
+    paddingBottom: 150,
+    paddingTop: 50,
+  },
+
   header: {
+    position: "absolute",
     width: "100%",
     paddingTop: 55,
+    backgroundColor: "rgba(255, 255, 255, 0.95)",
   },
 
   title: {
     fontSize: title2.fontSize,
     fontFamily: title2.fontFamily,
-    backgroundColor: whiteColor,
-    paddingBottom:3,
+    paddingBottom: 4,
     paddingLeft: "3%",
   },
 
@@ -69,7 +75,7 @@ export const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     padding: 26,
-   // alignItems: "center",
+    // alignItems: "center",
   },
 
   containerSubTotal: {

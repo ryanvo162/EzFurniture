@@ -46,14 +46,6 @@ export default function OTPScreen(props) {
   const handleVerify = async () => {
     console.log("handleVerify");
     if (otp.length === 6 && otp !== "") {
-      console.log(
-        "Data: ",
-        data.email,
-        data.password,
-        data.name,
-        data.phoneNumber,
-        otp
-      );
       const check = await fetch(
         "https://admin.furniture.bandn.online/mobile/register",
         {
@@ -73,10 +65,14 @@ export default function OTPScreen(props) {
       )
         .then((res) => res.json())
         .then((res) => {
-          console.log(res);
-          setStatus(res.status);
-          onToggleSnackBar();
-          navigation.replace("LoginScreen" , {message: "Login success", data: data});
+          if (res.status === true) {
+            setStatus("Sign up successfully");
+            onToggleSnackBar();
+            navigation.replace("LoginScreen", { message: "Login success", data: data });
+          } else {
+            setStatus("Wrong OTP or out of date");
+            onToggleSnackBar();
+          }
         })
         .catch((err) => {
           setStatus("Check server and try again");
@@ -135,12 +131,6 @@ export default function OTPScreen(props) {
         duration={1000}
         style={[mainStyle.snackbar, styles.snackbar]}
         onDismiss={onDismissSnackBar}
-        action={{
-          label: "Hide",
-          onPress: () => {
-            // Do something
-          },
-        }}
       >
         {status}
       </Snackbar>
