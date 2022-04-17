@@ -1,8 +1,8 @@
 import React from "react";
-import { View, Text, ScrollView, Image, Pressable } from "react-native";
+import { View, Text, ScrollView, Image, Pressable, Alert } from "react-native";
 import { styles } from "./style";
 import * as Icon from "react-native-feather";
-import { useStore } from "../../../provider";
+import { actions, useStore } from "../../../provider";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function ProfileTab(props) {
@@ -27,8 +27,32 @@ export default function ProfileTab(props) {
     navigation.navigate("SupportScreen");
   };
   const handleLogout = () => {
-    AsyncStorage.setItem("@is_login", "false");
-    navigation.replace("LoginScreen");
+    Alert.alert(
+      "Logout",
+      "Are you sure you want to logout?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel",
+        },
+        {
+          text: "OK",
+          onPress: async () => {
+            try {
+              await AsyncStorage.removeItem("@data_user");
+              await AsyncStorage.setItem("@is_login", "false");
+              dispatch(actions.setUser({}));
+              dispatch(actions.setCart({}));
+              navigation.replace("LoginScreen", { data: {} });
+            } catch (e) {
+              console.log("error:", e);
+            }
+          },
+        },
+      ],
+      { cancelable: false }
+    );
   };
 
   return (
@@ -43,7 +67,10 @@ export default function ProfileTab(props) {
       >
         {/* headerView */}
         <View style={styles.profileUser}>
-          <Image source={{ uri: state.user.avatar }} style={styles.imageUser}></Image>
+          <Image
+            source={{ uri: state.user.avatar }}
+            style={styles.imageUser}
+          ></Image>
 
           <View style={styles.profileInfoUser}>
             <Text style={styles.nameUser}>{state.user.name}</Text>

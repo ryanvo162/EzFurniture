@@ -4,11 +4,12 @@ import React from "react";
 import { styles } from "./style";
 
 export default function TextInputApp(props) {
-  const { onChange, placeholder, type, autoComplete, secureTextEntry } = props;
+  const { onChange, placeholder, type, autoComplete, secureTextEntry, defaultValue } = props;
   return (
     <View style={styles.container}>
       <TextInput
         secureTextEntry={secureTextEntry}
+        defaultValue={defaultValue}
         style={styles.textInput}
         placeholder={placeholder}
         placeholderTextColor={"#ffffff"}
@@ -16,7 +17,6 @@ export default function TextInputApp(props) {
         color={"#ffffff"}
         keyboardType={type}
         autoComplete={autoComplete}
-        cursorColor="white"
         selectionColor="white"
       />
     </View>

@@ -25,7 +25,13 @@ export default function OrderItem(props) {
       <View style={styles.content}>
         <View style={styles.innerContent}>
           <Text style={styles.titleItem}>ID:</Text>
-          <Text style={styles.contentItem}>{id}</Text>
+          <Text
+            style={styles.contentItem}
+            numberOfLines={1}
+            ellipsizeMode="tail"
+          >
+            {id}
+          </Text>
         </View>
         <View style={styles.innerContent}>
           <Text style={styles.titleItem}>Total:</Text>
@@ -41,7 +47,13 @@ export default function OrderItem(props) {
         </View>
         <View style={styles.innerContent}>
           <Text style={styles.titleItem}>Address:</Text>
-          <Text style={styles.contentItem}>{address}</Text>
+          <Text
+            style={styles.contentItem}
+            numberOfLines={1}
+            ellipsizeMode="tail"
+          >
+            {address}
+          </Text>
         </View>
       </View>
     </Pressable>

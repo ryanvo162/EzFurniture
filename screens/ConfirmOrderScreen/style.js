@@ -85,6 +85,13 @@ export const styles = StyleSheet.create({
     marginBottom: 2,
   },
 
+  textInfoAddressError: {
+    fontSize: body.fontSize,
+    fontFamily: body.fontFamily,
+    color: gray2Color,
+    marginBottom: 2,
+  },
+
   itemProductName: {
     flexDirection: "row",
     alignItems: "center",

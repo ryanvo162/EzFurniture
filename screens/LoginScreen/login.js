@@ -24,10 +24,8 @@ import { actions, useStore } from "../../provider";
 
 export default function LoginScreen(props) {
   const { navigation, route } = props;
-  let data;
-  if (route.params) {
-    data = route.params.data;
-  }
+  const [data, setData] = useState(route.params?.data ?? null);
+  console.log("data", data);
   const [state, dispatch] = useStore();
   // let storeData;
 
@@ -48,7 +46,6 @@ export default function LoginScreen(props) {
 
   const handleLogin = async () => {
     console.log("handleLogin");
-    // console.log(email);
     if (email == null || password == null || email == "" || password == "") {
       setStatus("Email and password cannot be empty");
       onToggleSnackBar();
@@ -71,21 +68,10 @@ export default function LoginScreen(props) {
       )
         .then((res) => res.json())
         .then((res) => {
-          console.log(res);
+          console.log(res.data.user.payload.data);
           if (res.status === true) {
             if (res.data.user) {
-              let data = res.data.user;
-              // dispatch(
-              //   actions.setUser({
-              //     id: data._id,
-              //     email: data.email,
-              //     name: data.name,
-              //     phone: data.phone,
-              //     addresses: data.addresses,
-              //     avatar: data.avatar,
-              //     dob: data.dob,
-              //   })
-              // );
+              let data = res.data.user.payload.data;
               const jsonValue = JSON.stringify(data);
               AsyncStorage.setItem("@data_user", jsonValue);
             } else {
@@ -94,12 +80,6 @@ export default function LoginScreen(props) {
             }
             if (res.data.cart[0]) {
               let data = res.data.cart[0];
-              // console.log("cart", data);
-              // dispatch(
-              //   actions.setCart({
-              //     id: data._id,
-              //   })
-              // );
               AsyncStorage.setItem("@id_cart", data._id);
             } else {
               setStatus("Something went wrong in cart");
@@ -108,7 +88,7 @@ export default function LoginScreen(props) {
             setStatus("Login success");
             onToggleSnackBar();
             AsyncStorage.setItem("@is_login", "true");
-            navigation.navigate("HomeScreen");
+            navigation.replace("HomeScreen");
           } else {
             setStatus("Wrong email or password");
             onToggleSnackBar();
@@ -132,13 +112,14 @@ export default function LoginScreen(props) {
 
   // connect login facebook
   const handleLoginFacebook = () => {
-    console.log("Login Facebook");
-    promptAsync();
+    setStatus("Feature is coming soon");
+    onToggleSnackBar();
   };
 
   // connect login google
   const handleLoginGoogle = () => {
-    console.log("Login Google");
+    setStatus("Feature is coming soon");
+    onToggleSnackBar();
   };
 
   return (
@@ -182,9 +163,9 @@ export default function LoginScreen(props) {
                 Forgot Password?
               </Text>
               <AuthButton
-              // disabled={!request}
-              // onLoginFacebook={handleLoginFacebook}
-              // onLoginGoogle={handleLoginGoogle}
+                // disabled={!request}
+                onLoginFacebook={handleLoginFacebook}
+                onLoginGoogle={handleLoginGoogle}
               />
               <ButtonApp
                 text="Login"
@@ -206,12 +187,6 @@ export default function LoginScreen(props) {
         duration={1500}
         style={[mainStyle.snackbar, styles.snackbar]}
         onDismiss={onDismissSnackBar}
-        // action={{
-        //   label: "Hide",
-        //   onPress: () => {
-
-        //   },
-        // }}
       >
         {status}
       </Snackbar>

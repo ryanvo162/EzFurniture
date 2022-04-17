@@ -16,7 +16,7 @@ import * as Icon from "react-native-feather";
 import { Snackbar } from "react-native-paper";
 import QuantityButton from "../../components/QuantityButton";
 import { useStore } from "../../provider";
-import { formatDisplayPrice } from "../../global/format";
+import { formatDisplayPrice, formatNumber } from "../../global/format";
 
 export default function DetailScreen(props) {
   const { navigation, route } = props;
@@ -42,7 +42,7 @@ export default function DetailScreen(props) {
     }
   };
 
-  const handlePlus = async () => {
+  const handlePlus = () => {
     setQuantity(quantity + 1);
   };
 
@@ -75,7 +75,20 @@ export default function DetailScreen(props) {
   const onDismissSnackBar = () => setVisible(false);
 
   const handleBuyNow = () => {
-    onToggleSnackBar();
+    navigation.navigate("ConfirmOrderScreen", {
+      data: [
+        {
+          id: id,
+          name: product.name,
+          price: formatNumber(product.price),
+          image: product.thumbnail,
+          quantity: quantity,
+        },
+      ],
+      subTotal: formatNumber(product.price) * quantity,
+      isDelete: false,
+    });
+    console.log("Change screen");
   };
 
   const handleAddCart = async () => {
@@ -98,7 +111,7 @@ export default function DetailScreen(props) {
         if (res.cart.return === true) {
           setStatus("Add to cart success");
           onToggleSnackBar();
-          navigation.replace("HomeScreen", {screen: "Cart"});
+          navigation.replace("HomeScreen", { screen: "Cart" });
         }
       })
       .catch((err) => {
@@ -183,7 +196,9 @@ export default function DetailScreen(props) {
               </View>
             </View>
 
-            <Text style={styles.price}>{formatDisplayPrice(product.price)}</Text>
+            <Text style={styles.price}>
+              {formatDisplayPrice(product.price)}
+            </Text>
             <Text style={styles.descriptionTilte}>Description</Text>
             <Text style={styles.description}>{product.description}</Text>
           </View>

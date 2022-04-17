@@ -26,3 +26,13 @@ export function formatPhoneNumber(phone) {
 export function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+//04-17-2022 09:00:43 => 17/04/2022 at 09:00
+export function formatDate(date) {
+  let dateFormat = date.toString().split(" ");
+  let dateText = dateFormat[0].split("-");
+  let timeText = dateFormat[1].split(":");
+  let dateDisplay = dateText[1] + "/" + dateText[0] + "/" + dateText[2];
+  let timeDisplay = timeText[0] + ":" + timeText[1];
+  return dateDisplay + " at " + timeDisplay;
+}

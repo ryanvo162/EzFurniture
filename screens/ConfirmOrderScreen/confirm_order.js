@@ -37,7 +37,7 @@ import { io } from "socket.io-client";
 
 export default function ConfirmOrderScreen(props) {
   const { navigation, route } = props;
-  const { data, subTotal } = route.params;
+  const { data, subTotal, isDelete } = route.params;
   const [state, dispatch] = useStore();
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
@@ -83,15 +83,14 @@ export default function ConfirmOrderScreen(props) {
       onPress={handleGoToDetail}
     />
   );
+
   const renderItem = ({ item }) => <Item item={item} />;
 
   const [paymentMethod, setPaymentMethod] = useState("cash");
   //info location
-  const [address, setAddress] = useState(
-    state.user.addresses[0] ?? "Click here to add address"
-  );
-  const [phone, setPhone] = useState(formatPhoneNumber(state.user.phone) ?? "");
-  const [name, setName] = useState(state.user.name ?? "");
+  const [address, setAddress] = useState(state.user?.addresses[0]?.place ?? "");
+  const [phone, setPhone] = useState(formatPhoneNumber(state.user?.phone) ?? "");
+  const [name, setName] = useState(state.user?.name ?? "");
   //shipping method
   const [shippingMethod, setShippingMethod] = useState("fast");
   const [shippingPrice, setShippingPrice] = useState(2);
@@ -134,8 +133,7 @@ export default function ConfirmOrderScreen(props) {
       name === "" ||
       phone === "" ||
       address === "" ||
-      shippingMethod === "" ||
-      address === "Click here to add address"
+      shippingMethod === ""
     ) {
       setStatus("Please fill all information");
       onToggleSnackBar();
@@ -175,6 +173,7 @@ export default function ConfirmOrderScreen(props) {
               language: "vn",
             },
             products_id: products,
+            isDelete: isDelete,
           }),
         }
       )
@@ -210,6 +209,7 @@ export default function ConfirmOrderScreen(props) {
                     language: "vn",
                   },
                   products_id: products,
+                  isDelete: isDelete,
                 },
               });
             }
@@ -246,7 +246,9 @@ export default function ConfirmOrderScreen(props) {
               <View style={styles.address}>
                 <Text style={styles.textInfoAddress}>{name}</Text>
                 <Text style={styles.textInfoAddress}>{phone}</Text>
-                <Text style={styles.textInfoAddress}>{address}</Text>
+                {address && (
+                  <Text style={styles.textInfoAddress}>{address}</Text>
+                )|| <Text style={styles.textInfoAddressError}>Click here to add address</Text>}
               </View>
             </Pressable>
 

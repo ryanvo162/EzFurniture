@@ -221,7 +221,7 @@ export default function CartTab(props) {
 
   const handleConfirm = () => {
     setModalVisible(!modalVisible);
-    navigation.navigate("ConfirmOrderScreen",{data:myArr,subTotal:subTotal});
+    navigation.navigate("ConfirmOrderScreen",{data:myArr,subTotal:subTotal,isDelete:true});
   };
 
   const handleCancel = () => {

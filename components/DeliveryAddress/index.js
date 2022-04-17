@@ -1,31 +1,25 @@
 import React, { useState } from "react";
-import { View, Text,Pressable } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import { styles } from "./style";
 import * as Icon from "react-native-feather";
 import { primaryColor } from "../../global/colors";
 
-
-
 export default function DeliveryAddressItem(props) {
-    const { onPress } = props;
-    return (
-        <Pressable style={styles.container} onPress={onPress}>
+  const { onPress, name, status, phoneNumber, address } = props;
+  return (
+    <Pressable style={styles.container} onPress={onPress}>
+      <View style={styles.usernameContainer}>
+        <Text style={styles.username}>{name}</Text>
+        <Text style={styles.status}>{status}</Text>
+      </View>
+      <Text style={styles.phoneNumber}>{phoneNumber}</Text>
 
-            <View style={styles.usernameContainer}>
-
-                <Text style={styles.username}>Nguyen Quang Thuan</Text>
-                <Text style={styles.status}>[Default]</Text>
-
-            </View>
-            <Text style={styles.phoneNumber}>+84 987 654 321</Text>
-            <Text style={styles.address}>2972 Westheimer Rd. Santa Ana,
-                Illinois 85486 </Text>
-            <View style={styles.locationIcon}>
-                <Icon.MapPin stroke={primaryColor} />
-            </View>
-
-
-
-        </Pressable>
-    );
+      {(address && <Text style={styles.address}>{address}</Text>) || (
+        <Text style={styles.addressError}>Click here to edit</Text>
+      )}
+      <View style={styles.locationIcon}>
+        <Icon.MapPin stroke={primaryColor} />
+      </View>
+    </Pressable>
+  );
 }

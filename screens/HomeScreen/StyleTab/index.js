@@ -29,9 +29,9 @@ export default function StyleTab(props) {
   const [myArr, setMyArr] = useState([]);
 
   const data = myArr.length !== 0 ? [...myArr] : [];
-  if (data.length !== 0) {
+  // if (data.length !== 0) {
     // console.log("data:", data[0].name);
-  }
+  // }
   // console.log("data:", data);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function StyleTab(props) {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log("myArr:", myArr);
+  // console.log("myArr:", myArr);
   const handleGoToProduct = (id) => {
     navigation.navigate("ProductScreen", { _id_style: id, title: "Style" });
   };

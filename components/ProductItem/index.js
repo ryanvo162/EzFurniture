@@ -10,7 +10,7 @@ import { styles } from "./style";
 import * as Icon from "react-native-feather";
 
 export default function ProductItem(props) {
-  const { name, image, price, onPress,id } = props;
+  const { name, image, price, onPress, id } = props;
   const [isLoading, setIsLoading] = useState(true);
 
   const handleChoose = () => {
@@ -35,8 +35,13 @@ export default function ProductItem(props) {
           <Text numberOfLines={1} ellipsizeMode="tail" style={styles.name}>
             {name}
           </Text>
-          <Text style={styles.price} >${price}</Text>
-          <Icon.Heart stroke={"white"} width={16} height={16} style={styles.iconStyle} />
+          <Text style={styles.price}>${price}</Text>
+          <Icon.Heart
+            stroke={"white"}
+            width={16}
+            height={16}
+            style={styles.iconStyle}
+          />
         </View>
       </ImageBackground>
     </Pressable>

@@ -49,6 +49,7 @@ export default function VNPayScreen(props) {
             status: "request",
             info_payment: value.data,
             products_id: data.products_id,
+            isDelete: data.isDelete,
           }),
         })
           .then((res) => res.json())
@@ -67,7 +68,6 @@ export default function VNPayScreen(props) {
       }
     });
   }, []);
-  // console.log("response:", response);
 
   return (
     <View style={styles.container}>

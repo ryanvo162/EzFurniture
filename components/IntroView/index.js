@@ -9,19 +9,14 @@ export default function IntroView(props) {
   const { onPress } = props;
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Modern Furniture</Text>
 
       <Text style={styles.introText}>
-        Contrary to popular belief, Lorem Ipsum is not simply random text. It
-        has roots in a piece of classical Latin literature from 45 BC, making it
-        over 2000 years old. Richard McClintock.
+        We are EzFurniture, a small business that specializes in furniture,
+        lighting, and home decoration items. We believe passionately in great
+        bargains and excellent service, which is why we commit ourselves to
+        giving you the best of both.
       </Text>
 
-      <View style={styles.btnNext}>
-        <Pressable onPress={onPress} style={styles.btn}>
-          <Icon.ChevronRight stroke="white" />
-        </Pressable>
-      </View>
     </View>
   );
 }

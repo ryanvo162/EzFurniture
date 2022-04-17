@@ -1,5 +1,13 @@
-import { View, ImageBackground, ActivityIndicator } from "react-native";
-import React,{useState} from "react";
+import {
+  View,
+  ImageBackground,
+  ActivityIndicator,
+  Pressable,
+  Text,
+  Animated,
+} from "react-native";
+import * as Icon from "react-native-feather";
+import React, { useState, useEffect, useRef } from "react";
 
 import { styles } from "./style";
 import IntroView from "../../components/IntroView";
@@ -10,7 +18,27 @@ export default function WelcomeScreen(props) {
   const { navigation } = props;
   const handleGoToNext = () => {
     navigation.replace("LoginScreen");
-  }
+  };
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(fadeAnim, {
+          toValue: 1,
+          duration: 500,
+          delay: 500,
+          useNativeDriver: true,
+        }),
+        Animated.timing(fadeAnim, {
+          toValue: 0.3,
+          duration: 500,
+          delay: 200,
+          useNativeDriver: true,
+        }),
+      ])
+    ).start();
+  }, [fadeAnim]);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -21,9 +49,7 @@ export default function WelcomeScreen(props) {
           <ImageBackground
             onLoadStart={() => setIsLoading(true)}
             onLoadEnd={() => setIsLoading(false)}
-            source={{
-              uri: "https://firebasestorage.googleapis.com/v0/b/furniture-upload-img.appspot.com/o/bg_home1.png?alt=media&token=128a49e0-ae7e-4474-987a-dfe259b0e4fd",
-            }}
+            source={require("../../assets/img/welcome_bg1.png")}
             resizeMode="cover"
             style={styles.image}
           >
@@ -32,6 +58,27 @@ export default function WelcomeScreen(props) {
                 <ActivityIndicator size="large" color="gray" />
               </View>
             )}
+            <IntroView />
+            <Pressable onPress={handleGoToNext} style={styles.buttonNext}>
+              <Animated.Text
+                style={[
+                  styles.textButtonNext,
+                  {
+                    opacity: fadeAnim,
+                  },
+                ]}
+              >
+                Swipe
+              </Animated.Text>
+              <Animated.View
+                style={[
+                  styles.swipe,
+                  {
+                    opacity: fadeAnim,
+                  },
+                ]}
+              />
+            </Pressable>
           </ImageBackground>
         </View>
 
@@ -39,9 +86,7 @@ export default function WelcomeScreen(props) {
           <ImageBackground
             onLoadStart={() => setIsLoading(true)}
             onLoadEnd={() => setIsLoading(false)}
-            source={{
-              uri: "https://firebasestorage.googleapis.com/v0/b/furniture-upload-img.appspot.com/o/bg_home2.png?alt=media&token=e83df5d2-d22e-4b9e-95e9-2c0167462236",
-            }}
+            source={require("../../assets/img/welcome_bg2.png")}
             resizeMode="cover"
             style={styles.image}
           >
@@ -50,28 +95,13 @@ export default function WelcomeScreen(props) {
                 <ActivityIndicator size="large" color="gray" />
               </View>
             )}
-          </ImageBackground>
-        </View>
-
-        <View style={styles.container} key="3">
-          <ImageBackground
-            onLoadStart={() => setIsLoading(true)}
-            onLoadEnd={() => setIsLoading(false)}
-            source={{
-              uri: "https://firebasestorage.googleapis.com/v0/b/furniture-upload-img.appspot.com/o/bg_home3.png?alt=media&token=7f39dc6b-8c6b-4546-a91e-9b2860fb9ddb",
-            }}
-            resizeMode="cover"
-            style={styles.image}
-          >
-            {isLoading && (
-              <View style={styles.loading}>
-                <ActivityIndicator size="large" color="gray" />
-              </View>
-            )}
+            <Pressable onPress={handleGoToNext} style={styles.button}>
+              <Text style={styles.buttonText}>Get Started</Text>
+              <Icon.ChevronRight color="white" />
+            </Pressable>
           </ImageBackground>
         </View>
       </PagerView>
-      <IntroView onPress={handleGoToNext} />
     </View>
   );
 }
