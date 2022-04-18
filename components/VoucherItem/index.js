@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Image, ActivityIndicator, Pressable } from "react-native";
 
-import * as Icon from "react-native-feather";
 import { styles } from "./style";
 
 export default function Voucher(props) {

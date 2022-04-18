@@ -1,9 +1,10 @@
 //format string 123.456.789 to int 123456789
 export function formatNumber(number) {
-  // return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   return Number(number.toString().replace(/\D/g, ""));
 }
 
+
+//format string 123456789 to string 123.456.789
 export function formatDisplayPrice(price) {
   let priceFormat = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   let priceDisplay;
@@ -20,6 +21,13 @@ export function formatPhoneNumber(phone) {
   let phoneFormat = phone.toString().replace(/\D/g, "");
   let phoneDisplay;
   return phoneDisplay = "+84" + phoneFormat;
+}
+
+//format phone number "+84938033495" to 938033495
+export function formatPhoneNumberDisplay(phone) {
+  let phoneFormat = phone.toString().replace(/\D/g, "");
+  let phoneDisplay;
+  return phoneDisplay = phoneFormat.substring(2);
 }
 
 //capitalize first letter of string

@@ -1,4 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
+import { gray2Color, gray3Color } from "../../global/colors";
 import { bold } from "../../global/fonts";
 
 export const styles = StyleSheet.create({
@@ -39,8 +40,20 @@ export const styles = StyleSheet.create({
     width: "100%",
     paddingHorizontal: 8,
   },
-  
+
   searchbar: {
     marginBottom: 16,
+  },
+
+  emptyView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  emptyText: {
+    fontSize: bold.fontSize,
+    fontFamily: bold.fontFamily,
+    color: gray2Color,
   },
 });

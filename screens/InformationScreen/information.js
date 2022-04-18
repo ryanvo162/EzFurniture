@@ -11,35 +11,31 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
+import * as formatter from "../../global/format";
 
-import { Button, Snackbar } from "react-native-paper";
-
+import { Snackbar } from "react-native-paper";
 import * as Icon from "react-native-feather";
+import { styles as mainStyle } from "../../screens/styles";
 import { styles } from "./style";
 
 import { gray2Color } from "../../global/colors";
 import ButtonApp from "../../components/Button";
-import { styles as mainStyle } from "../../screens/styles";
-import { useStore } from "../../provider";
+import { actions, useStore } from "../../provider";
 
 export default function InformationScreen(props) {
   const { navigation } = props;
 
   const [state, dispatch] = useStore();
 
-  console.log("state:", state);
-
   const [name, setName] = useState(state.user.name ?? "");
-  const [email, setEmail] = useState(state.user.email ?? "");
-  const [phone, setPhone] = useState(state.user.phone ?? "");
+  const [phone, setPhone] = useState(
+    formatter.formatPhoneNumber(state.user.phone) ?? ""
+  );
   const [dob, setDOB] = useState(state.user.dob ?? "");
 
   const [status, setStatus] = useState(null);
-
   const [visible, setVisible] = useState(false);
-
   const onToggleSnackBar = () => setVisible(!visible);
-
   const onDismissSnackBar = () => setVisible(false);
 
   const handleGoBack = () => {
@@ -49,7 +45,7 @@ export default function InformationScreen(props) {
     navigation.navigate("ChangePasswordScreen");
   };
 
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState(state.user.avatar ?? "");
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -67,15 +63,9 @@ export default function InformationScreen(props) {
     }
   };
 
-  const formatEmail = (email) => {
-    // console.log(email);
-    const pattern =
-      /[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g;
-    return pattern.test(email);
-  };
-
   const formatPhoneNumber = (phoneNumber) => {
-    const pattern = /(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/;
+    //pattern +84xxxxxxxxx
+    const pattern = /^\+84\d{9,10}$/g;
     return pattern.test(phoneNumber);
   };
 
@@ -90,17 +80,11 @@ export default function InformationScreen(props) {
     if (name == "" || name == null) {
       setStatus("Please enter your name");
       onToggleSnackBar();
-    } else if (email == "" || email == null) {
-      setStatus("Please enter your email");
-      onToggleSnackBar();
     } else if (phone == "" || phone == null) {
       setStatus("Please enter your phone number");
       onToggleSnackBar();
     } else if (dob == "" || dob == null) {
       setStatus("Please enter your date of birth");
-      onToggleSnackBar();
-    } else if (formatEmail(email) == false) {
-      setStatus("Email is not valid");
       onToggleSnackBar();
     } else if (formatPhoneNumber(phone) == false) {
       setStatus("Phone number is not valid");
@@ -108,14 +92,52 @@ export default function InformationScreen(props) {
     } else if (formatDate(dob) == false) {
       setStatus("Date of birth is not valid");
       onToggleSnackBar();
+    } else {
+      return true;
     }
   };
 
-  const handleSave = () => {
-    //validate
-    handleValidate();
-    // save to db
-    // go to home
+  const handleSave = async () => {
+    if (handleValidate()) {
+      await fetch(
+        "https://admin.furniture.bandn.online/mobile/updateInfoUser",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: state.user.id,
+            name: name,
+            phone: formatter.formatPhoneNumberDisplay(phone),
+            dob: dob,
+            // avatar: image,
+          }),
+        }
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          console.log(response);
+          if (response.payload.status === true) {
+            setStatus("Update successfully");
+            onToggleSnackBar();
+            dispatch(
+              actions.updateUser({
+                name: name,
+                phone: formatter.formatPhoneNumberDisplay(phone),
+                dob: dob,
+                avatar: image,
+              })
+            );
+          } else {
+            setStatus("Update failed");
+            onToggleSnackBar();
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   return (
@@ -146,17 +168,6 @@ export default function InformationScreen(props) {
                   defaultValue={name}
                   placeholderTextColor={gray2Color}
                   onChangeText={setName}
-                  color={"black"}
-                  cursorColor="black"
-                  selectionColor="black"
-                />
-                <Text style={styles.textTitleInput}>Email</Text>
-                <TextInput
-                  style={styles.textInput}
-                  placeholder={"ez@furniture.com"}
-                  defaultValue={email}
-                  placeholderTextColor={gray2Color}
-                  onChangeText={setEmail}
                   color={"black"}
                   cursorColor="black"
                   selectionColor="black"

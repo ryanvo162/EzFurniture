@@ -10,6 +10,23 @@ import SearchBar from "../../components/SearchBar";
 export default function ProductScreen(props) {
   const { navigation, route } = props;
   const { _id_category, _id_style, title } = route.params;
+  const [search, setSearch] = useState("");
+  // console.log(route.params);
+
+  const handleSearch = async () => {
+    if (search.length !== 0) {
+      await fetch("https://admin.furniture.bandn.online/mobile/product")
+        .then((res) => res.json())
+        .then((res) => {
+          //search
+          const newArr = res.product.filter((item) => {
+            return item.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+          });
+          setMyArrSearch(newArr);
+        })
+        .catch((err) => console.log(err));
+    }
+  };
 
   const renderItem = ({ item }) => <Item item={item} />;
 
@@ -23,12 +40,11 @@ export default function ProductScreen(props) {
     />
   );
   const [myArr, setMyArr] = useState([]);
+  const data = myArr.length !== 0 ? [...myArr] : [];
 
-  const DATA = myArr.length !== 0 ? [...myArr] : [];
-  if (DATA.length !== 0) {
-    console.log("DATA[0].name:", DATA[0].id);
-  }
-  console.log("DATA:", DATA);
+  const [myArrSearch, setMyArrSearch] = useState([]);
+
+  const dataSearch = myArrSearch.length !== 0 ? [...myArrSearch] : [];
 
   if (_id_category !== undefined) {
     useEffect(async () => {
@@ -46,7 +62,6 @@ export default function ProductScreen(props) {
       )
         .then((res) => res.json())
         .then((res) => {
-          console.log(res.payload.data);
           setMyArr(res.payload.data);
         })
         .catch((err) => {
@@ -70,7 +85,7 @@ export default function ProductScreen(props) {
       )
         .then((res) => res.json())
         .then((res) => {
-          console.log(res.payload.data);
+          // console.log(res.payload.data);
           setMyArr(res.payload.data);
         })
         .catch((err) => {
@@ -79,8 +94,6 @@ export default function ProductScreen(props) {
         });
     }, []);
   }
-
-  console.log("myArr:", myArr);
 
   const handleDetailProduct = (id) => {
     navigation.navigate("DetailScreen", { id });
@@ -91,7 +104,7 @@ export default function ProductScreen(props) {
   };
 
   const handleGoToCart = () => {
-    navigation.navigate("HomeScreen", { screen: "Cart" });
+    navigation.replace("HomeScreen", { screen: "Cart" });
   };
 
   return (
@@ -109,23 +122,49 @@ export default function ProductScreen(props) {
       </View>
 
       <View style={styles.searchbar}>
-        <SearchBar />
+        <SearchBar onChangeText={setSearch} onSearch={handleSearch} />
       </View>
-
-      <FlatList
-        overScrollMode="never"
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 60 }}
-        style={styles.flatList}
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={(item) => item._id}
-        numColumns={2}
-        columnWrapperStyle={{
-          flexGrow: 1,
-          justifyContent: "center",
-        }}
-      />
+      {data.length !== 0 || dataSearch.length !== 0 ? (
+        search === "" ? (
+          <FlatList
+            overScrollMode="never"
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ paddingBottom: 60 }}
+            style={styles.flatList}
+            data={data}
+            renderItem={renderItem}
+            keyExtractor={(item) => item._id}
+            numColumns={2}
+            columnWrapperStyle={{
+              flexGrow: 1,
+              justifyContent: "center",
+            }}
+          />
+        ) : dataSearch.length !== 0 ? (
+          <FlatList
+            overScrollMode="never"
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ paddingBottom: 60 }}
+            style={styles.flatList}
+            data={dataSearch}
+            renderItem={renderItem}
+            keyExtractor={(item) => item._id}
+            numColumns={2}
+            columnWrapperStyle={{
+              flexGrow: 1,
+              justifyContent: "center",
+            }}
+          />
+        ) : (
+          <View style={styles.emptyView}>
+            <Text style={styles.emptyText}>Please press icon search</Text>
+          </View>
+        )
+      ) : (
+        <View style={styles.emptyView}>
+          <Text style={styles.emptyText}>We don't any items</Text>
+        </View>
+      )}
     </View>
   );
 }

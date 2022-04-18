@@ -29,26 +29,6 @@ const DATA = [
     description: "For minimum order 2000k",
     date: "HSD: 31/03/2022",
   },
-  {
-    id: "4",
-    title: "First Item",
-    image: require("../../assets/img/welcome_bg1.png"),
-  },
-  {
-    id: "5",
-    title: "First Item",
-    image: require("../../assets/img/welcome_bg1.png"),
-  },
-  {
-    id: "6",
-    title: "First Item",
-    image: require("../../assets/img/welcome_bg1.png"),
-  },
-  {
-    id: "7",
-    title: "First Item",
-    image: require("../../assets/img/welcome_bg1.png"),
-  },
 ];
 
 export default function VoucherScreen(props) {

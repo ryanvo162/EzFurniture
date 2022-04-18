@@ -89,7 +89,9 @@ export default function ConfirmOrderScreen(props) {
   const [paymentMethod, setPaymentMethod] = useState("cash");
   //info location
   const [address, setAddress] = useState(state.user?.addresses[0]?.place ?? "");
-  const [phone, setPhone] = useState(formatPhoneNumber(state.user?.phone) ?? "");
+  const [phone, setPhone] = useState(
+    formatPhoneNumber(state.user?.phone) ?? ""
+  );
   const [name, setName] = useState(state.user?.name ?? "");
   //shipping method
   const [shippingMethod, setShippingMethod] = useState("fast");
@@ -246,9 +248,13 @@ export default function ConfirmOrderScreen(props) {
               <View style={styles.address}>
                 <Text style={styles.textInfoAddress}>{name}</Text>
                 <Text style={styles.textInfoAddress}>{phone}</Text>
-                {address && (
+                {address !== "" ? (
                   <Text style={styles.textInfoAddress}>{address}</Text>
-                )|| <Text style={styles.textInfoAddressError}>Click here to add address</Text>}
+                ) : (
+                  <Text style={styles.textInfoAddressError}>
+                    Choose your delivery address
+                  </Text>
+                )}
               </View>
             </Pressable>
 

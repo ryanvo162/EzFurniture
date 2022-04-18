@@ -1,4 +1,4 @@
-import { SET_USER, SET_CART, SET_ADDRESS } from "./constants";
+import { SET_USER, SET_CART, SET_ADDRESS, UPDATE_USER } from "./constants";
 
 export const initialState = {
   user: {
@@ -33,6 +33,14 @@ function reducer(state, action) {
         user: {
           ...state.user,
           addresses: action.payload,
+        },
+      };
+    case UPDATE_USER:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          ...action.payload,
         },
       };
     default:

@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
 
   scrollView: {
     flexGrow: 1,
-    paddingTop: 80,
+    paddingTop: 90,
     paddingBottom: 20,
     backgroundColor: whiteColor,
   },
@@ -51,26 +51,29 @@ export const styles = StyleSheet.create({
     marginHorizontal: 34,
   },
   input: {
-    padding: 20,
     borderRadius: 5,
     backgroundColor: whiteColor,
-    marginTop: 20,
     borderColor: primaryColor,
     fontSize: body.fontSize,
     fontFamily: body.fontFamily,
     borderWidth: 1,
+    paddingHorizontal: 25,
+    paddingVertical: Platform.OS === "ios" ? 19 : 13,
+    marginTop: 12,
   },
 
   buttonContainer: {
     alignItems: "center",
-    marginTop: 30,
+    marginTop: 16,
   },
 
   image: {
-    width: 415,
-    height: 440,
-    marginBottom: 20,
-    marginTop: 20,
-    marginLeft: 20,
+    position: "absolute",
+    width: 360,
+    height: 360,
+    right: -30,
+    top: 26,
+    resizeMode: "contain",
+    // backgroundColor: "red",
   },
 });

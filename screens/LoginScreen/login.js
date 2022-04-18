@@ -25,7 +25,7 @@ import { actions, useStore } from "../../provider";
 export default function LoginScreen(props) {
   const { navigation, route } = props;
   const [data, setData] = useState(route.params?.data ?? null);
-  console.log("data", data);
+  // console.log("data", data);
   const [state, dispatch] = useStore();
   // let storeData;
 
@@ -38,14 +38,14 @@ export default function LoginScreen(props) {
   const onDismissSnackBar = () => setVisible(false);
 
   const formatEmail = (email) => {
-    console.log(email);
+    // console.log(email);
     const pattern =
       /[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g;
     return pattern.test(email);
   };
 
   const handleLogin = async () => {
-    console.log("handleLogin");
+    // console.log("handleLogin");
     if (email == null || password == null || email == "" || password == "") {
       setStatus("Email and password cannot be empty");
       onToggleSnackBar();
@@ -68,7 +68,7 @@ export default function LoginScreen(props) {
       )
         .then((res) => res.json())
         .then((res) => {
-          console.log(res.data.user.payload.data);
+          console.log(res);
           if (res.status === true) {
             if (res.data.user) {
               let data = res.data.user.payload.data;

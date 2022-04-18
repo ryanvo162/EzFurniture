@@ -82,6 +82,7 @@ export const styles = StyleSheet.create({
   textInfoAddress: {
     fontSize: body.fontSize,
     fontFamily: body.fontFamily,
+    color: blackColor,
     marginBottom: 2,
   },
 

@@ -1,30 +1,25 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { View, TextInput, Pressable } from "react-native";
 import { styles } from "./style";
-import { Searchbar } from "react-native-paper";
+import * as Icon from "react-native-feather";
 import { body } from "../../global/fonts";
 
 export default function SearchBar(props) {
-  const { onChangeText, name } = props;
-
-  const onChangeSearch = () => {
-    onChangeText(name);
-  };
+  const { onChangeText, onSearch } = props;
 
   return (
-    <Searchbar
-      style={styles.searchbar}
-      iconColor="white"
-      inputStyle={{
-        color: "white",
-        fontSize: body.fontSize,
-        fontFamily: body.fontFamily,
-      }}
-      placeholder="Search"
-      placeholderTextColor={"white"}
-      cursorColor={"white"}
-      selectionColor={"white"}
-      onChangeText={onChangeSearch}
-    />
+    <View style={styles.container}>
+      <TextInput
+        style={styles.searchbar}
+        placeholder="Search"
+        placeholderTextColor={"white"}
+        cursorColor="white"
+        selectionColor={"white"}
+        onChangeText={onChangeText}
+      />
+      <Pressable onPress={onSearch} style={styles.iconSearch}>
+        <Icon.Search color={"white"} width={20} height={20}/>
+      </Pressable>
+    </View>
   );
 }

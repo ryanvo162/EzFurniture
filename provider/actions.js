@@ -1,4 +1,4 @@
-import { SET_USER, SET_CART, SET_ADDRESS } from "./constants";
+import { SET_USER, SET_CART, SET_ADDRESS, UPDATE_USER } from "./constants";
 
 export const setUser = payload => ({
     type: SET_USER,
@@ -12,5 +12,10 @@ export const setCart = payload => ({
 
 export const setAddress = payload => ({
     type: SET_ADDRESS,
+    payload
+});
+
+export const updateUser = payload => ({
+    type: UPDATE_USER,
     payload
 });
