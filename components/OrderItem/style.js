@@ -17,15 +17,16 @@ export const styles = StyleSheet.create({
 
   imageView: {
     flex: 1,
-    backgroundColor: gray3Color,
-    borderRadius: 5,
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   image: {
-    width: "100%",
-    height: "100%",
+    width: "75%",
+    height: "75%",
     borderTopLeftRadius: 5,
     borderBottomLeftRadius: 5,
+    resizeMode: "contain",
   },
 
   loading: {

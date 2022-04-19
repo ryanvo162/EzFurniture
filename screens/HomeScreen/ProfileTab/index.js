@@ -125,7 +125,7 @@ export default function ProfileTab(props) {
 
           <Pressable onPress={handleGoToVouchers} style={styles.items}>
             <Icon.Gift stroke="#fff" strokeWidth={1.5} height={30} width={30} />
-            <Text style={styles.itemsText}>Gift card &amp; vouchers</Text>
+            <Text style={styles.itemsText}>Gift &amp; vouchers</Text>
 
             <View style={styles.iconNext}>
               <Icon.ChevronRight stroke="#fff" />

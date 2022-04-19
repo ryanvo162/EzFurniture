@@ -41,6 +41,7 @@ export default function ProductScreen(props) {
   );
   const [myArr, setMyArr] = useState([]);
   const data = myArr.length !== 0 ? [...myArr] : [];
+  console.log(data);
 
   const [myArrSearch, setMyArrSearch] = useState([]);
 
@@ -157,7 +158,7 @@ export default function ProductScreen(props) {
           />
         ) : (
           <View style={styles.emptyView}>
-            <Text style={styles.emptyText}>Please press icon search</Text>
+            <Text style={styles.emptyText}>We don't any items</Text>
           </View>
         )
       ) : (

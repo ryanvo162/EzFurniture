@@ -41,19 +41,6 @@ export const styles = StyleSheet.create({
     paddingLeft: "3%",
   },
 
-  emptyCart: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingBottom: "5%",
-  },
-
-  textEmptyCart: {
-    fontSize: title3.fontSize,
-    fontFamily: title3.fontFamily,
-    color: gray3Color,
-  },
-
   btnPayment: {
     width: "100%",
     position: "absolute",
@@ -124,5 +111,23 @@ export const styles = StyleSheet.create({
   btnContainer: {
     width: "100%",
     alignItems: "center",
+  },
+
+  empty: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  emptyText: {
+    fontSize: bold.fontSize,
+    fontFamily: bold.fontFamily,
+    color: gray3Color,
+  },
+
+  emptyImage: {
+    width: "80%",
+    height: 250,
+    resizeMode: "contain",
+    marginBottom: 20,
   },
 });

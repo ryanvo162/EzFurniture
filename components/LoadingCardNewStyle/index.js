@@ -4,7 +4,6 @@ import { View, Text, Animated, Button } from "react-native";
 
 export default function LoadingCardNewStyle() {
   const fadeAnim = useRef(new Animated.Value(0)).current;
-  const [hide, setHide] = useState(false);
 
   useEffect(() => {
     Animated.loop(

@@ -1,5 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { View, ImageBackground, ActivityIndicator } from "react-native";
+import React, { useState, useEffect, useRef } from "react";
+import {
+  View,
+  ImageBackground,
+  ActivityIndicator,
+  Animated,
+  Easing,
+  Pressable,
+  Text,
+} from "react-native";
 import { Snackbar } from "react-native-paper";
 import * as Icon from "react-native-feather";
 import { styles } from "./style";
@@ -7,11 +15,64 @@ import { styles as mainStyle } from "../../../screens/styles";
 
 import PagerView from "react-native-pager-view";
 import CategoryItem from "../../../components/CategoryItem";
+import { blackColor, primaryColor, whiteColor } from "../../../global/colors";
+import { capslock } from "../../../global/format";
 
 export default function HomeTab(props) {
   const { navigation } = props;
 
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const fadeAnim1 = useRef(new Animated.Value(0)).current;
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (isLoading) {
+      Animated.loop(
+        Animated.sequence([
+          Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 500,
+            delay: 500,
+            easing: Easing.linear,
+            useNativeDriver: true,
+          }),
+          Animated.timing(fadeAnim, {
+            toValue: 0.3,
+            duration: 500,
+            easing: Easing.linear,
+            delay: 200,
+            useNativeDriver: true,
+          }),
+        ])
+      ).start();
+    } else {
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 500,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }).start();
+      Animated.loop(
+        Animated.sequence([
+          Animated.timing(fadeAnim1, {
+            toValue: 1,
+            duration: 500,
+            delay: 500,
+            easing: Easing.linear,
+            useNativeDriver: true,
+          }),
+          Animated.timing(fadeAnim1, {
+            toValue: 0.3,
+            duration: 500,
+            easing: Easing.linear,
+            delay: 200,
+            useNativeDriver: true,
+          }),
+        ])
+      ).start();
+    }
+  }, [fadeAnim, isLoading]);
+
   const [myArr, setMyArr] = useState([]);
 
   const [status, setStatus] = useState(null);
@@ -33,7 +94,7 @@ export default function HomeTab(props) {
       .then((res) => res.json())
       .then((res) => {
         setStatus("Welcome to EzFurniture");
-        setMyArr(res.data)
+        setMyArr(res.data);
       })
       .catch((err) => {
         setStatus("Sorry, something went wrong with the server.");
@@ -58,7 +119,16 @@ export default function HomeTab(props) {
         style={styles.container}
         initialPage={0}
       >
-        <View style={styles.container} key="1">
+        {/* Page 1 */}
+        <Animated.View
+          style={[
+            styles.container,
+            {
+              opacity: fadeAnim,
+            },
+          ]}
+          key="1"
+        >
           <ImageBackground
             onLoadStart={() => setIsLoading(true)}
             onLoadEnd={() => setIsLoading(false)}
@@ -66,42 +136,54 @@ export default function HomeTab(props) {
             resizeMode="cover"
             style={styles.image}
           >
-            {isLoading && (
-              <View style={styles.loading}>
-                <ActivityIndicator size="large" color="gray" />
-              </View>
-            )}
+            <Pressable style={styles.buttonNext}>
+              <Animated.View
+                style={[
+                  styles.buttonNextIcon,
+                  {
+                    opacity: fadeAnim1,
+                  },
+                ]}
+              >
+                <Icon.ArrowRightCircle
+                  color={whiteColor}
+                  width={40}
+                  height={40}
+                />
+              </Animated.View>
+            </Pressable>
             {DATA.length !== 0 && (
               <>
                 <CategoryItem
                   id={DATA[0]._id}
-                  category={DATA[0].name}
-                  bottom={240}
-                  right={50}
+                  category={capslock(DATA[0].name)}
+                  // sofa
+                  bottom={260}
+                  right={65}
                   color="white"
                   onPress={handleGoToProduct}
                 />
 
                 <CategoryItem
                   id={DATA[1]._id}
-                  category={DATA[1].name}
-                  bottom={150}
-                  left={102}
+                  category={capslock(DATA[1].name)}
+                  bottom={140}
+                  left={60}
                   color="white"
                   onPress={handleGoToProduct}
                 />
                 <CategoryItem
                   id={DATA[2]._id}
-                  category={DATA[2].name}
-                  top={225}
+                  category={capslock(DATA[2].name)}
+                  top={200}
                   right={100}
                   color="white"
                   onPress={handleGoToProduct}
                 />
                 <CategoryItem
                   id={DATA[3]._id}
-                  category={DATA[3].name}
-                  bottom={60}
+                  category={capslock(DATA[3].name)}
+                  bottom={90}
                   right={27}
                   color="white"
                   onPress={handleGoToProduct}
@@ -109,8 +191,18 @@ export default function HomeTab(props) {
               </>
             )}
           </ImageBackground>
-        </View>
-        <View style={styles.container} key="2">
+        </Animated.View>
+        {/* Page 1 end */}
+        {/* Page 2 */}
+        <Animated.View
+          style={[
+            styles.container,
+            {
+              opacity: fadeAnim,
+            },
+          ]}
+          key="2"
+        >
           <ImageBackground
             onLoadStart={() => setIsLoading(true)}
             onLoadEnd={() => setIsLoading(false)}
@@ -118,34 +210,63 @@ export default function HomeTab(props) {
             resizeMode="cover"
             style={styles.image}
           >
-            {isLoading && (
-              <View style={styles.loading}>
-                <ActivityIndicator size="large" color="gray" />
-              </View>
-            )}
+            <Pressable style={styles.buttonBack}>
+              <Animated.View
+                style={[
+                  styles.buttonBackIcon,
+                  {
+                    opacity: fadeAnim1,
+                  },
+                ]}
+              >
+                <Icon.ChevronLeft color={whiteColor} width={40} height={40} />
+              </Animated.View>
+            </Pressable>
+            <Pressable style={styles.buttonNext}>
+              <Animated.View
+                style={[
+                  styles.buttonNextIcon,
+                  {
+                    opacity: fadeAnim1,
+                  },
+                ]}
+              >
+                <Icon.ChevronRight color={whiteColor} width={40} height={40} />
+              </Animated.View>
+            </Pressable>
             {DATA.length !== 0 && (
               <>
                 <CategoryItem
                   id={DATA[4]._id}
-                  category={DATA[4].name}
-                  top={100}
-                  right={40}
+                  category={capslock(DATA[4].name)}
+                  top={150}
+                  right={95}
                   color="white"
                   onPress={handleGoToProduct}
                 />
                 <CategoryItem
                   id={DATA[5]._id}
-                  category={DATA[5].name}
-                  bottom={130}
-                  left={150}
+                  category={capslock(DATA[5].name)}
+                  bottom={145}
+                  left={120}
                   color="white"
                   onPress={handleGoToProduct}
                 />
               </>
             )}
           </ImageBackground>
-        </View>
-        <View style={styles.container} key="3">
+        </Animated.View>
+        {/* Page 2 end */}
+        {/* Page 3 */}
+        <Animated.View
+          style={[
+            styles.container,
+            {
+              opacity: fadeAnim,
+            },
+          ]}
+          key="3"
+        >
           <ImageBackground
             onLoadStart={() => setIsLoading(true)}
             onLoadEnd={() => setIsLoading(false)}
@@ -153,16 +274,35 @@ export default function HomeTab(props) {
             resizeMode="cover"
             style={styles.image}
           >
-            {isLoading && (
-              <View style={styles.loading}>
-                <ActivityIndicator size="large" color="gray" />
-              </View>
-            )}
+            <Pressable style={styles.buttonBack}>
+              <Animated.View
+                style={[
+                  styles.buttonBackIcon,
+                  {
+                    opacity: fadeAnim1,
+                  },
+                ]}
+              >
+                <Icon.ChevronLeft color={blackColor} width={40} height={40} />
+              </Animated.View>
+            </Pressable>
+            <Pressable style={styles.buttonNext}>
+              <Animated.View
+                style={[
+                  styles.buttonNextIcon,
+                  {
+                    opacity: fadeAnim1,
+                  },
+                ]}
+              >
+                <Icon.ChevronRight color={blackColor} width={40} height={40} />
+              </Animated.View>
+            </Pressable>
             {DATA.length !== 0 && (
               <>
                 <CategoryItem
                   id={DATA[6]._id}
-                  category={DATA[6].name}
+                  category={capslock(DATA[6].name)}
                   bottom={200}
                   right={60}
                   color="white"
@@ -170,25 +310,35 @@ export default function HomeTab(props) {
                 />
                 <CategoryItem
                   id={DATA[7]._id}
-                  category={DATA[7].name}
-                  top={120}
-                  left={50}
+                  category={capslock(DATA[7].name)}
+                  top={275}
+                  left={100}
                   color="white"
                   onPress={handleGoToProduct}
                 />
                 <CategoryItem
                   id={DATA[8]._id}
-                  category={DATA[8].name}
-                  bottom={230}
-                  left={30}
+                  category={capslock(DATA[8].name)}
+                  bottom={245}
+                  left={50}
                   color="white"
                   onPress={handleGoToProduct}
                 />
               </>
             )}
           </ImageBackground>
-        </View>
-        <View style={styles.container} key="4">
+        </Animated.View>
+        {/* Page 3 end */}
+        {/* Page 4 */}
+        <Animated.View
+          style={[
+            styles.container,
+            {
+              opacity: fadeAnim,
+            },
+          ]}
+          key="4"
+        >
           <ImageBackground
             onLoadStart={() => setIsLoading(true)}
             onLoadEnd={() => setIsLoading(false)}
@@ -196,33 +346,52 @@ export default function HomeTab(props) {
             resizeMode="cover"
             style={styles.image}
           >
-            {isLoading && (
-              <View style={styles.loading}>
-                <ActivityIndicator size="large" color="gray" />
-              </View>
-            )}
+            <Pressable style={styles.buttonBack}>
+              <Animated.View
+                style={[
+                  styles.buttonBackIcon,
+                  {
+                    opacity: fadeAnim1,
+                  },
+                ]}
+              >
+                <Icon.ChevronLeft color={whiteColor} width={40} height={40} />
+              </Animated.View>
+            </Pressable>
+            <Pressable style={styles.buttonNext}>
+              <Animated.View
+                style={[
+                  styles.buttonNextIcon,
+                  {
+                    opacity: fadeAnim1,
+                  },
+                ]}
+              >
+                <Icon.ChevronRight color={whiteColor} width={40} height={40} />
+              </Animated.View>
+            </Pressable>
             {DATA.length !== 0 && (
               <>
                 <CategoryItem
                   id={DATA[9]._id}
-                  category={DATA[9].name}
-                  bottom={170}
-                  left={100}
+                  category={capslock(DATA[9].name)}
+                  bottom={190}
+                  left={60}
                   color="white"
                   onPress={handleGoToProduct}
                 />
                 <CategoryItem
                   id={DATA[10]._id}
-                  category={DATA[10].name}
-                  bottom={100}
-                  right={15}
+                  category={capslock(DATA[10].name)}
+                  bottom={130}
+                  right={30}
                   color="white"
                   onPress={handleGoToProduct}
                 />
                 <CategoryItem
                   id={DATA[11]._id}
-                  category={DATA[11].name}
-                  bottom={380}
+                  category={capslock(DATA[11].name)}
+                  top={300}
                   left={100}
                   color="white"
                   onPress={handleGoToProduct}
@@ -230,8 +399,18 @@ export default function HomeTab(props) {
               </>
             )}
           </ImageBackground>
-        </View>
-        <View style={styles.container} key="5">
+        </Animated.View>
+        {/* Page 4 end */}
+        {/* Page 5 */}
+        <Animated.View
+          style={[
+            styles.container,
+            {
+              opacity: fadeAnim,
+            },
+          ]}
+          key="5"
+        >
           <ImageBackground
             onLoadStart={() => setIsLoading(true)}
             onLoadEnd={() => setIsLoading(false)}
@@ -239,25 +418,36 @@ export default function HomeTab(props) {
             resizeMode="cover"
             style={styles.image}
           >
-            {isLoading && (
-              <View style={styles.loading}>
-                <ActivityIndicator size="large" color="gray" />
-              </View>
-            )}
+            <Pressable style={styles.buttonBack}>
+              <Animated.View
+                style={[
+                  styles.buttonBackIcon,
+                  {
+                    opacity: fadeAnim1,
+                  },
+                ]}
+              >
+                <Icon.ArrowLeftCircle
+                  color={whiteColor}
+                  width={40}
+                  height={40}
+                />
+              </Animated.View>
+            </Pressable>
             {DATA.length !== 0 && (
               <>
                 <CategoryItem
                   id={DATA[12]._id}
-                  category={DATA[12].name}
-                  bottom={180}
+                  category={capslock(DATA[12].name)}
+                  bottom={260}
                   right={50}
                   color="white"
                   onPress={handleGoToProduct}
                 />
                 <CategoryItem
                   id={DATA[13]._id}
-                  category={DATA[13].name}
-                  bottom={90}
+                  category={capslock(DATA[13].name)}
+                  bottom={100}
                   left={60}
                   color="white"
                   onPress={handleGoToProduct}
@@ -265,7 +455,8 @@ export default function HomeTab(props) {
               </>
             )}
           </ImageBackground>
-        </View>
+        </Animated.View>
+        {/* Page 5 end */}
       </PagerView>
       <Snackbar
         visible={visible}

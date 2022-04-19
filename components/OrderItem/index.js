@@ -5,7 +5,8 @@ import * as Icon from "react-native-feather";
 import { styles } from "./style";
 
 export default function OrderItem(props) {
-  const { image, date, onPress, total, statusOrder, address, id } = props;
+  const { image, date, onPress, total, statusOrder, address, id, isOnline } =
+    props;
   const [isLoading, setIsLoading] = useState(true);
   return (
     <Pressable onPress={onPress} style={styles.items}>
@@ -13,7 +14,15 @@ export default function OrderItem(props) {
         <Image
           onLoadStart={() => setIsLoading(true)}
           onLoadEnd={() => setIsLoading(false)}
-          source={image}
+          source={
+            statusOrder === "Request"
+              ? {
+                  uri: "https://firebasestorage.googleapis.com/v0/b/furniture-upload-img.appspot.com/o/icon%2Fpackage-box2.png?alt=media&token=34d8cf16-998d-4312-8192-ab5f4213355f",
+                }
+              : {
+                  uri: "https://firebasestorage.googleapis.com/v0/b/furniture-upload-img.appspot.com/o/icon%2Fpackage-box.png?alt=media&token=dbd12c1d-ffc4-4637-8451-0785e54b69d0",
+                }
+          }
           style={styles.image}
         />
         {isLoading && (
@@ -53,6 +62,12 @@ export default function OrderItem(props) {
             ellipsizeMode="tail"
           >
             {address}
+          </Text>
+        </View>
+        <View style={styles.innerContent}>
+          <Text style={styles.titleItem}>Payment:</Text>
+          <Text style={styles.contentItem}>
+            {isOnline ? "Online" : "Offline"}
           </Text>
         </View>
       </View>

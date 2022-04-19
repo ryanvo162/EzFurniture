@@ -88,7 +88,6 @@ export default function DetailScreen(props) {
       subTotal: formatNumber(product.price) * quantity,
       isDelete: false,
     });
-    console.log("Change screen");
   };
 
   const handleAddCart = async () => {
@@ -107,7 +106,6 @@ export default function DetailScreen(props) {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log("res:", res);
         if (res.cart.return === true) {
           setStatus("Add to cart success");
           onToggleSnackBar();

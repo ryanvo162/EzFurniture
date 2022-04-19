@@ -18,9 +18,12 @@ import * as Icon from "react-native-feather";
 import { styles as mainStyle } from "../../screens/styles";
 import { styles } from "./style";
 
+import * as FileSystem from "expo-file-system";
+
 import { gray2Color } from "../../global/colors";
 import ButtonApp from "../../components/Button";
 import { actions, useStore } from "../../provider";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function InformationScreen(props) {
   const { navigation } = props;
@@ -32,6 +35,7 @@ export default function InformationScreen(props) {
     formatter.formatPhoneNumber(state.user.phone) ?? ""
   );
   const [dob, setDOB] = useState(state.user.dob ?? "");
+  const [base64, setBase64] = useState("");
 
   const [status, setStatus] = useState(null);
   const [visible, setVisible] = useState(false);
@@ -55,7 +59,13 @@ export default function InformationScreen(props) {
       aspect: [4, 3],
       quality: 1,
     });
-
+    // get base64
+    const base64 = await FileSystem.readAsStringAsync(result.uri, {
+      encoding: "base64",
+    });
+    setBase64(base64);
+    // console.warn("base64:", base64);
+    
     console.log(result);
 
     if (!result.cancelled) {
@@ -137,6 +147,14 @@ export default function InformationScreen(props) {
         .catch((error) => {
           console.log(error);
         });
+      // update user in AsyncStorage
+      const data = await AsyncStorage.getItem("@data_user");
+      const data_user = JSON.parse(data);
+      data_user.name = name;
+      data_user.phone = formatter.formatPhoneNumberDisplay(phone);
+      data_user.dob = dob;
+      data_user.avatar = image;
+      await AsyncStorage.setItem("@data_user", JSON.stringify(data_user));
     }
   };
 

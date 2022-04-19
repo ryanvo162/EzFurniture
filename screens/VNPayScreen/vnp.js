@@ -54,10 +54,10 @@ export default function VNPayScreen(props) {
         })
           .then((res) => res.json())
           .then((res) => {
-            if (res.payload) {
-              if (res.payload.status === true) {
+            if (res) {
+              if (res.status === true) {
                 navigation.replace("ThankYouScreen", {
-                  id: res.payload.data._id,
+                  id: ""
                 });
               }
             }

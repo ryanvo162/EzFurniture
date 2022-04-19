@@ -39,7 +39,7 @@ export default function CartItem(props) {
       })
         .then((res) => res.json())
         .then((res) => {
-          console.log("res:", res);
+          // console.log("res:", res);
           if (res.cart.return === true) {
             //do something
           }
@@ -70,7 +70,7 @@ export default function CartItem(props) {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log("res:", res);
+        // console.log("res:", res);
         if (res.cart.return === true) {
         }
       })

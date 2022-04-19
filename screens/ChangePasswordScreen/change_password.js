@@ -103,6 +103,7 @@ export default function ChangePasswordScreen(props) {
             color={blackColor}
             cursorColor={primaryColor}
             secureTextEntry={true}
+            value={oldPassword}
             onChangeText={setOldPassword}
             selectionColor={primaryColor}
           />
@@ -113,6 +114,7 @@ export default function ChangePasswordScreen(props) {
             color={blackColor}
             cursorColor={primaryColor}
             secureTextEntry={true}
+            value={newPassword}
             onChangeText={setNewPassword}
             selectionColor={primaryColor}
           />
@@ -122,6 +124,7 @@ export default function ChangePasswordScreen(props) {
             placeholderTextColor={gray3Color}
             color={blackColor}
             cursorColor={primaryColor}
+            value={confirmPassword}
             secureTextEntry={true}
             onChangeText={setConfirmPassword}
             selectionColor={primaryColor}

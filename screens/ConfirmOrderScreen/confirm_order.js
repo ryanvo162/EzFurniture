@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
-  ScrollView,
   Modal,
-  Alert,
   TextInput,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
@@ -20,9 +18,7 @@ import ShippingMethod from "../../components/ShippingMethod";
 import ButtonApp from "../../components/Button";
 import {
   primaryColor,
-  gray2Color,
   gray3Color,
-  gray1Color,
   blackColor,
   whiteColor,
 } from "../../global/colors";
@@ -31,9 +27,11 @@ import { Snackbar } from "react-native-paper";
 import { styles as mainStyle } from "../../screens/styles";
 
 import { useStore } from "../../provider";
-import { formatDisplayPrice, formatPhoneNumber } from "../../global/format";
-import { ENDPOINT } from "../../socket.io-client/link";
-import { io } from "socket.io-client";
+import {
+  formatDisplayPrice,
+  formatPhoneNumber,
+  capitalizeFirstLetter,
+} from "../../global/format";
 
 export default function ConfirmOrderScreen(props) {
   const { navigation, route } = props;
@@ -125,7 +123,7 @@ export default function ConfirmOrderScreen(props) {
   useEffect(() => {
     setProducts([]);
     data.map((item) => {
-      setProducts((products) => [...products, { product_id: item.id }]);
+      setProducts((products) => [...products, { product_id: item.id, quantity: item.quantity }]);
     });
   }, []);
 
@@ -181,6 +179,7 @@ export default function ConfirmOrderScreen(props) {
       )
         .then((res) => res.json())
         .then((res) => {
+          console.log(res);
           if (res) {
             if (res.payload) {
               if (res.payload.status === true) {
@@ -313,7 +312,9 @@ export default function ConfirmOrderScreen(props) {
             <View style={styles.payment}>
               <View style={styles.paymentMethod}>
                 <Text style={styles.textMethod}>Payment method</Text>
-                <Text style={styles.textPaymentMethod}>Cash</Text>
+                <Text style={styles.textPaymentMethod}>
+                  {capitalizeFirstLetter(paymentMethod)}
+                </Text>
               </View>
 
               <RadioButton.Group

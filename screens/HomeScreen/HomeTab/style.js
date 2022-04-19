@@ -1,9 +1,11 @@
 import { StyleSheet, Platform } from "react-native";
+import { gray2Color, primaryColor } from "../../../global/colors";
+import { bold } from "../../../global/fonts";
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: gray2Color,
   },
 
   image: {
@@ -17,5 +19,31 @@ export const styles = StyleSheet.create({
   },
   snackbar: {
     marginBottom: Platform.OS === "ios" ? 200 : 230,
+  },
+
+  buttonNext: {
+    position: "absolute",
+    right: 0,
+    padding: 10,
+    height: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+
+  buttonBack: {
+    position: "absolute",
+    left: 0,
+    padding: 10,
+    height: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+
+  buttonNextIcon: {
+    marginRight: 10,
+  },
+
+  buttonBackIcon: {
+    marginLeft: 10,
   },
 });

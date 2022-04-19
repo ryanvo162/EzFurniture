@@ -23,7 +23,7 @@ export default function ProductItem(props) {
         borderRadius={5}
         onLoadStart={() => setIsLoading(true)}
         onLoadEnd={() => setIsLoading(false)}
-        source={{ uri: image }}
+        source={image !== "Error: No files found" ? { uri: image } : require("../../assets/img/error.png")}
         style={styles.itemImage}
       >
         {isLoading && (

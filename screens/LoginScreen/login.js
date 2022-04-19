@@ -10,8 +10,8 @@ import {
 } from "react-native";
 import { Snackbar } from "react-native-paper";
 import React, { useState, useEffect } from "react";
-import { ResponseType } from "expo-auth-session";
-import * as Facebook from "expo-auth-session/providers/facebook";
+// import { ResponseType } from "expo-auth-session";
+// import * as Facebook from "expo-auth-session/providers/facebook";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -25,9 +25,7 @@ import { actions, useStore } from "../../provider";
 export default function LoginScreen(props) {
   const { navigation, route } = props;
   const [data, setData] = useState(route.params?.data ?? null);
-  // console.log("data", data);
   const [state, dispatch] = useStore();
-  // let storeData;
 
   const [email, setEmail] = useState(data?.email ?? null);
   const [password, setPassword] = useState(data?.password ?? null);
@@ -68,7 +66,6 @@ export default function LoginScreen(props) {
       )
         .then((res) => res.json())
         .then((res) => {
-          console.log(res);
           if (res.status === true) {
             if (res.data.user) {
               let data = res.data.user.payload.data;

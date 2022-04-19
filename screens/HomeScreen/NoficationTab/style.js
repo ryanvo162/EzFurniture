@@ -1,4 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
+import { gray3Color } from "../../../global/colors";
 import {  bold } from "../../../global/fonts";
 export const styles = StyleSheet.create({
   container: {
@@ -31,7 +32,6 @@ export const styles = StyleSheet.create({
     fontSize: bold.fontSize,
     fontFamily: bold.fontFamily,
     marginLeft: 12,
-    transform: [{ translateY: 2 }],
   },
 
   headerRight: {
@@ -43,5 +43,23 @@ export const styles = StyleSheet.create({
 
   snackbar: {
     marginBottom: Platform.OS === "ios" ? 60 : 90,
+  },
+
+  empty: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  emptyText: {
+    fontSize: bold.fontSize,
+    fontFamily: bold.fontFamily,
+    color: gray3Color,
+  },
+
+  emptyImage: {
+    width: "80%",
+    height: 250,
+    resizeMode: "contain",
+    marginBottom: 20,
   },
 });

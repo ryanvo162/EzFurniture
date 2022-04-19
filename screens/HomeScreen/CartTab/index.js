@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, FlatList, Modal, Alert, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  Modal,
+  Alert,
+  Pressable,
+  Image,
+} from "react-native";
 import ButtonApp from "../../../components/Button";
 import CartItem from "../../../components/CartItem";
 import { whiteColor, primaryColor } from "../../../global/colors";
@@ -69,7 +77,8 @@ export default function CartTab(props) {
                     },
                   ]);
                   setSubTotal(
-                    (subTotal) => subTotal + formatNumber(res.product.price) * quantity
+                    (subTotal) =>
+                      subTotal + formatNumber(res.product.price) * quantity
                   );
                 })
                 .catch((err) => {
@@ -130,7 +139,8 @@ export default function CartTab(props) {
                   },
                 ]);
                 setSubTotal(
-                  (subTotal) => subTotal + formatNumber(res.product.price) * quantity
+                  (subTotal) =>
+                    subTotal + formatNumber(res.product.price) * quantity
                 );
               })
               .catch((err) => {
@@ -221,7 +231,11 @@ export default function CartTab(props) {
 
   const handleConfirm = () => {
     setModalVisible(!modalVisible);
-    navigation.navigate("ConfirmOrderScreen",{data:myArr,subTotal:subTotal,isDelete:true});
+    navigation.navigate("ConfirmOrderScreen", {
+      data: myArr,
+      subTotal: subTotal,
+      isDelete: true,
+    });
   };
 
   const handleCancel = () => {
@@ -247,17 +261,19 @@ export default function CartTab(props) {
         <FlatList
           overScrollMode="never"
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={
-            styles.flatList
-          }
+          contentContainerStyle={styles.flatList}
           style={styles.flatList}
           data={data}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
         />
       ) : (
-        <View style={styles.emptyCart}>
-          <Text style={styles.textEmptyCart}>Your cart is empty</Text>
+        <View style={styles.empty}>
+          <Image
+            style={styles.emptyImage}
+            source={require("../../../assets/img/emptyCart.png")}
+          />
+          <Text style={styles.emptyText}>You don't have any order</Text>
         </View>
       )}
       {data.length !== 0 ? (

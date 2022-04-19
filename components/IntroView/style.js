@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
-import { title1, body } from "../../global/fonts";
+import { title1, body, title3 } from "../../global/fonts";
 import { gray2Color } from "../../global/colors";
 
 export const styles = StyleSheet.create({
@@ -14,11 +14,11 @@ export const styles = StyleSheet.create({
 
   introText: {
     marginTop: 28,
-    marginBottom: 45,
-    paddingHorizontal: 20,
+    marginBottom: 70,
+    paddingHorizontal: 30,
     textAlign: "justify",
-    fontSize: 16,
-    fontFamily: body.fontFamily,
+    fontSize: body.fontSize,
+    // fontFamily: title3.fontFamily,
     color: "#ffffff",
   },
 });

@@ -3,7 +3,6 @@ export function formatNumber(number) {
   return Number(number.toString().replace(/\D/g, ""));
 }
 
-
 //format string 123456789 to string 123.456.789
 export function formatDisplayPrice(price) {
   let priceFormat = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -33,6 +32,11 @@ export function formatPhoneNumberDisplay(phone) {
 //capitalize first letter of string
 export function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+//capslock string
+export function capslock(string) {
+  return string.toUpperCase();
 }
 
 //04-17-2022 09:00:43 => 17/04/2022 at 09:00

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, FlatList, Pressable } from "react-native";
+import { View, Text, FlatList, Pressable, Image } from "react-native";
 import OrderItem from "../../components/OrderItem";
 
 import { Snackbar } from "react-native-paper";
@@ -9,66 +9,11 @@ import * as Icon from "react-native-feather";
 import { styles } from "./style";
 
 import { useStore } from "../../provider";
-import { capitalizeFirstLetter, formatDate, formatDisplayPrice } from "../../global/format";
-
-const DATA = [
-  {
-    id: "1",
-    total: "566 000 VND",
-    dateText: "17/03/2022",
-    statusOrder: "Delivering",
-    address: "1162 Trường sa, P. 14, Q. Phú Nhận, TP HCM",
-    image: require("../../assets/img/welcome_bg1.png"),
-  },
-  {
-    id: "2",
-    total: "566 000 VND",
-    dateText: "17/03/2022",
-    statusOrder: "Delivering",
-    address: "1162 Trường sa, P. 14, Q. Phú Nhận, TP HCM",
-    image: require("../../assets/img/welcome_bg1.png"),
-  },
-  {
-    id: "3",
-    total: "566 000 VND",
-    dateText: "17/03/2022",
-    statusOrder: "statusOrder",
-    address: "1162 Trường sa, P. 14, Q. Phú Nhận, TP HCM",
-    image: require("../../assets/img/welcome_bg1.png"),
-  },
-  {
-    id: "4",
-    total: "566 000 VND",
-    dateText: "17/03/2022",
-    statusOrder: "Delivering",
-    address: "1162 Trường sa, P. 14, Q. Phú Nhận, TP HCM",
-    image: require("../../assets/img/welcome_bg1.png"),
-  },
-  {
-    id: "5",
-    total: "566 000 VND",
-    dateText: "17/03/2022",
-    statusOrder: "Delivering",
-    address: "1162 Trường sa, P. 14, Q. Phú Nhận, TP HCM",
-    image: require("../../assets/img/welcome_bg1.png"),
-  },
-  {
-    id: "6",
-    total: "566 000 VND",
-    dateText: "17/03/2022",
-    statusOrder: "Delivering",
-    address: "1162 Trường sa, P. 14, Q. Phú Nhận, TP HCM",
-    image: require("../../assets/img/welcome_bg1.png"),
-  },
-  {
-    id: "7",
-    total: "566 000 VND",
-    dateText: "17/03/2022",
-    statusOrder: "Delivering",
-    address: "1162 Trường sa, P. 14, Q. Phú Nhận, TP HCM",
-    image: require("../../assets/img/welcome_bg1.png"),
-  },
-];
+import {
+  capitalizeFirstLetter,
+  formatDate,
+  formatDisplayPrice,
+} from "../../global/format";
 
 export default function OrderScreen(props) {
   const { navigation } = props;
@@ -121,6 +66,7 @@ export default function OrderScreen(props) {
       date={formatDate(item.date)}
       statusOrder={capitalizeFirstLetter(item.status)}
       address={item.Address}
+      isOnline={item.isOnlinePayment}
     />
   );
 
@@ -141,6 +87,10 @@ export default function OrderScreen(props) {
         />
       ) : (
         <View style={styles.empty}>
+          <Image
+            style={styles.emptyImage}
+            source={require("../../assets/img/emptyOrder.png")}
+          />
           <Text style={styles.emptyText}>You don't have any order</Text>
         </View>
       )}

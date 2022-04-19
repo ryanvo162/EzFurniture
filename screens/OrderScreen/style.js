@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
-import { gray2Color } from "../../global/colors";
+import { gray2Color, gray3Color } from "../../global/colors";
 import { body, bold } from "../../global/fonts";
 
 export const styles = StyleSheet.create({
@@ -41,8 +41,15 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   emptyText: {
-    fontSize: body.fontSize,
-    fontFamily: body.fontFamily,
-    color: gray2Color,
+    fontSize: bold.fontSize,
+    fontFamily: bold.fontFamily,
+    color: gray3Color,
+  },
+
+  emptyImage: {
+    width: "80%",
+    height: 250,
+    resizeMode: "contain",
+    marginBottom: 20,
   },
 });

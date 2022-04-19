@@ -26,6 +26,7 @@ import { formatPhoneNumber } from "../../global/format";
 
 import { Snackbar } from "react-native-paper";
 import { styles as mainStyle } from "../../screens/styles";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function DeliveryAddressScreen(props) {
   const { navigation } = props;
@@ -91,9 +92,17 @@ export default function DeliveryAddressScreen(props) {
       });
   };
 
+  useEffect(async() => {
+    await AsyncStorage.setItem("@data_user", JSON.stringify(state.user));
+  }, [state.user]);
+
   const handleAddNewAddress = () => {
-    setStatus("Feature is coming soon");
-    onToggleSnackBar();
+    if (address.length > 0) {
+      setStatus("Add address successfully");
+      onToggleSnackBar();
+    } else {
+      setModalVisible(!modalVisible);
+    }
   };
 
   const renderItem = ({ item }) => <Item item={item} />;
@@ -118,15 +127,17 @@ export default function DeliveryAddressScreen(props) {
         renderItem={renderItem}
         keyExtractor={(item) => item._id}
         ListFooterComponent={
-          <Pressable
-            onPress={handleAddNewAddress}
-            style={styles.newDeliveryContainer}
-          >
-            <View style={styles.btnNewDelivery}>
-              <Text style={styles.textNewDelivery}>New delivery address</Text>
-              <Icon.Plus stroke={blackColor} strokeWidth={1} />
-            </View>
-          </Pressable>
+          data.length > 0 ? null : (
+            <Pressable
+              onPress={handleAddNewAddress}
+              style={styles.newDeliveryContainer}
+            >
+              <View style={styles.btnNewDelivery}>
+                <Text style={styles.textNewDelivery}>New delivery address</Text>
+                <Icon.Plus stroke={blackColor} strokeWidth={1} />
+              </View>
+            </Pressable>
+          )
         }
       />
       <View style={styles.header}>

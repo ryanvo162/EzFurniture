@@ -59,7 +59,7 @@ export default function WelcomeScreen(props) {
               </View>
             )}
             <IntroView />
-            <Pressable onPress={handleGoToNext} style={styles.buttonNext}>
+            <Pressable style={styles.buttonNext}>
               <Animated.Text
                 style={[
                   styles.textButtonNext,
