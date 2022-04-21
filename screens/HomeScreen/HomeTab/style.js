@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
 
   image: {
     flex: 1,
+    backgroundColor: gray2Color,
   },
 
   loading: {
@@ -17,6 +18,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  
   snackbar: {
     marginBottom: Platform.OS === "ios" ? 200 : 230,
   },

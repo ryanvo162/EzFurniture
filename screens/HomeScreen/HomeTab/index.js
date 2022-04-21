@@ -22,56 +22,26 @@ export default function HomeTab(props) {
   const { navigation } = props;
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
-  const fadeAnim1 = useRef(new Animated.Value(0)).current;
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (isLoading) {
-      Animated.loop(
-        Animated.sequence([
-          Animated.timing(fadeAnim, {
-            toValue: 1,
-            duration: 500,
-            delay: 500,
-            easing: Easing.linear,
-            useNativeDriver: true,
-          }),
-          Animated.timing(fadeAnim, {
-            toValue: 0.3,
-            duration: 500,
-            easing: Easing.linear,
-            delay: 200,
-            useNativeDriver: true,
-          }),
-        ])
-      ).start();
-    } else {
-      Animated.timing(fadeAnim, {
-        toValue: 1,
-        duration: 500,
-        easing: Easing.linear,
-        useNativeDriver: true,
-      }).start();
-      Animated.loop(
-        Animated.sequence([
-          Animated.timing(fadeAnim1, {
-            toValue: 1,
-            duration: 500,
-            delay: 500,
-            easing: Easing.linear,
-            useNativeDriver: true,
-          }),
-          Animated.timing(fadeAnim1, {
-            toValue: 0.3,
-            duration: 500,
-            easing: Easing.linear,
-            delay: 200,
-            useNativeDriver: true,
-          }),
-        ])
-      ).start();
-    }
-  }, [fadeAnim, isLoading]);
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(fadeAnim, {
+          toValue: 1,
+          duration: 500,
+          delay: 500,
+          useNativeDriver: true,
+        }),
+        Animated.timing(fadeAnim, {
+          toValue: 0.3,
+          duration: 500,
+          delay: 200,
+          useNativeDriver: true,
+        }),
+      ])
+    ).start();
+  }, [fadeAnim]);
 
   const [myArr, setMyArr] = useState([]);
 
@@ -120,15 +90,7 @@ export default function HomeTab(props) {
         initialPage={0}
       >
         {/* Page 1 */}
-        <Animated.View
-          style={[
-            styles.container,
-            {
-              opacity: fadeAnim,
-            },
-          ]}
-          key="1"
-        >
+        <View style={styles.container} key="1">
           <ImageBackground
             onLoadStart={() => setIsLoading(true)}
             onLoadEnd={() => setIsLoading(false)}
@@ -136,12 +98,17 @@ export default function HomeTab(props) {
             resizeMode="cover"
             style={styles.image}
           >
+            {isLoading && (
+              <View style={styles.loading}>
+                <ActivityIndicator size="large" color="white" />
+              </View>
+            )}
             <Pressable style={styles.buttonNext}>
               <Animated.View
                 style={[
                   styles.buttonNextIcon,
                   {
-                    opacity: fadeAnim1,
+                    opacity: fadeAnim,
                   },
                 ]}
               >
@@ -191,18 +158,10 @@ export default function HomeTab(props) {
               </>
             )}
           </ImageBackground>
-        </Animated.View>
+        </View>
         {/* Page 1 end */}
         {/* Page 2 */}
-        <Animated.View
-          style={[
-            styles.container,
-            {
-              opacity: fadeAnim,
-            },
-          ]}
-          key="2"
-        >
+        <View style={styles.container} key="2">
           <ImageBackground
             onLoadStart={() => setIsLoading(true)}
             onLoadEnd={() => setIsLoading(false)}
@@ -210,12 +169,17 @@ export default function HomeTab(props) {
             resizeMode="cover"
             style={styles.image}
           >
+            {isLoading && (
+              <View style={styles.loading}>
+                <ActivityIndicator size="large" color="white" />
+              </View>
+            )}
             <Pressable style={styles.buttonBack}>
               <Animated.View
                 style={[
                   styles.buttonBackIcon,
                   {
-                    opacity: fadeAnim1,
+                    opacity: fadeAnim,
                   },
                 ]}
               >
@@ -227,7 +191,7 @@ export default function HomeTab(props) {
                 style={[
                   styles.buttonNextIcon,
                   {
-                    opacity: fadeAnim1,
+                    opacity: fadeAnim,
                   },
                 ]}
               >
@@ -255,18 +219,10 @@ export default function HomeTab(props) {
               </>
             )}
           </ImageBackground>
-        </Animated.View>
+        </View>
         {/* Page 2 end */}
         {/* Page 3 */}
-        <Animated.View
-          style={[
-            styles.container,
-            {
-              opacity: fadeAnim,
-            },
-          ]}
-          key="3"
-        >
+        <View style={styles.container} key="3">
           <ImageBackground
             onLoadStart={() => setIsLoading(true)}
             onLoadEnd={() => setIsLoading(false)}
@@ -274,12 +230,17 @@ export default function HomeTab(props) {
             resizeMode="cover"
             style={styles.image}
           >
+            {isLoading && (
+              <View style={styles.loading}>
+                <ActivityIndicator size="large" color="white" />
+              </View>
+            )}
             <Pressable style={styles.buttonBack}>
               <Animated.View
                 style={[
                   styles.buttonBackIcon,
                   {
-                    opacity: fadeAnim1,
+                    opacity: fadeAnim,
                   },
                 ]}
               >
@@ -291,7 +252,7 @@ export default function HomeTab(props) {
                 style={[
                   styles.buttonNextIcon,
                   {
-                    opacity: fadeAnim1,
+                    opacity: fadeAnim,
                   },
                 ]}
               >
@@ -327,18 +288,10 @@ export default function HomeTab(props) {
               </>
             )}
           </ImageBackground>
-        </Animated.View>
+        </View>
         {/* Page 3 end */}
         {/* Page 4 */}
-        <Animated.View
-          style={[
-            styles.container,
-            {
-              opacity: fadeAnim,
-            },
-          ]}
-          key="4"
-        >
+        <View style={styles.container} key="4">
           <ImageBackground
             onLoadStart={() => setIsLoading(true)}
             onLoadEnd={() => setIsLoading(false)}
@@ -346,12 +299,17 @@ export default function HomeTab(props) {
             resizeMode="cover"
             style={styles.image}
           >
+            {isLoading && (
+              <View style={styles.loading}>
+                <ActivityIndicator size="large" color="white" />
+              </View>
+            )}
             <Pressable style={styles.buttonBack}>
               <Animated.View
                 style={[
                   styles.buttonBackIcon,
                   {
-                    opacity: fadeAnim1,
+                    opacity: fadeAnim,
                   },
                 ]}
               >
@@ -363,7 +321,7 @@ export default function HomeTab(props) {
                 style={[
                   styles.buttonNextIcon,
                   {
-                    opacity: fadeAnim1,
+                    opacity: fadeAnim,
                   },
                 ]}
               >
@@ -399,18 +357,10 @@ export default function HomeTab(props) {
               </>
             )}
           </ImageBackground>
-        </Animated.View>
+        </View>
         {/* Page 4 end */}
         {/* Page 5 */}
-        <Animated.View
-          style={[
-            styles.container,
-            {
-              opacity: fadeAnim,
-            },
-          ]}
-          key="5"
-        >
+        <View style={styles.container} key="5">
           <ImageBackground
             onLoadStart={() => setIsLoading(true)}
             onLoadEnd={() => setIsLoading(false)}
@@ -418,12 +368,17 @@ export default function HomeTab(props) {
             resizeMode="cover"
             style={styles.image}
           >
+            {isLoading && (
+              <View style={styles.loading}>
+                <ActivityIndicator size="large" color="white" />
+              </View>
+            )}
             <Pressable style={styles.buttonBack}>
               <Animated.View
                 style={[
                   styles.buttonBackIcon,
                   {
-                    opacity: fadeAnim1,
+                    opacity: fadeAnim,
                   },
                 ]}
               >
@@ -455,7 +410,7 @@ export default function HomeTab(props) {
               </>
             )}
           </ImageBackground>
-        </Animated.View>
+        </View>
         {/* Page 5 end */}
       </PagerView>
       <Snackbar

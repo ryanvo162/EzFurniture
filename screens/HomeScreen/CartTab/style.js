@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
   },
 
   flatList: {
-    paddingBottom: 150,
+    paddingBottom: 160,
     paddingTop: 50,
   },
 
