@@ -55,7 +55,7 @@ export default function HomeScreen(props) {
     getDataUser().then((data) => {
       dispatch(
         actions.setUser({
-          id: data._id,
+          id: data.id,
           email: data.email,
           name: data.name,
           phone: data.phone,
@@ -79,7 +79,7 @@ export default function HomeScreen(props) {
       <Tab.Navigator
         style={styles.container}
         initialRouteName={screen}
-        screenOptions={({ route, headerShown }) => ({
+        screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let tag;
             if (route.name === "Home") {

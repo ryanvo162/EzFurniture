@@ -12,8 +12,6 @@ import {
 export const styles = StyleSheet.create({
   item: {
     flex: 1,
-    // backgroundColor: gray3Color,
-    // marginHorizontal: 16,
     marginVertical: 8,
   },
 
@@ -33,12 +31,15 @@ export const styles = StyleSheet.create({
   },
 
   titleText: {
+    flex: 1,
     fontSize: body2.fontSize,
     fontFamily: body2.fontFamily,
     color: blackColor,
   },
 
   valueText: {
+    flex: 1,
+    textAlign: 'right',
     fontSize: body2.fontSize,
     fontFamily: body2.fontFamily,
     color: blackColor,

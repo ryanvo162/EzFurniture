@@ -68,7 +68,15 @@ export default function LoginScreen(props) {
         .then((res) => {
           if (res.status === true) {
             if (res.data.user) {
-              let data = res.data.user.payload.data;
+              let data = {
+                id: res.data.user.payload.data._id,
+                email: res.data.user.payload.data.email,
+                name: res.data.user.payload.data.name,
+                phone: res.data.user.payload.data.phone,
+                addresses: res.data.user.payload.data.addresses,
+                dob: res.data.user.payload.data.dob,
+                avatar: res.data.user.payload.data.avatar,
+              };    
               const jsonValue = JSON.stringify(data);
               AsyncStorage.setItem("@data_user", jsonValue);
             } else {

@@ -29,7 +29,7 @@ export default function InformationScreen(props) {
   const { navigation } = props;
 
   const [state, dispatch] = useStore();
-
+  // console.log("state:", state);
   const [name, setName] = useState(state.user.name ?? "");
   const [phone, setPhone] = useState(
     formatter.formatPhoneNumber(state.user.phone) ?? ""
@@ -121,7 +121,7 @@ export default function InformationScreen(props) {
             name: name,
             phone: formatter.formatPhoneNumberDisplay(phone),
             dob: dob,
-            // avatar: image,
+            avatar: "data:image/png;base64,"+base64,
           }),
         }
       )

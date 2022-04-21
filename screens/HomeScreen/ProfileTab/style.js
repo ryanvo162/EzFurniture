@@ -10,7 +10,9 @@ export const styles = StyleSheet.create({
   },
   profileUser: {
     flexDirection: "row",
-    justifyContent: "center",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 30,
     // backgroundColor: "red",
   },
 
@@ -23,7 +25,7 @@ export const styles = StyleSheet.create({
   },
 
   profileInfoUser: {
-    justifyContent: "center",
+    flex: 1,
   },
 
   nameUser: {

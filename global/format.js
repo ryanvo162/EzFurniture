@@ -29,6 +29,13 @@ export function formatPhoneNumberDisplay(phone) {
   return phoneDisplay = phoneFormat.substring(2);
 }
 
+//format phone number "+84938033495" to "+84 938033495"
+export function formatPhoneNumberDisplay2(phone) {
+  let phoneFormat = phone.toString().replace(/\D/g, "").substring(2);
+  let phoneDisplay;
+  return phoneDisplay = "+84 " + phoneFormat;
+}
+
 //capitalize first letter of string
 export function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -47,4 +54,12 @@ export function formatDate(date) {
   let dateDisplay = dateText[1] + "/" + dateText[0] + "/" + dateText[2];
   let timeDisplay = timeText[0] + ":" + timeText[1];
   return dateDisplay + " at " + timeDisplay;
+}
+
+//04-17-2022 09:00:43 => 17/04/2022
+export function formatJustDate(date) {
+  let dateFormat = date.toString().split(" ");
+  let dateText = dateFormat[0].split("-");
+  let dateDisplay = dateText[1] + "/" + dateText[0] + "/" + dateText[2];
+  return dateDisplay;
 }

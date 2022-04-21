@@ -52,7 +52,7 @@ export const styles = StyleSheet.create({
     padding: 8,
     marginTop: 16,
     marginBottom: 16,
-    backgroundColor: gray3Color,
+    backgroundColor: primaryColor,
     borderRadius: 5,
   },
   infoOrderItem: {
@@ -62,14 +62,15 @@ export const styles = StyleSheet.create({
   titleOrder: {
     fontSize: title2.fontSize,
     fontFamily: title2.fontFamily,
-    color: primaryColor,
+    color: whiteColor,
     width: "100%",
     textAlign: "left",
   },
 
   infoOrderText: {
-    fontSize: body.fontSize,
-    fontFamily: body.fontFamily,
+    flex: 1,
+    fontSize: bold12.fontSize,
+    fontFamily: bold12.fontFamily,
     color: whiteColor,
     marginVertical: 4,
   },
@@ -78,5 +79,10 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  titleInfo : {
+    fontSize:bold12.fontSize,
+    fontFamily:bold12.fontFamily,
+    color:gray3Color,
   },
 });

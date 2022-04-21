@@ -69,8 +69,7 @@ export default function ProfileTab(props) {
         <View style={styles.profileUser}>
           <Image
             source={{ uri: state.user.avatar }}
-            style={styles.imageUser}
-          ></Image>
+            style={styles.imageUser}/>
 
           <View style={styles.profileInfoUser}>
             <Text style={styles.nameUser}>{state.user.name}</Text>
