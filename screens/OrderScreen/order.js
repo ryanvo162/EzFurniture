@@ -48,7 +48,7 @@ export default function OrderScreen(props) {
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setMyArr(res.order);
       })
       .catch((err) => {
@@ -58,6 +58,10 @@ export default function OrderScreen(props) {
       });
   }, []);
 
+  const handleGoToDetail = (id) => {
+    navigation.navigate("DetailOrderScreen", { id });
+  };
+
   const Item = ({ item }) => (
     <OrderItem
       id={item._id}
@@ -65,6 +69,7 @@ export default function OrderScreen(props) {
       total={formatDisplayPrice(item.price)}
       date={formatDate(item.date)}
       statusOrder={capitalizeFirstLetter(item.status)}
+      onPress={handleGoToDetail}
       address={item.Address}
       isOnline={item.isOnlinePayment}
     />

@@ -8,8 +8,11 @@ export default function OrderItem(props) {
   const { image, date, onPress, total, statusOrder, address, id, isOnline } =
     props;
   const [isLoading, setIsLoading] = useState(true);
+  const handleChoose = () => {
+    onPress(id);
+  };
   return (
-    <Pressable onPress={onPress} style={styles.items}>
+    <Pressable onPress={handleChoose} style={styles.items}>
       <View style={styles.imageView}>
         <Image
           onLoadStart={() => setIsLoading(true)}
