@@ -64,7 +64,7 @@ export default function InformationScreen(props) {
       encoding: "base64",
     });
     setBase64(base64);
-    // console.warn("base64:", base64);
+    console.log("base64:", base64);
     
     console.log(result);
 

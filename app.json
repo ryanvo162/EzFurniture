@@ -9,7 +9,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -26,7 +28,9 @@
       "favicon": "./assets/favicon.png"
     },
     "facebookScheme": "fb2640390062761981",
-    "plugins": ["sentry-expo"],
+    "plugins": [
+      "sentry-expo"
+    ],
     "hooks": {
       "postPublish": [
         {
@@ -38,6 +42,7 @@
           }
         }
       ]
-    }
+    },
+    "description": ""
   }
 }
