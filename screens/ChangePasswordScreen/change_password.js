@@ -26,7 +26,8 @@ import { Snackbar } from "react-native-paper";
 import { styles as mainStyle } from "../../screens/styles";
 
 export default function ChangePasswordScreen(props) {
-  const { navigation } = props;
+  const { navigation, route } = props;
+  const { userID } = route.params;
   const [state, dispatch] = useStore();
 
   const [oldPassword, setOldPassword] = useState("");
@@ -43,7 +44,48 @@ export default function ChangePasswordScreen(props) {
   };
 
   const handleChangePassword = async () => {
-    if (newPassword !== confirmPassword) {
+    if (userID) {
+      if (newPassword && confirmPassword) {
+        if (newPassword === confirmPassword) {
+          await fetch(
+            "https://admin.furniture.bandn.online/mobile/updatePasswordAfterValidateOTP",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                id: userID,
+                password: newPassword,
+              }),
+            }
+          )
+            .then((response) => response.json())
+            .then((response) => {
+              console.log(response);
+              if (response.payload.status === true) {
+                setStatus("Change password successfully");
+                onToggleSnackBar();
+                navigation.replace("LoginScreen");
+              } else {
+                setStatus("Change password failed");
+                onToggleSnackBar();
+              }
+            })
+            .catch((error) => {
+              setStatus("Check server and try again");
+              onToggleSnackBar();
+              console.log(error);
+            });
+        } else {
+          setStatus("Confirm password is not match");
+          onToggleSnackBar();
+        }
+      } else {
+        setStatus("Please fill all field");
+        onToggleSnackBar();
+      }
+    } else if (newPassword !== confirmPassword) {
       setStatus("Password not match");
       onToggleSnackBar();
     } else if (newPassword.length < 6) {
@@ -96,39 +138,68 @@ export default function ChangePasswordScreen(props) {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
-            placeholderTextColor={gray3Color}
-            color={blackColor}
-            cursorColor={primaryColor}
-            secureTextEntry={true}
-            value={oldPassword}
-            onChangeText={setOldPassword}
-            selectionColor={primaryColor}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="New Password"
-            placeholderTextColor={gray3Color}
-            color={blackColor}
-            cursorColor={primaryColor}
-            secureTextEntry={true}
-            value={newPassword}
-            onChangeText={setNewPassword}
-            selectionColor={primaryColor}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Confirm New Password"
-            placeholderTextColor={gray3Color}
-            color={blackColor}
-            cursorColor={primaryColor}
-            value={confirmPassword}
-            secureTextEntry={true}
-            onChangeText={setConfirmPassword}
-            selectionColor={primaryColor}
-          />
+          {userID === undefined ? (
+            <>
+              <TextInput
+                style={styles.input}
+                placeholder="Password"
+                placeholderTextColor={gray3Color}
+                color={blackColor}
+                cursorColor={primaryColor}
+                secureTextEntry={true}
+                value={oldPassword}
+                onChangeText={setOldPassword}
+                selectionColor={primaryColor}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="New Password"
+                placeholderTextColor={gray3Color}
+                color={blackColor}
+                cursorColor={primaryColor}
+                secureTextEntry={true}
+                value={newPassword}
+                onChangeText={setNewPassword}
+                selectionColor={primaryColor}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Confirm New Password"
+                placeholderTextColor={gray3Color}
+                color={blackColor}
+                cursorColor={primaryColor}
+                value={confirmPassword}
+                secureTextEntry={true}
+                onChangeText={setConfirmPassword}
+                selectionColor={primaryColor}
+              />
+            </>
+          ) : (
+            <>
+              <TextInput
+                style={styles.input}
+                placeholder="New Password"
+                placeholderTextColor={gray3Color}
+                color={blackColor}
+                cursorColor={primaryColor}
+                secureTextEntry={true}
+                value={newPassword}
+                onChangeText={setNewPassword}
+                selectionColor={primaryColor}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Confirm New Password"
+                placeholderTextColor={gray3Color}
+                color={blackColor}
+                cursorColor={primaryColor}
+                value={confirmPassword}
+                secureTextEntry={true}
+                onChangeText={setConfirmPassword}
+                selectionColor={primaryColor}
+              />
+            </>
+          )}
         </View>
 
         <View style={styles.buttonContainer}>
@@ -144,7 +215,7 @@ export default function ChangePasswordScreen(props) {
       </ScrollView>
       <View style={styles.header}>
         <Pressable onPress={handleGoBack} style={styles.headerLeft}>
-          <Icon.ChevronLeft stroke={blackColor} />
+          {userID === undefined && <Icon.ChevronLeft stroke={blackColor} />}
           <Text style={styles.headerLeftText}>Change Password</Text>
         </Pressable>
       </View>

@@ -1,4 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
+import { whiteColor } from "../../global/colors";
 import { bold, title2 } from "../../global/fonts";
 
 export const styles = StyleSheet.create({
@@ -7,17 +8,32 @@ export const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
   },
 
+  inner: {
+    flex: 1,
+  },
+
+  header: {
+    position: "absolute",
+    backgroundColor: whiteColor,
+    width: "100%",
+    flexDirection: "row",
+    paddingTop: 55,
+    paddingBottom: 12,
+    marginBottom: 16,
+  },
+
   back: {
     flexDirection: "row",
     alignItems: "center",
     marginLeft: "3%",
-    marginTop: Platform.OS === "ios" ? 55 : 45,
-    marginBottom: Platform.OS === "ios" ? 40 : 35,
+    backgroundColor: "rgba(255,255,255,0.95)",
   },
 
   titleBack: {
     fontSize: bold.fontSize,
     fontFamily: bold.fontFamily,
+    marginLeft: 12,
+    color: "black",
     transform: [{ translateY: 1 }],
   },
 
@@ -27,10 +43,15 @@ export const styles = StyleSheet.create({
     marginLeft: 34,
   },
 
+  scrollView: {
+    flexGrow: 1,
+    paddingTop: 150,
+    paddingBottom: 50,
+  },
+
   center: {
-    marginTop: 14,
-    justifyContent: "center",
     alignItems: "center",
+    marginTop: 20,
   },
 
   image: {

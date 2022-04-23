@@ -142,7 +142,7 @@ export default function LoginScreen(props) {
             <ScrollView
               overScrollMode="never"
               showsVerticalScrollIndicator={false}
-              contentContainerStyle={{ flexGrow: 1, alignItems: "center" }}
+              contentContainerStyle={{ flexGrow: 1, alignItems: "center", paddingBottom: 30 }}
             >
               <Text style={styles.textLogin}>Login</Text>
               <Text style={styles.textWelcome}>Welcome to EzFurniture</Text>

@@ -18,6 +18,7 @@ export const styles = StyleSheet.create({
   scrollView: {
     flexGrow: 1,
     paddingTop: 90,
+    paddingBottom: 50,
     backgroundColor: whiteColor,
     paddingHorizontal: 16,
   },

@@ -18,7 +18,7 @@ import { styles as mainStyle } from "../../screens/styles";
 
 export default function OTPScreen(props) {
   const { navigation, route } = props;
-  const { data } = route.params;
+  const { data, userID } = route.params;
 
   const [status, setStatus] = useState(null);
 
@@ -45,8 +45,40 @@ export default function OTPScreen(props) {
 
   const handleVerify = async () => {
     console.log("handleVerify");
-    if (otp.length === 6 && otp !== "") {
-      const check = await fetch(
+    if (userID) {
+      if (otp.length === 6 && otp !== "") {
+        await fetch("https://admin.furniture.bandn.online/mobile/validateOTP", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            otp: otp,
+          }),
+        })
+          .then((response) => response.json())
+          .then((response) => {
+            console.log(response);
+            if (response.status === true) {
+              setStatus("Verify successfully");
+              onToggleSnackBar();
+              navigation.navigate("ChangePasswordScreen", {
+                userID: userID,
+              });
+            } else {
+              setStatus("Verify failed");
+              onToggleSnackBar();
+            }
+          }
+        )
+          .catch((error) => {
+            setStatus("Check server connection");
+            onToggleSnackBar();
+            console.log(error);
+          });
+      }
+    }else if (otp.length === 6 && otp !== "") {
+      await fetch(
         "https://admin.furniture.bandn.online/mobile/register",
         {
           method: "POST",

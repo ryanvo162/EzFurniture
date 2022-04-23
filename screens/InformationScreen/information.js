@@ -46,7 +46,7 @@ export default function InformationScreen(props) {
     navigation.goBack();
   };
   const handleGoToChangePassword = () => {
-    navigation.navigate("ChangePasswordScreen");
+    navigation.navigate("ChangePasswordScreen", {});
   };
 
   const [image, setImage] = useState(state.user.avatar ?? "");

@@ -15,7 +15,6 @@ export const styles = StyleSheet.create({
   },
   inner: {
     flex: 1,
-    // alignItems: "center",
   },
 
   inputTextEmail: {
