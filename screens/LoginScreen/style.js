@@ -26,11 +26,13 @@ export const styles = StyleSheet.create({
     height: 220,
     marginBottom: 40,
   },
+  
   textLogin: {
     fontSize: title1.fontSize,
     fontFamily: title1.fontFamily,
     color: blackColor,
   },
+
   textWelcome: {
     fontSize: body.fontSize,
     fontFamily: body.fontFamily,

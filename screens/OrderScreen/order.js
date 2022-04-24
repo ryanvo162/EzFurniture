@@ -12,7 +12,9 @@ import { useStore } from "../../provider";
 import {
   capitalizeFirstLetter,
   formatDate,
+  formatDateToDate,
   formatDisplayPrice,
+  formatJustDate,
 } from "../../global/format";
 
 export default function OrderScreen(props) {
@@ -28,7 +30,6 @@ export default function OrderScreen(props) {
     navigation.goBack();
   };
   const [myArr, setMyArr] = useState([]);
-
   const data = myArr.length !== 0 ? [...myArr] : [];
 
   const renderItem = ({ item }) => <Item item={item} />;
@@ -48,7 +49,6 @@ export default function OrderScreen(props) {
     )
       .then((res) => res.json())
       .then((res) => {
-        // console.log(res);
         setMyArr(res.order);
       })
       .catch((err) => {

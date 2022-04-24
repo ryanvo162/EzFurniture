@@ -8,6 +8,10 @@ export const styles = StyleSheet.create({
     backgroundColor: "white",
   },
 
+  inner: {
+    flex: 1,
+  },
+
   header: {
     width: "100%",
     flexDirection: "row",

@@ -112,7 +112,17 @@ export default function SignUpScreen(props) {
   };
 
   const handleGoToLogin = () => {
-    navigation.replace("LoginScreen",{message: "check"});
+    navigation.replace("LoginScreen", { message: "check" });
+  };
+
+  const handleLoginFacebook = () => {
+    setStatus("Feature is coming soon");
+    onToggleSnackBar();
+  };
+
+  const handleLoginGoogle = () => {
+    setStatus("Feature is coming soon");
+    onToggleSnackBar();
   };
 
   return (
@@ -147,7 +157,7 @@ export default function SignUpScreen(props) {
               <TextInputApp
                 onChange={setPassword}
                 placeholder="Password"
-                autoComplete="password"   
+                autoComplete="password"
                 secureTextEntry={true}
               />
               <TextInputApp
@@ -168,7 +178,11 @@ export default function SignUpScreen(props) {
                 autoComplete="phone"
               />
 
-              <AuthButton />
+              <AuthButton
+                onLoginGoogle={handleLoginGoogle}
+                onLoginFacebook={handleLoginFacebook}
+              />
+
               <ButtonApp
                 text="Sign Up"
                 backgroundColor="brown"

@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { body, bold } from "../../global/fonts";
+import { whiteColor } from "../../global/colors";
 
 export const styles = StyleSheet.create({
   container: {
@@ -32,7 +33,7 @@ export const styles = StyleSheet.create({
   buttonText: {
     fontSize: bold.fontSize,
     fontFamily: body.fontFamily,
-    color: "white",
+    color: whiteColor,
     marginRight: 10,
   },
 

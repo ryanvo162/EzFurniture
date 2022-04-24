@@ -130,7 +130,7 @@ export default function DetailScreen(props) {
           <Icon.ChevronLeft stroke="black" />
           <Text style={styles.headerLeftText}>Back</Text>
         </Pressable>
-        <Pressable onPress={handleGoBack} style={styles.headerRight}>
+        <Pressable style={styles.headerRight}>
           <Icon.Heart stroke="black" />
         </Pressable>
       </View>

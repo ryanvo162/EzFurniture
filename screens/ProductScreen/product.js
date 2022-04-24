@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { View, FlatList, Text, Pressable } from "react-native";
+import {
+  View,
+  FlatList,
+  Text,
+  Pressable,
+  Keyboard,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+} from "react-native";
 import ProductItem from "../../components/ProductItem";
 
 import * as Icon from "react-native-feather";
@@ -41,10 +49,9 @@ export default function ProductScreen(props) {
   );
   const [myArr, setMyArr] = useState([]);
   const data = myArr.length !== 0 ? [...myArr] : [];
-  console.log(data);
+  // console.log(data);
 
   const [myArrSearch, setMyArrSearch] = useState([]);
-
   const dataSearch = myArrSearch.length !== 0 ? [...myArrSearch] : [];
 
   if (_id_category !== undefined) {
@@ -109,63 +116,70 @@ export default function ProductScreen(props) {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Pressable onPress={handleGoBack} style={styles.headerLeft}>
-          <Icon.ChevronLeft stroke="black" />
-          <Text style={styles.headerLeftText}>{title}</Text>
-        </Pressable>
-        <View style={styles.headerRight}>
-          <Pressable onPress={handleGoToCart}>
-            <Icon.ShoppingCart stroke="black" />
-          </Pressable>
-        </View>
-      </View>
-
-      <View style={styles.searchbar}>
-        <SearchBar onChangeText={setSearch} onSearch={handleSearch} />
-      </View>
-      {data.length !== 0 || dataSearch.length !== 0 ? (
-        search === "" ? (
-          <FlatList
-            overScrollMode="never"
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ paddingBottom: 60 }}
-            style={styles.flatList}
-            data={data}
-            renderItem={renderItem}
-            keyExtractor={(item) => item._id}
-            numColumns={2}
-            columnWrapperStyle={{
-              flexGrow: 1,
-              justifyContent: "center",
-            }}
-          />
-        ) : dataSearch.length !== 0 ? (
-          <FlatList
-            overScrollMode="never"
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ paddingBottom: 60 }}
-            style={styles.flatList}
-            data={dataSearch}
-            renderItem={renderItem}
-            keyExtractor={(item) => item._id}
-            numColumns={2}
-            columnWrapperStyle={{
-              flexGrow: 1,
-              justifyContent: "center",
-            }}
-          />
-        ) : (
-          <View style={styles.emptyView}>
-            <Text style={styles.emptyText}>We don't any items</Text>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.inner}>
+          <View style={styles.header}>
+            <Pressable onPress={handleGoBack} style={styles.headerLeft}>
+              <Icon.ChevronLeft stroke="black" />
+              <Text style={styles.headerLeftText}>{title}</Text>
+            </Pressable>
+            <View style={styles.headerRight}>
+              <Pressable onPress={handleGoToCart}>
+                <Icon.ShoppingCart stroke="black" />
+              </Pressable>
+            </View>
           </View>
-        )
-      ) : (
-        <View style={styles.emptyView}>
-          <Text style={styles.emptyText}>We don't any items</Text>
+
+          <View style={styles.searchbar}>
+            <SearchBar onChangeText={setSearch} onSearch={handleSearch} />
+          </View>
+          {data.length !== 0 || dataSearch.length !== 0 ? (
+            search === "" ? (
+              <FlatList
+                overScrollMode="never"
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{ paddingBottom: 60 }}
+                style={styles.flatList}
+                data={data}
+                renderItem={renderItem}
+                keyExtractor={(item) => item._id}
+                numColumns={2}
+                columnWrapperStyle={{
+                  flexGrow: 1,
+                  justifyContent: "center",
+                }}
+              />
+            ) : dataSearch.length !== 0 ? (
+              <FlatList
+                overScrollMode="never"
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{ paddingBottom: 60 }}
+                style={styles.flatList}
+                data={dataSearch}
+                renderItem={renderItem}
+                keyExtractor={(item) => item._id}
+                numColumns={2}
+                columnWrapperStyle={{
+                  flexGrow: 1,
+                  justifyContent: "center",
+                }}
+              />
+            ) : (
+              <View style={styles.emptyView}>
+                <Text style={styles.emptyText}>We don't any items</Text>
+              </View>
+            )
+          ) : (
+            <View style={styles.emptyView}>
+              <Text style={styles.emptyText}>We don't any items</Text>
+            </View>
+          )}
         </View>
-      )}
-    </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 }

@@ -3,7 +3,7 @@ import React from "react";
 import { styles } from "./style";
 
 export default function AuthButton(props) {
-  const { onLoginFacebook, onLoginGoogle, disabled } = props;
+  const { onLoginFacebook, onLoginGoogle } = props;
   return (
     <View style={styles.container}>
       <Pressable onPress={onLoginGoogle}>
@@ -12,7 +12,7 @@ export default function AuthButton(props) {
           source={require("../../assets/img/logo_gg.png")}
         />
       </Pressable>
-      <Pressable disabled={disabled} onPress={onLoginFacebook}>
+      <Pressable onPress={onLoginFacebook}>
         <Image
           style={styles.imageAuth}
           source={require("../../assets/img/logo_fb.png")}

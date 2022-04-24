@@ -76,7 +76,7 @@ export default function LoginScreen(props) {
                 addresses: res.data.user.payload.data.addresses,
                 dob: res.data.user.payload.data.dob,
                 avatar: res.data.user.payload.data.avatar,
-              };    
+              };
               const jsonValue = JSON.stringify(data);
               AsyncStorage.setItem("@data_user", jsonValue);
             } else {
@@ -142,7 +142,11 @@ export default function LoginScreen(props) {
             <ScrollView
               overScrollMode="never"
               showsVerticalScrollIndicator={false}
-              contentContainerStyle={{ flexGrow: 1, alignItems: "center", paddingBottom: 30 }}
+              contentContainerStyle={{
+                flexGrow: 1,
+                alignItems: "center",
+                paddingBottom: 30,
+              }}
             >
               <Text style={styles.textLogin}>Login</Text>
               <Text style={styles.textWelcome}>Welcome to EzFurniture</Text>

@@ -6,7 +6,21 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
-    paddingTop: 50,
+    // paddingTop: 50,
+  },
+
+  header: {
+    position: "absolute",
+    backgroundColor: "rgba(255,255,255,0.95)",
+    width: "100%",
+    // flexDirection: "row",
+    paddingTop: 55,
+    paddingBottom: 12,
+    marginBottom: 16,
+  },
+
+  inner: {
+    flex: 1,
   },
 
   containerHorzontalScroll: {
@@ -41,7 +55,4 @@ export const styles = StyleSheet.create({
     marginTop: 18,
     marginLeft: 16,
   },
-
-
-
 });
