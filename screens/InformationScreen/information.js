@@ -20,7 +20,7 @@ import { styles } from "./style";
 
 import * as FileSystem from "expo-file-system";
 
-import { gray2Color } from "../../global/colors";
+import { gray2Color, primaryColor } from "../../global/colors";
 import ButtonApp from "../../components/Button";
 import { actions, useStore } from "../../provider";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -173,11 +173,14 @@ export default function InformationScreen(props) {
                 contentContainerStyle={styles.containerScrollView}
               >
                 <View style={styles.containerImage}>
-                  <Pressable onPress={pickImage} style={styles.avatarView}>
+                  <View style={styles.avatarView}>
                     {image && (
                       <Image source={{ uri: image }} style={styles.avatar} />
                     )}
-                  </Pressable>
+                    <Pressable onPress={pickImage} style={styles.plus}>
+                      <Icon.PlusCircle color={primaryColor} />
+                    </Pressable>
+                  </View>
                 </View>
                 <Text style={styles.textTitleInput}>Name</Text>
                 <TextInput

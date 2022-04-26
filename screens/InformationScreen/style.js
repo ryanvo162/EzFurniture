@@ -1,7 +1,6 @@
 import { StyleSheet, Platform } from "react-native";
 import { bold, body2, bold12 } from "../../global/fonts";
-import { primaryColor, gray3Color } from "../../global/colors";
-
+import { primaryColor, gray3Color, whiteColor } from "../../global/colors";
 
 export const styles = StyleSheet.create({
   container: {
@@ -12,6 +11,16 @@ export const styles = StyleSheet.create({
   inner: {
     flex: 1,
     // alignItems: "center",
+  },
+
+  plus: {
+    position: "absolute",
+    backgroundColor: whiteColor,
+    borderRadius: 30,
+    alignItems: "center",
+    justifyContent: "center",
+    bottom: 0,
+    right: 15,
   },
 
   containerScrollView: {

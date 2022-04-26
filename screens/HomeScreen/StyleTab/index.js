@@ -40,7 +40,11 @@ export default function StyleTab(props) {
           });
           setMyArrSearch(newArr);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          setStatus("Check server");
+          onToggleSnackBar();
+          console.log(err);
+        });
     }
   };
 
@@ -62,7 +66,11 @@ export default function StyleTab(props) {
     fetch("https://admin.furniture.bandn.online/mobile/style")
       .then((res) => res.json())
       .then((res) => setMyArr(res.data))
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setStatus("Check server");
+        onToggleSnackBar();
+        console.log(err);
+      });
   }, []);
 
   // console.log("myArr:", myArr);
@@ -159,11 +167,24 @@ export default function StyleTab(props) {
           ) : (
             <ScrollView
               contentContainerStyle={{
+                flexGrow: 1,
                 paddingBottom: 100,
+                paddingTop: 130,
               }}
               overScrollMode="never"
               showsVerticalScrollIndicator={false}
             >
+              <ScrollView
+                horizontal={true}
+                contentContainerStyle={styles.horizontalScroll}
+                overScrollMode="never"
+                showsHorizontalScrollIndicator={false}
+              >
+                <LoadingCardNewStyle />
+                <LoadingCardNewStyle />
+                <LoadingCardNewStyle />
+                <LoadingCardNewStyle />
+              </ScrollView>
               <LoadingStyle />
               <LoadingStyle />
               <LoadingStyle />

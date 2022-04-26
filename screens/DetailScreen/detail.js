@@ -43,7 +43,12 @@ export default function DetailScreen(props) {
   };
 
   const handlePlus = () => {
-    setQuantity(quantity + 1);
+    if (quantity < 5) {
+      setQuantity(quantity + 1);
+    } else {
+      setStatus("Quantity can not be more than 5");
+      onToggleSnackBar();
+    }
   };
 
   useEffect(async () => {
@@ -229,13 +234,7 @@ export default function DetailScreen(props) {
         visible={visible}
         style={[mainStyle.snackbar, styles.snackbar]}
         onDismiss={onDismissSnackBar}
-        duration={2000}
-        // action={{
-        //   label: "Undo",
-        //   onPress: () => {
-        //     // Do something
-        //   },
-        // }}
+        duration={1000}
       >
         {status}
       </Snackbar>

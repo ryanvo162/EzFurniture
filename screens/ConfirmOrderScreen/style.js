@@ -139,27 +139,33 @@ export const styles = StyleSheet.create({
     fontFamily: bold12.fontFamily,
     color: primaryColor,
   },
+
   voucher: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
+
   textVoucher: {
     fontSize: bold12.fontSize,
     fontFamily: bold12.fontFamily,
     color: blackColor,
   },
+
   choseVoucherContainer: {
     flexDirection: "row",
   },
+
   choseVoucher: {
     fontSize: body2.fontSize,
     fontFamily: body2.fontFamily,
     color: gray3Color,
   },
+
   payment: {
     marginBottom: 10,
   },
+  
   paymentMethod: {
     flexDirection: "row",
     alignItems: "center",
@@ -254,8 +260,9 @@ export const styles = StyleSheet.create({
   },
 
   input: {
-    width: 374,
+    width: "100%",
     alignSelf: "center",
+    marginHorizontal: 10,
     paddingVertical: Platform.OS === "ios" ? 20 : 10,
     paddingHorizontal: 20,
     borderRadius: 5,

@@ -108,7 +108,7 @@ export default function LoginScreen(props) {
   };
 
   const handleGoToSignUp = () => {
-    navigation.navigate("SignUpScreen");
+    navigation.replace("SignUpScreen");
   };
 
   const handleGoToForgotPassword = () => {

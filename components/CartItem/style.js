@@ -19,14 +19,14 @@ export const styles = StyleSheet.create({
   infoProduct: {
     marginLeft: "2%",
     flex: 1,
-  },    
+  },
 
   imageItem: {
     width: 140,
     height: 120,
     borderRadius: 5,
     backgroundColor: "gray",
-  }, 
+  },
 
   name: {
     fontSize: bold.fontSize,
@@ -38,4 +38,10 @@ export const styles = StyleSheet.create({
     fontFamily: body.fontFamily,
     marginBottom: 8,
   },
+
+  quantityButton: {
+    flexDirection: "row",
+    width: "100%",
+  },
+  
 });

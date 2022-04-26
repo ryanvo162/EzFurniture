@@ -22,7 +22,7 @@ import { formatDisplayPrice, formatNumber } from "../../../global/format";
 
 export default function CartTab(props) {
   const [state, dispatch] = useStore();
-
+  console.log("state:", state.user.id);
   const [status, setStatus] = useState(null);
   const [visible, setVisible] = useState(false);
   const onToggleSnackBar = () => setVisible(!visible);
@@ -231,16 +231,26 @@ export default function CartTab(props) {
 
   const handleConfirm = () => {
     setModalVisible(!modalVisible);
+    if (subTotal < 20000) {
     navigation.navigate("ConfirmOrderScreen", {
       data: myArr,
       subTotal: subTotal,
       isDelete: true,
     });
+    } else {
+      setStatus("You can not order more than $20.000");
+      onToggleSnackBar();
+    }
   };
 
   const handleCancel = () => {
     setModalVisible(!modalVisible);
   };
+
+  const handleLog = (log) => {
+    setStatus(log);
+    onToggleSnackBar();
+  }
 
   const Item = ({ item }) => (
     <CartItem
@@ -252,6 +262,7 @@ export default function CartTab(props) {
       onChangeQuantity={fetchData}
       onPress={handleSeeDetail}
       onDelete={handleDelete}
+      onLog={handleLog}
     />
   );
 

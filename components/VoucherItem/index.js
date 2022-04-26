@@ -12,7 +12,7 @@ export default function Voucher(props) {
         <Image
           onLoadStart={() => setIsLoading(true)}
           onLoadEnd={() => setIsLoading(false)}
-          source={image}
+          source={{ uri: image }}
           style={styles.image}
         />
         {isLoading && (

@@ -5,7 +5,7 @@ import { bold } from "../../global/fonts";
 export const styles = StyleSheet.create({
   quantity: {
     height: 30,
-    width: 90,
+    // width: 90,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",

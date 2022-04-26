@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, Text, Image, ActivityIndicator, Pressable } from "react-native";
+import React, { useState,useEffect,useRef } from "react";
+import { View, Text, Image, Pressable,Animated,Easing } from "react-native";
 
 import * as Icon from "react-native-feather";
 import { styles } from "./style";
@@ -8,12 +8,43 @@ export default function OrderItem(props) {
   const { image, date, onPress, total, statusOrder, address, id, isOnline } =
     props;
   const [isLoading, setIsLoading] = useState(true);
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
   const handleChoose = () => {
     onPress(id);
   };
+   useEffect(() => {
+     if (isLoading) {
+       Animated.loop(
+         Animated.sequence([
+           Animated.timing(fadeAnim, {
+             toValue: 1,
+             duration: 500,
+             delay: 500,
+             easing: Easing.linear,
+             useNativeDriver: true,
+           }),
+           Animated.timing(fadeAnim, {
+             toValue: 0.3,
+             duration: 500,
+             easing: Easing.linear,
+             delay: 200,
+             useNativeDriver: true,
+           }),
+         ])
+       ).start();
+     } else {
+       Animated.timing(fadeAnim, {
+         toValue: 1,
+         duration: 500,
+         easing: Easing.linear,
+         useNativeDriver: true,
+       }).start();
+     }
+   }, [fadeAnim, isLoading]);
   return (
     <Pressable onPress={handleChoose} style={styles.items}>
-      <View style={styles.imageView}>
+      <Animated.View style={[styles.imageView, { opacity: fadeAnim }]}>
         <Image
           onLoadStart={() => setIsLoading(true)}
           onLoadEnd={() => setIsLoading(false)}
@@ -28,12 +59,7 @@ export default function OrderItem(props) {
           }
           style={styles.image}
         />
-        {isLoading && (
-          <View style={styles.loading}>
-            <ActivityIndicator color="white" />
-          </View>
-        )}
-      </View>
+      </Animated.View>
       <View style={styles.content}>
         <View style={styles.innerContent}>
           <Text style={styles.titleItem}>ID:</Text>

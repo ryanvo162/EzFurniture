@@ -2,15 +2,6 @@ import React, { useState, useEffect } from "react";
 import { View, Text, Pressable } from "react-native";
 import { styles } from "./style";
 import * as Icon from "react-native-feather";
-import ButtonApp from "../../components/Button";
-import {
-  blackColor,
-  whiteColor,
-  primaryColor,
-  gray1Color,
-  gray2Color,
-  gray3Color,
-} from "../../global/colors";
 import WebView from "react-native-webview";
 import { ENDPOINT } from "../../socket.io-client/link";
 import { io } from "socket.io-client";

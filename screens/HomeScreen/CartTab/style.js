@@ -99,7 +99,7 @@ export const styles = StyleSheet.create({
     marginTop: 20,
   },
   snackbar: {
-    marginBottom: Platform.OS === "ios" ? 60 : 90,
+    marginBottom: Platform.OS === "ios" ? 120 : 150,
   },
 
   closeContainer: {

@@ -16,6 +16,7 @@ export default function CartItem(props) {
     quantity,
     onDelete,
     onChangeQuantity,
+    onLog,
   } = props;
   const [quantityCart, setQuantity] = useState(quantity);
   const priceFormat = formatNumber(price);
@@ -54,6 +55,7 @@ export default function CartItem(props) {
   };
 
   const handlePlus = async () => {
+    if (quantityCart < 5) {
     setQuantity(quantityCart + 1);
     await fetch("https://admin.furniture.bandn.online/cart/updateCart", {
       method: "POST",
@@ -77,7 +79,10 @@ export default function CartItem(props) {
       .catch((err) => {
         console.error(err);
       });
-    onChangeQuantity();
+      onChangeQuantity();
+    } else {
+      onLog("Quantity can not be more than 5");
+    }
   };
 
   const handleChoose = () => {
@@ -90,11 +95,13 @@ export default function CartItem(props) {
       <View style={styles.infoProduct}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.price}>{formatDisplayPrice(total)}</Text>
-        <QuantityButton
-          onPressPlus={handlePlus}
-          onPressMinus={handleMinus}
-          quantity={quantityCart}
-        />
+        <View style={styles.quantityButton}>
+          <QuantityButton
+            onPressPlus={handlePlus}
+            onPressMinus={handleMinus}
+            quantity={quantityCart}
+          />
+        </View>
       </View>
     </Pressable>
   );

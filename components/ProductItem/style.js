@@ -21,7 +21,13 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
   },
 
+  anim: {
+    width: "100%",
+    height: "100%",
+  },
+
   infoProduct: {
+    minWidth: 100,
     paddingHorizontal: 12,
     paddingVertical: 6,
     backgroundColor: "rgba(33,33,33,0.75)",

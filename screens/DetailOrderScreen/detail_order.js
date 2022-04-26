@@ -4,42 +4,12 @@ import { styles } from "./style";
 import * as Icon from "react-native-feather";
 import DetailOrderItem from "../../components/DetailOrderItem";
 import {
-  blackColor,
-  whiteColor,
-  primaryColor,
-  gray2Color,
-} from "../../global/colors";
-import {
   capitalizeFirstLetter,
-  formatDate,
   formatDisplayPrice,
   formatJustDate,
   formatNumber,
   formatPhoneNumberDisplay2,
 } from "../../global/format";
-const data = [
-  {
-    id: 1,
-    name: "Nguyễn Văn A",
-    price: "1.000.000",
-    quantity: "1",
-    image: "https://picsum.photos/200/300",
-  },
-  {
-    id: 2,
-    name: "Nguyễn Văn A",
-    price: "1.000.000",
-    quantity: "1",
-    image: "https://picsum.photos/200/300",
-  },
-  {
-    id: 3,
-    name: "Nguyễn Văn A",
-    price: "1.000.000",
-    quantity: "1",
-    image: "https://picsum.photos/200/300",
-  },
-];
 
 export default function DetailOrderScreen(props) {
   const { navigation, route } = props;
@@ -55,6 +25,7 @@ export default function DetailOrderScreen(props) {
 
   const [myArr, setMyArr] = useState([]);
   const data = myArr.length !== 0 ? [...myArr] : [];
+
   const [idOrder, setIdOrder] = useState(null);
   const [total, setTotal] = useState(0);
   const [statusOrder, setStatusOrder] = useState(null);
@@ -180,14 +151,14 @@ export default function DetailOrderScreen(props) {
                 </Text>
               </View>
               <View style={styles.infoTextInline}>
-              <Text style={styles.infoOrderText}>
-                <Text style={styles.titleInfo}>Name: </Text> {name}
-              </Text>
-              <Text style={styles.infoOrderText}>
-                <Text style={styles.titleInfo}>Phone: </Text> {phone}
-              </Text>
+                <Text style={styles.infoOrderText}>
+                  <Text style={styles.titleInfo}>Name: </Text> {name}
+                </Text>
+                <Text style={styles.infoOrderText}>
+                  <Text style={styles.titleInfo}>Phone: </Text> {phone}
+                </Text>
               </View>
-       
+
               <Text style={styles.infoOrderText}>
                 <Text style={styles.titleInfo}>Address: </Text> {address}
               </Text>
