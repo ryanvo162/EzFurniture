@@ -89,7 +89,7 @@ export default function OTPScreen(props) {
             email: data.email,
             password: data.password,
             name: data.name,
-            dob: "01/06/2000",
+            dob: "01/01/2000",
             phone: data.phoneNumber,
             code: otp,
           }),

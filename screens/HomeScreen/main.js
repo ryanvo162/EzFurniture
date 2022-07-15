@@ -16,6 +16,7 @@ import ProfileTab from "./ProfileTab";
 import * as Icon from "react-native-feather";
 import { StatusBar } from "expo-status-bar";
 import { actions, useStore } from "../../provider";
+import { primaryColor } from "../../global/colors";
 
 const Tab = createBottomTabNavigator();
 
@@ -74,6 +75,7 @@ export default function HomeScreen(props) {
     });
   }, []);
 
+
   return (
     <>
       <Tab.Navigator
@@ -115,8 +117,8 @@ export default function HomeScreen(props) {
             }
             return tag;
           },
-          tabBarActiveTintColor: "white",
-          tabBarInactiveTintColor: "#CCCCCC",
+          tabBarActiveTintColor: primaryColor,
+          tabBarInactiveTintColor: "white",
           tabBarShowLabel: false,
           headerShown: false,
           tabBarStyle: {
@@ -124,20 +126,22 @@ export default function HomeScreen(props) {
               ios: {
                 position: "absolute",
                 marginHorizontal: 0,
-                backgroundColor: "rgba(119, 120, 123,0.7)",
+                backgroundColor: "rgba(119, 120, 123,0.8)",
                 borderRadius: 50,
                 bottom: 21,
                 marginHorizontal: 26,
                 height: 65,
                 paddingBottom: 0,
+                borderTopColor: "transparent",
               },
               android: {
                 position: "absolute",
-                backgroundColor: "rgba(119, 120, 123,0.7)",
+                backgroundColor: "rgba(119, 120, 123,0.8)",
                 bottom: 21,
                 marginHorizontal: 26,
                 height: 65,
                 borderRadius: 50,
+                borderTopColor: "transparent",
               },
             }),
           },
